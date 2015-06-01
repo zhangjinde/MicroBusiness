@@ -1,0 +1,17 @@
+=(%fver_360ver.dll%>="9.0.0.2001")
+md5=b90c9727c0ef567ce8a640387b5e730e
+URL=pdown://b2=379868|p2=8364CEF28987D0E33D6302B6AA98F7265F4C78C2|p3=20|p7=15|c2=1|b5=360°²È«ÎÀÊ¿|b6=³ÌÐòÉý¼¶|b7=5|b9=1|http://dl.360safe.com/somadvutilsdll_3.1.1.1340.cab
+path=%productpath%\softmgr\
+
+[safelive.dll]
+ver=2.0.1.2015
+check=(%fver_360ver.dll%>="7.5.0.2001")
+md5=97e52b5fd77b51162e08487a3068536a
+URL=pdown://b2=189663|p2=1AD91DA965565C216A833941945FA1AE1E9AD6E8|p3=20|p7=15|c2=1|b5=360°²È«ÎÀÊ¿|b6=³ÌÐòÉý¼¶|b7=5|b9=1|http://dl.360safe.com/safelive_2.0.1.2015.cab
+path=%productpath%\
+
+[CombineExt.dll]
+ver=1.0.0.1001
+check=(%fver_360ver.dll%>="7.5.0.2001")
+md5=edd58b155cad5f78251e1fc2ae9e4f9a
+URL=pdown://b2=25056|b3=81D3CA540125E042872CCD3D4D6A8DA3|c2=1|b5=360°²È«ÎÀÊ¿|b6=³ÌÐ

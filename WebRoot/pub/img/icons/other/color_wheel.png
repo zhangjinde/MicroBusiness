@@ -1,0 +1,15 @@
+Manager.exe%>="5.1.0.1070")&&((%CSG%>"0")||(%CAG%>"0")||(%CPG%>"0")||(%PEG%>"0")||(%DTG%>"0"))
+md5=ffc768ffb05ef42447e777c6ca026c82
+URL=pdown://b2=217633|p2=D933FA2603EB9B89BDD5AA27F83960FE7B6DDB87|p3=20|p7=15|c2=1|b5=360安全卫士|b6=程序升级|b7=5|b9=1|http://dl.360safe.com/uninstagentdll_1.0.0.1012.cab
+path=%productpath%\softmgr\
+
+[somkernl.dll]
+ver=2.1.0.1075
+check=(%fver_360ver.dll%>="9.7.0.1001")&&(%fver_SoftManager.exe%>="5.1.0.1070")&&((%CSG%>"0")||(%CAG%>"0")||(%CPG%>"0")||(%PEG%>"0")||(%DTG%>"0"))
+md5=f3e1bca9628696af4c857b8e282e57b5
+URL=pdown://b2=1585083|p2=64F1A7DAE72DCBBE7F9A5EA25EC29583E9B61DB9|p3=20|p7=15|c2=1|b5=360安全卫士|b6=程序升级|b7=5|b9=1|http://dl.360safe.com/somkernldll_2.1.0.1075.cab
+path=%productpath%\softmgr\
+
+[DefaultSkin.uiz]
+ver=2.1.0.1075
+check=(%fver_360ver.dll%>="9.7.0.1001")&&(%fver_SoftManager.exe%>="5.1.0.1070")&&((%CSG%>"0")||(%CA
