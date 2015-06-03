@@ -16,19 +16,8 @@ import org.micro.util.StringUtil;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDao 
+public class UserDao extends BaseDao
 {
-	private QryCenter qryCenter;
-
-	public QryCenter getQryCenter() {
-		return qryCenter;
-	}
-
-	@Resource
-	public void setQryCenter(QryCenter qryCenter) {
-		this.qryCenter = qryCenter;
-	}
-	
 	public List<Map<String,String>> qryUserList(String page , String rows) throws QryException
 	{
 		String query = "SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select t.user_id,t.user_name,t.user_priv,t.real_name,t.user_ip,to_char(t.start_date,'yyyy-mm-dd') start_date,to_char(t.end_date,'yyyy-mm-dd') end_date from vclass_user t where user_state = '00A' and user_priv != '#') A WHERE ROWNUM <= ?) WHERE RN >= ?";

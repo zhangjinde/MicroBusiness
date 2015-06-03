@@ -15,18 +15,7 @@ import org.micro.util.StringUtil;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class LoginDao {
-	
-	private QryCenter qryCenter;
-
-	public QryCenter getQryCenter() {
-		return qryCenter;
-	}
-
-	@Resource
-	public void setQryCenter(QryCenter qryCenter) {
-		this.qryCenter = qryCenter;
-	}
+public class LoginDao extends BaseDao{
 	
 	public List<Map<String , String>> qryUserInfo(String userName) throws QryException
 	{

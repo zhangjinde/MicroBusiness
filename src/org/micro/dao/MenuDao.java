@@ -11,19 +11,8 @@ import org.micro.util.QryException;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MenuDao {
+public class MenuDao extends BaseDao {
 
-	private QryCenter qryCenter;
-
-	public QryCenter getQryCenter() {
-		return qryCenter;
-	}
-
-	@Resource
-	public void setQryCenter(QryCenter qryCenter) {
-		this.qryCenter = qryCenter;
-	}
-	
 	public List<Map<String,String>> getMainMenu() throws QryException
 	{
 		String query = "select * from vclass_menu where parent_menu_id = 0 and sts = '00A'";

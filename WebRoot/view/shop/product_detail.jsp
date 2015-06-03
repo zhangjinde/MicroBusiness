@@ -36,20 +36,20 @@
 					<div class="custom-image-swiper custom-goods-swiper js-swp swp">
 						<div class="swiper-wrapper js-swp-wrap" style="height: 320px;">
 							<div class="swp-page">
-								<img src="/pub/img/goods123123.png">
+								<img src="${product.imgUrl}">
 							</div>
 						</div>
 						<div class="swiper-pagination js-swiper-pagination"></div>
 					</div>
 					<div class="goods-header">
 						<h2 class="title">
-							回锅
+							${product.productName}
 						</h2>
 						<span class="hide js-add-wish js-wish-animate wish-add  font-size-12 tag tag-redf30 pull-right">
 							喜欢 </span>
 						<div class="goods-price ">
 							<div class="current-price">
-								<span>￥&nbsp;</span><i class="js-goods-price price">0.01</i>
+								<span>￥&nbsp;</span><i class="js-goods-price price">${product.productPrice}</i>
 							</div>
 						</div>
 					</div>
@@ -61,7 +61,7 @@
 									剩余：
 								</dt>
 								<dd>
-									999
+									${product.productStock}
 								</dd>
 							</dl>
 							<dl>
@@ -77,7 +77,7 @@
 					<div class="js-store-info">
 						<div class="block block-list goods-store">
 							<div class="custom-store block-item ">
-								<a class="custom-store-link clearfix" href="#">
+								<a class="custom-store-link clearfix" href="/view/shop/main.html">
 									<div class="custom-store-img"></div>
 									<div class="custom-store-name">XXXXX</div>
 									<span class="custom-store-enter">进入店铺</span>
@@ -91,14 +91,16 @@
 									<div class="js-components-container components-container">
 										<div class="custom-richtext js-view-image-list">
 											<p>
-												<span style="font-size: 14px;">什么什么什么什么</span>
+												<span style="font-size: 14px;">${product.productDesc}</span>
 											</p>
+											<!-- 
 											<p>
 												<span style="font-size: 14px;">---------------------</span>
 											</p>
 											<p>
 												<span style="font-size: 14px; color: rgb(255, 0, 0);">什么什么什么什么</span>
 											</p>
+											 -->
 										</div>
 									</div>
 								</div>
@@ -138,7 +140,7 @@
 							<a href="#" target="_blank">会员中心</a>
 						</div>
 						<div class="ft-copyright" style="background-image:url()">
-							<a href="#" target="_blank">微商城提供技术支持</a>
+							<a href="#" target="_blank">华莱士提供技术支持 </a>
 						</div>
 					</div>
 				</div>
