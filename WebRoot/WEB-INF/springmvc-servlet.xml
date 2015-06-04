@@ -30,6 +30,8 @@
 	
 	<context:component-scan base-package="org.micro.dao" />
 	
+	<context:component-scan base-package="org.micro.pub" />
+	
 	<bean name="beanFactory" class="org.micro.util.BeanFactoryHelper"/>
 			
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
