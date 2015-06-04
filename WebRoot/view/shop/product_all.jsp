@@ -48,22 +48,40 @@
           </ul>
           <div class="custom-paginations-container">
             <div class="custom-paginations clearfix">
-              <a  onclick="page()" href="javascript:;" class="custom-paginations-prev disabled">
+              <a id="before" onclick="beforePage()" href="javascript:;" class="custom-paginations-prev disabled">
                                           上一页
               </a>
-              <a onclick="nextPage()" href="javascript:;" class="custom-paginations-next js-no-follow">
+              <a id="next" onclick="nextPage()" href="javascript:;" class="custom-paginations-next js-no-follow">
              	   下一页
               </a>
               <script type="text/javascript">
 
-              function page()
+              function beforePage()
               {
             	  page--;
+            	  if(page<=0)
+            	  {
+            		  return;
+            	  }
+            	  if(page-1<=0)
+            	  {
+            		  $("#before").addClass("disabled");
+            	  }
+            	  $("#next").removeClass("disabled");
             	  qryProds(page);
               }
               function nextPage()
               {
             	  page++;
+            	  if(page*10>count)
+            	  {
+            		  return;
+            	  }
+            	  if((page+1)*10>count)
+            	  {
+            		  $("#next").addClass("disabled");
+            		  $("#before").removeClass("disabled");
+            	  }
             	  qryProds(page);
               }
               </script>
