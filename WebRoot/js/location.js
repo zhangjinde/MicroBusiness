@@ -34,7 +34,7 @@ function showPosition(position)
 			if (json.status != "0") { 
 				return; 
 			} 
-			setAddress(json.result.addressComponent); 
+			setAddress(json.result.formatted_address); 
 		}, 
 		error: function (XMLHttpRequest, textStatus, errorThrown) { 
 			alert("[x:" + x + ",y:" + y + "]地址位置获取失败,请手动选择地址"); 
@@ -68,16 +68,9 @@ function showError(error) {
 /** 
 * 设置地址 
 */ 
-function setAddress(json) 
+function setAddress(addr) 
 { 
-	var position = document.getElementById("txtPosition"); 
-	//省 
-	var province = json.province; 
-	//市 
-	var city = json.city; 
-	//区 
-	var district = json.district; 
-	province = province.replace('市', ''); 
-	position.value = province + "," + city + "," + district; 
+	var position = document.getElementById("addrName"); 
+	position.innerHTML = addr; 
 	position.style.color = 'black'; 
 }

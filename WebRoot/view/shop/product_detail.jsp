@@ -12,11 +12,13 @@
 		<meta name="format-detection" content="telephone=no">
 		<meta http-equiv="cleartype" content="on">
 		<link rel="shortcut icon" href="*.ico">
-		<title>回锅肉</title>
+		<title>微商城--${product.productName}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="/pub/css/base.css" >
 		<link rel="stylesheet" href="/pub/css/showcase_admin.css" >
 		<link rel="stylesheet" href="/pub/css/goods.css" >
+		<link rel="stylesheet" href="/pub/css/detail.s.min.css" >
+		<script src="/js/location.js" ></script>
 	</head>
 	<body class=" body-fixed-bottom">
 		<div class="container wap-goods internal-purchase">
@@ -56,12 +58,35 @@
 					<hr class="with-margin">
 					<div class="sku-detail adv-opts" style="border-top: none;">
 						<div class="sku-detail-inner adv-opts-inner">
+				            <dl>
+								<dt style="margin-top:10px">
+									数量：
+								</dt>
+								<dd>
+									<div class="num_wrap">
+					                    <span class="minus minus_disabled" id="minus" ptag="7001.1.11"></span>
+					                    <input class="num" id="buyNum" type="tel" value="1" readonly="readonly">
+					                    <span class="plus" id="plus" ptag="7001.1.11"></span>
+					                </div>
+								</dd>
+							</dl>
+							<dl>
+								<dt>
+									送至：
+								</dt>
+								<dd>
+									<div class="promote_tag" id="addrArea" ptag="7001.1.4">
+							            <div class="extra"><span id="postNotice2">当前位置</span></div>
+							            <div class="addr"><span id="addrName"></span><span class="postage" id="postPrice"></span></div>
+							        </div>
+								</dd>
+							</dl>
 							<dl>
 								<dt>
 									剩余：
 								</dt>
 								<dd>
-									${product.productStock}
+									${product.productStock}&nbsp;&nbsp;<span class="yh"><span class="tag" id="postNotice1">有货</span></span>
 								</dd>
 							</dl>
 							<dl>
@@ -83,6 +108,14 @@
 									<span class="custom-store-enter">进入店铺</span>
 								</a>
 							</div>
+					</div>
+					<div class="mod_fix_wrap">
+					    <div class="mod_fix">
+					        <div class="mod_tab" id="detailTab">
+					            <span class="cur" no="1" style="width:50%" onclick="">商品详情</span>
+					            <span no="2" class="" style="width:50% !important;">本店成交</span>
+					        </div>
+					    </div>
 					</div>
 					<div class="js-detail-container" style="margin-top: 5px;">
 						<div class="js-tabber-container goods-detail">
@@ -195,5 +228,8 @@
 				<a class="js-show-more-btn icon show-more-btn hide"></a>
 			</div>
 		</div>
+		<script type="text/javascript">
+			getLocation();
+		</script>
 	</body>
 </html>
