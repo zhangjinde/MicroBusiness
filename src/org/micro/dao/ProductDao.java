@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProductDao extends BaseDao
 {
-	
 	public List<Map<String,String>> getProduct(String productId) throws QryException
 	{
 		String sql = "select * from product_t where product_id = ? and sts = 'A'";
@@ -26,6 +25,5 @@ public class ProductDao extends BaseDao
 		paramList.add(productId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, paramList);
 	}
-	
 	
 }
