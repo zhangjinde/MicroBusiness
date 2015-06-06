@@ -243,7 +243,7 @@
 	   			$.each(data.prods, function(i, obj)
 	   		    {
    					content+="<li class='js-goods-card goods-card goods-list normal'>";                                                
-   					content+="<a href='/product.do?method=getProduct&productId="+obj.productId+"' class='js-goods link clearfix' target='_blank' data-goods-id='9937870' title='"+obj.productName+"'>";  
+   					content+="<a href='/product.do?method=getProduct&productId="+obj.productId+"&phoneNum=18907181259&busId=100' class='js-goods link clearfix' target='_blank' data-goods-id='9937870' title='"+obj.productName+"'>";  
    					content+="<div class='photo-block' style='background-color: rgb(255, 255, 255);'>";                             
    					content+="<img class='goods-photo js-goods-lazy' data-src=''src='"+obj.imgUrl+"' style='display: block;'>";                   
    					content+="</div>";                                                                                              

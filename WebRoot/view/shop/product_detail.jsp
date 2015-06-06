@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -14,11 +17,24 @@
 		<link rel="shortcut icon" href="*.ico">
 		<title>微商城--${product.productName}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<link rel="stylesheet" href="/pub/css/base.css" >
-		<link rel="stylesheet" href="/pub/css/showcase_admin.css" >
-		<link rel="stylesheet" href="/pub/css/goods.css" >
-		<link rel="stylesheet" href="/pub/css/detail.s.min.css" >
-		<script src="/js/location.js" ></script>
+		<link rel="stylesheet" type="text/css" href="/pub/css/base.css" >
+		<link rel="stylesheet" type="text/css" href="/pub/css/showcase_admin.css" >
+		<link rel="stylesheet" type="text/css" href="/pub/css/goods.css" >
+		<link rel="stylesheet" type="text/css" href="/pub/css/detail.s.min.css" >
+		<link rel="stylesheet" type="text/css" href="/pub/css/magnific-popup.css" >
+		<script src="/js/location.js" type="text/javascript"></script>
+		<script src="/pub/js/zepto.min.js" type="text/javascript"></script>
+		<script src="/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
+		<style type="text/css">
+			.custom-richtext td{
+				border:none;
+				border-bottom:1px solid #f0f0f0;
+			}
+			.addrForm td{
+				border-top:1px solid #f0f0f0;
+				vertical-align:middle;
+			}
+		</style>
 	</head>
 	<body class=" body-fixed-bottom">
 		<div class="container wap-goods internal-purchase">
@@ -51,7 +67,7 @@
 							喜欢 </span>
 						<div class="goods-price ">
 							<div class="current-price">
-								<span>￥&nbsp;</span><i class="js-goods-price price">${product.productPrice}</i>
+								<span>￥&nbsp;</span><i class="js-goods-price price" id="productPrice">${product.productPrice}</i>
 							</div>
 						</div>
 					</div>
@@ -86,7 +102,7 @@
 									剩余：
 								</dt>
 								<dd>
-									${product.productStock}&nbsp;&nbsp;<span class="yh"><span class="tag" id="postNotice1">有货</span></span>
+									<span id="prodStock">${product.productStock}</span>&nbsp;&nbsp;<span class="yh"><span class="tag" id="postNotice1">有货</span></span>
 								</dd>
 							</dl>
 							<dl>
@@ -112,12 +128,12 @@
 					<div class="mod_fix_wrap">
 					    <div class="mod_fix">
 					        <div class="mod_tab" id="detailTab">
-					            <span class="cur" no="1" style="width:50%" onclick="">商品详情</span>
-					            <span no="2" class="" style="width:50% !important;">本店成交</span>
+					            <span class="cur" no="1" id="pDesc" style="width:50%">商品详情</span>
+					            <span no="2" class="" id="pOrder" style="width:50% !important;">本店成交</span>
 					        </div>
 					    </div>
 					</div>
-					<div class="js-detail-container" style="margin-top: 5px;">
+					<div class="js-detail-container" style="margin-top: 5px;" id="prodDesc">
 						<div class="js-tabber-container goods-detail">
 							<div class="js-tabber-content">
 								<div class="js-part js-goods-detail goods-tabber-c" data-type="goods">
@@ -139,14 +155,46 @@
 								</div>
 							</div>
 						</div>
-						<script type="text/javascript" charset="utf-8" async="" src="/js/swp_goods.js"></script>
+					</div>
+					<div class="js-detail-container" style="margin-top: 5px;display:none;" id="prodOrder">
+						<div class="js-tabber-container goods-detail">
+							<div class="js-tabber-content">
+								<div class="js-part js-goods-detail goods-tabber-c" data-type="goods">
+									<div class="js-components-container components-container">
+										<div class="custom-richtext js-view-image-list" style="font-size:12px;text-align:center;padding:0 0">
+											<c:choose>
+												<c:when test="${fn:length(product.productOrderList)==0}">
+													该商品暂时没有交易记录
+												</c:when>
+												<c:otherwise>
+													<table style="margin:0 auto;width:100%" align="center" border="0">
+														<tr>
+															<td width="27%" align="left">买家</td>
+															<td width="27%" align="center">数量</td>
+															<td width="46%" align="right">成交时间</td>
+														</tr>
+														<c:forEach items="${product.productOrderList}" var="node">
+															<tr style="background-color:#fff">
+																<td style="background-color:#fff" align="left">${node.customerName}</td>
+																<td style="background-color:#fff" align="center">${node.productNum}</td>
+																<td style="background-color:#fff" align="right"><fmt:formatDate value="${node.createDate}" type="both" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+															</tr>
+														</c:forEach>
+													</table>
+												</c:otherwise>
+											</c:choose>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="js-bottom-opts js-footer-auto-ele bottom-fix">
 						<div class="btn-2-1">
-							<a href="javascript:;" class="js-buy-it btn btn-orange-dark">立即购买</a>
+							<a href="#receiveAddrForm" class="js-buy-it btn btn-orange-dark" id="gotoBuy" data-effect="bounceInDown">立即购买</a>
 						</div>
 						<div class="btn-2-1">
-							<a href="javascript:;" class="js-add-cart btn btn-white">加入购物车</a>
+							<a href="javascript:;" class="js-add-cart btn btn-white" id="joinShopCart">加入购物车</a>
 						</div>
 					</div>
 				</div>
@@ -179,10 +227,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="/js/common_jquery.js" ></script>
-		<script src="/js/base.js" ></script>
-		<script src="/js/base_showcase.js" ></script>
-		<script src="/js/global_icon.js"></script>
 		<script id="tmpl-sku" type="text/template">
 			<div class="layout-title sku-box-shadow name-card sku-name-card">
                 <div class="thumb"><img src="http://imgqn.koudaitong.com/upload_files/2015/01/18/Fj_qDo90aKhgN6p3wz8gWmd2bw0S.png!100x100.jpg" alt=""></div>
@@ -204,8 +248,6 @@
     		</div>
 		</script>
 		<script src="/js/u_b.js"></script>
-		<script src="/js/sku.js"></script>
-		<script	src="/js/goods.js"></script>
 		<div class="search-container hide">
 			<form class="search-form" action="/v2/search" method="GET">
 				<input type="search" class="search-input" placeholder="搜索本店所有商品" name="q" value="">
@@ -228,8 +270,197 @@
 				<a class="js-show-more-btn icon show-more-btn hide"></a>
 			</div>
 		</div>
+		<form id="receiveAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:70%">
+			<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">收货地址</h1>
+			<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
+				<tr>
+					<td width="25%" style="padding-left:10px;color:#000;">收货人</td>
+					<td width="75%"><input id="name" name="name" type="text" placeholder="名字" style="border:none;background-color:transparent" required></td>
+				</tr>
+				<tr>
+					<td style="padding-left:10px;color:#000">联系电话</td>
+					<td><input id="phonenum" name="phonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent" required></td>
+				</tr>
+				<tr>
+					<td valign="middle" style="padding-left:10px;color:#000">选择地区</td>
+					<td valign="middle" style="padding-left:0px">
+						<select id="province" style="border:none;background-color:transparent" onchange="areaChange(this,'city')">
+			        		<option value="">选择省份</option>
+			        		<c:forEach items="${provList}" var="node">
+			        			<option value="${node.provinceId}">${node.provinceName}</option>
+			        		</c:forEach>
+			        	</select>
+			        	<select id="city" style="border:none;background-color:transparent" onchange="areaChange(this,'district')">
+			        		<option value="">选择城市</option>
+			        	</select>
+			        	<select id="district" style="border:none;background-color:transparent">
+			        		<option value="">选择区县</option>
+			        	</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding-left:10px;color:#000">详细地址</td>
+					<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent" required></td>
+				</tr>
+				<tr>
+					<td style="padding-left:10px;color:#000">邮政编码</td>
+					<td><input id="postCode" name="postCode	" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent" /></td>
+				</tr>
+				<tr>
+					<td valign="middle" colspan="2"><a href="javascript:;" id="saveBtn" style="background-color:#44b549;color:#fff;width:95%;height:35px;display:block;margin:0 auto;padding:0 0;text-align:center;line-height:35px;border-radius:5px">保存</a></td>
+				</tr>
+			</table>
+		</form>
+		<input id="xPos" type="hidden" value="" />
+		<input id="yPos" type="hidden" value="" />
+		<input id="busId" type="hidden" value="${param.busId}" />
+		<input id="phoneNum" type="hidden" value="${param.phoneNum}" />
+		<input id="productId" type="hidden" value="${param.productId}" />
 		<script type="text/javascript">
 			getLocation();
+			function addOrder()
+			{
+				var busId = $("#busId").val();
+				var phoneNum = $("#phoneNum").val();
+				var productId = $("#productId").val();
+				var productNum = $("#buyNum").val();
+				var productPrice = $("#productPrice").html();
+				var xPos = $("#xPos").val();
+				var yPos = $("#yPos").val();
+				var name = $("#name").val();
+				var contactNum = $("#phonenum").val();
+				var provName = $("#province").get(0).options[$("#province").get(0).selectedIndex].innerHTML;
+				var cityName = $("#city").get(0).options[$("#city").get(0).selectedIndex].innerHTML;
+				var districtName = $("#district").get(0).options[$("#district").get(0).selectedIndex].innerHTML;
+				var addr = $("#address").val();
+				var postCode = $("#postCode").val();
+				$.ajax({
+					url:"/pay.do?method=addOrder",
+					type:"POST",
+					data:"busId="+busId+"&phoneNum="+phoneNum+"&productId="+productId+"&productNum="+productNum+"&productPrice="+productPrice+"&xPos="+xPos+"&yPos="+yPos+"&name="+encodeURI(name)+"&contactNum="+contactNum+"&provName="+encodeURI(provName)+"&cityName="+encodeURI(cityName)+"&districtName="+encodeURI(districtName)+"&addr="+encodeURI(addr)+"&postCode="+postCode,
+					success:function(data){
+						if(data == "success")
+						{
+							window.location.href = "/product.do?method=payOrder";
+						}
+						else
+						{
+							alert(data);
+						}
+					}
+				})
+			}
+			<c:choose>
+				<c:when test="${newUser=='Y'}">
+					$('#gotoBuy').magnificPopup({
+			          type: 'inline',
+			          preloader: false,
+			          focus: '#name',
+			          fixedContentPos: false,
+			          fixedBgPos: true,
+			          overflowY: 'auto',
+			          closeBtnInside: true,
+			          midClick: true,
+			          removalDelay: 300,
+			          mainClass: 'my-mfp-zoom-in',
+			          callbacks: {
+			            beforeOpen: function() {
+			              if($(window).width() < 700) {
+			                this.st.focus = false;
+			              } else {
+			                this.st.focus = '#name';
+			              }
+			            }
+			          }
+			        });
+				</c:when>
+				<c:otherwise>
+					$("#gotoBuy").on('touchend',function(){
+						addOrder();
+					});
+				</c:otherwise>
+			</c:choose>
+			$("#plus").on('touchend',function(){
+				var numStr = $("#buyNum").val();
+				var num = parseInt(numStr);
+				if(parseInt(num) == 1)
+				{
+					$("#minus").removeClass("minus_disabled");
+				}
+				num++;
+				var prodStockNum = parseInt($("#prodStock").html());
+				if(num>=prodStockNum)
+				{
+					$("#plus").addClass("plus_disabled");
+					num = prodStockNum;
+				}
+				$("#buyNum").val(num);
+			});
+			$("#minus").on('touchend',function(){
+				var numStr = $("#buyNum").val();
+				var num = parseInt(numStr);
+				var prodStockNum = parseInt($("#prodStock").html());
+				if(parseInt(num) == prodStockNum)
+				{
+					$("#plus").removeClass("plus_disabled");
+				}
+				num--;
+				if(num<=1)
+				{
+					$("#minus").addClass("minus_disabled");
+					num = 1;
+				}
+				$("#buyNum").val(num);
+			});
+			$("#pDesc").on('touchend',function(){
+				$("#pOrder").removeClass("cur");
+				$("#pDesc").addClass("cur");
+				$("#prodOrder").css("display","none");
+				$("#prodDesc").css("display","block");
+			});
+			$("#pOrder").on('touchend',function(){
+				$("#pDesc").removeClass("cur");
+				$("#pOrder").addClass("cur");
+				$("#prodDesc").css("display","none");
+				$("#prodOrder").css("display","block");
+			});
+			
+			$("#joinShopCart").on('touchend',function(){
+				
+			});
+			
+			$("#saveBtn").on('touchend',function(){
+				addOrder();
+			});
+			
+			function areaChange(obj,flag)
+			{
+				var selObj = document.getElementById(flag);
+				selObj.length = 1;
+				$.ajax({
+					url:"/pub.do?method=getAreaInfo",
+					type:"POST",
+					data:"areaFlag="+flag+"&areaValue="+obj.value,
+					success:function(data){
+						var dataObj = null;
+						try{
+							dataObj = eval("("+data+")");
+						}catch(e){
+							alert(data);
+						}
+						if(dataObj != null)
+						{
+							for(var i = 0,n = dataObj.length;i < n;i++)
+							{
+								selObj.length++;
+								selObj.options[selObj.length - 1].innerHTML = dataObj[i].areaValue;
+								selObj.options[selObj.length - 1].value = dataObj[i].areaFlag;
+							}
+						}
+					}
+				});
+			}
+			
 		</script>
 	</body>
 </html>

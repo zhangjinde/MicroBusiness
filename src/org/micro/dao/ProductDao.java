@@ -43,7 +43,7 @@ public class ProductDao extends BaseDao
 	
 	public List<Map<String,String>> getProductWithOrder(String productId) throws QryException
 	{
-		String sql = "select product_name,product_price,product_num from order_detail_t a,product_t b where a.product_id = b.product_id and b.product_id = ?";
+		String sql = "select customer_name,product_num,a.create_date from order_t a,order_detail_t b,customer_t c where a.order_id = b.order_id and a.customer_id = c.customer_id and product_id = ?";
 		ArrayList paramList = new ArrayList();
 		paramList.add(productId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, paramList);

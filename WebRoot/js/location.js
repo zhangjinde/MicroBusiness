@@ -19,7 +19,9 @@ function showPosition(position)
 { 
 	//获得经度纬度 
 	var x = position.coords.latitude; 
+	document.getElementById("xPos").value = x;
 	var y = position.coords.longitude; 
+	document.getElementById("yPos").value = y;
 	//配置Baidu Geocoding API 
 	var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&callback=renderReverse&location=" + x + "," + y + 
 	"&output=json&pois=0"; 
@@ -74,3 +76,20 @@ function setAddress(addr)
 	position.innerHTML = addr; 
 	position.style.color = 'black'; 
 }
+
+function Rad(d){
+	return d * Math.PI / 180.0;//经纬度转换成三角函数中度分表形式。
+}
+ //计算距离，参数分别为第一点的纬度，经度；第二点的纬度，经度
+ function GetDistance(lat1,lng1,lat2,lng2){
+     var radLat1 = Rad(lat1);
+     var radLat2 = Rad(lat2);
+     var a = radLat1 - radLat2;
+     var  b = Rad(lng1) - Rad(lng2);
+     var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) +
+     Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
+     s = s *6378.137 ;// EARTH_RADIUS;
+ 	s = Math.round(s * 10000) / 10000; //输出为公里
+ //s=s.toFixed(4);
+     return s;
+ } 
