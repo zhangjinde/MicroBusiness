@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.micro.util.ObjectCensor;
 import org.micro.util.QryException;
 import org.micro.util.StringUtil;
 import org.springframework.stereotype.Repository;
@@ -49,5 +50,28 @@ public class ProductDao extends BaseDao
 		return qryCenter.executeSqlByMapListWithTrans(sql, paramList);
 	}
 	
-	
+	/**
+	 * 获取购物车记录
+	 * @param id
+	 * @param telephone
+	 * @return
+	 * @throws QryException
+	 */
+	public List<Map<String,String>> getCartProdById(String id,String telephone) throws QryException
+	{
+		ArrayList paramList = new ArrayList();
+		StringBuffer sql = new StringBuffer("select t.*,A.* from cart_t t,product_t a  where t.product_id=a.product_id ");
+		if(!ObjectCensor.checkObjectIsNull(id))
+		{
+		    sql.append("  and t.id=? ");	
+		    paramList.add(id);
+		}
+		if(!ObjectCensor.checkObjectIsNull(telephone))
+		{
+			 sql.append(" and t.telephone=? ");	
+			 paramList.add(telephone);
+		}
+		
+		return qryCenter.executeSqlByMapListWithTrans(sql.toString(), paramList);
+	}
 }

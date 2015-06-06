@@ -77,4 +77,8 @@ public class ProductService
 		}
 	}
 	
+	public List getCartProd(String id,String telephone) throws QryException
+	{
+		return productDao.getCartProdById(id, telephone);
+	}
 }

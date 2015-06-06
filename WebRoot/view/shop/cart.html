@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!-- saved from url=(0109)http://wap.koudaitong.com/v2/trade/record/index?source=weixin11&kdt_id=803178&spm=h801336_fake803178_sc803178
+-->
+<html class="no-js " lang="zh-CN">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="keywords" content="有赞,移动电商服务平台">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <link rel="dns-prefetch" href="http://tj.koudaitong.com/">
+    <link rel="dns-prefetch" href="http://imgqn.koudaitong.com/">
+    <link rel="dns-prefetch" href="http://kdt-static.qiniudn.com/">
+    <link rel="shortcut icon" href="http://kdt-static.qiniucdn.com/v2/image/yz_fc.ico">
+    <script type="text/javascript" src="/pub/js/jquery-1.11.3.min.js">
+    </script>
+    <title>
+      购物记录
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="http://kdt-static.qiniucdn.com/v2/build_css/stylesheets/wap/base_2ced031129.css"
+    onerror="_cdnFallback(this)">
+    <link rel="stylesheet" href="http://kdt-static.qiniucdn.com/v2/build_css/stylesheets/wap/projects/uc/order_list_50b8447040.css"
+    onerror="_cdnFallback(this)">
+    <link rel="stylesheet" href="http://kdt-static.qiniucdn.com/v2/build_css/stylesheets/wap/base_2ced031129.css"
+    onerror="_cdnFallback(this)">
+    <link rel="stylesheet" href="http://kdt-static.qiniucdn.com/v2/build_css/stylesheets/wap/projects/trade_626cf27050.css"
+    onerror="_cdnFallback(this)">
+    <link rel="stylesheet" href="http://kdt-static.qiniucdn.com/v2/build_css/stylesheets/wap/pages/trade/cart_579e7a1291.css"
+    onerror="_cdnFallback(this)">
+    
+  </head>
+  
+  <body class=" ">
+    <div class="container ">
+      <div class="content" style="min-height: 667px;">
+        <div class="tabber  tabber-n3 tabber-double-11 clearfix">
+          <a class="active" href="http://wap.koudaitong.com/v2/trade/cart?source=weixin11&kdt_id=803178">
+            购物车
+          </a>
+          <a class="" href="http://wap.koudaitong.com/v2/trade/record/index?source=weixin11&kdt_id=803178">
+            购物记录
+          </a>
+          <a class="" href="http://wap.koudaitong.com/v2/trade/record/backs?source=weixin11&kdt_id=803178">
+            我的返现
+          </a>
+        </div>
+        <p style="height:10px;">
+          &nbsp;
+        </p>
+        <div class="empty-list " style="margin-top:30px;">
+          <!-- 文本 -->
+          <div class="empty-list-header">
+            <h4>
+         		     购物车快饿瘪了 T.T
+            </h4>
+            <span>
+        		      快给我挑点宝贝
+            </span>
+          </div>
+          <!-- 自定义html，和上面的可以并存 -->
+          <div class="empty-list-content">
+            <a href="/view/shop/main.html" class="home-page tag tag-big tag-orange">
+          		    去逛逛
+            </a>
+          </div>
+        </div>
+        <div id="order-list-container">
+          <div class="header js-list-header">
+            <span>
+              店铺：华莱士炸鸡汉堡
+            </span>
+            <a href="javascript:;" class="j-edit-list pull-right c-blue font-size-12 edit-list disable">
+              编辑
+            </a>
+          </div>
+          <div class="js-list b-list">
+            <li class="block block-order animated">
+              <div id="template" />
+            </li>
+          </div>
+        </div>
+      </div>
+      <div class="js-bottom-opts bottom-fix" style="padding:0;">
+        <div class="bottom-cart clear-fix">
+          <div class="select-all">
+            <span class="check">
+            </span>
+            全选
+          </div>
+          <div class="total-price">
+            合计：
+            <span id="totalPrice" class="js-total-price">
+              0
+            </span>
+            元
+          </div>
+          <button href="javascript:;" class="js-go-pay btn btn-orange-dark font-size-14">
+            结算
+          </button>
+          <button href="javascript:;" class="j-delete-goods btn font-size-14 btn-red hide">
+            删除
+          </button>
+        </div>
+      </div>
+      <div class="footer">
+        <textarea id="footer-delay" style="display:none;">
+          &lt;div class="footer"&gt; &lt;div class="copyright"&gt; &lt;div class="ft-copyright"&gt;
+          &lt;a href="http://youzan.com" target="_blank"&gt;有赞微商城提供技术支持&lt;/a&gt;
+          &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;
+        </textarea>
+        <div class="footer">
+          <div class="copyright">
+            <div class="ft-copyright">
+              <a href="http://youzan.com/" target="_blank">
+                有赞微商城提供技术支持
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
+<script type="text/javascript" language="JavaScript">
+ // qryProds("", "18907181648");
+
+  function qryProds(id, telephone) {
+    var obj = "";
+    var dig = null;
+    $.ajax({
+      type: "POST",
+      url: "/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
+      data: obj,
+      contentType: "application/json;charset=UTF-8",
+      dataType: "json",
+      beforeSend: function() {
+        //	$(".overlay").css({ 'display': 'block', 'opacity': '0.8' }); $(".showbox").stop(true).animate({ 'margin-top': '300px', 'opacity': '1' }, 0);
+      },
+      success: function(data) {
+        // $(".showbox").stop(true).animate({ 'margin-top': '250px', 'opacity': '0' }, 0); $(".overlay").css({ 'display': 'none', 'opacity': '0' });
+        try {
+          dig.close();
+        } catch(e) {
+
+}
+        var content = "";
+        count = data.size;
+        $.each(data.prods,
+        function(i, obj) {
+          content += "";
+          content += "<div class='block-item name-card name-card-3col clearfix'>";
+          content += "<span id='div"+obj.productId+"' choose='false'  onclick=chooseProd("+obj.productId+","+obj.productPrice+") class='check'></span>";
+          content += "<a href='' class='thumb'>";
+          content += "<img class='goods-photo' src='" + obj.imgUrl + "'>";
+          content += "</a>";
+          content += "<div class='detail'>";
+          content += "<a href=''><h3>" + obj.productName + "</h3></a>";
+          content += "</div>";
+          content += "<div class='right-col'>";
+          content += "<div class='price'>￥<span>"+obj.productPrice+"</span></div>";
+          content += "<div class='num'>";
+          content += "<span class='num-txt'>1</span>";
+          content += "</div>";
+          content += "</div>";
+          content += "</div>";
+          content += "</div>";
+        });
+
+        $("#template").html(content);
+        //var result=data.wakeContent;
+        //	$("#result").html(result);
+      },
+      error: function(data) {
+        $(".showbox").stop(true).animate({
+          'margin-top': '250px',
+          'opacity': '0'
+        },
+        0);
+        $(".overlay").css({
+          'display': 'none',
+          'opacity': '0'
+        });
+        $("#template").html("暂无信息");
+        //	$.dialog.alert(data.statusText, function(){window.location.reload(); return true;});
+      }
+    });
+  }
+  
+  function chooseProd(id,price)
+  {
+	  var oldTotal=Number($("#totalPrice").html());
+	  var choose= $("#div"+id).attr("choose");
+	  var priceNum=Number(price);
+	 
+	  if(choose=='true')
+	  {
+		  $("#totalPrice").html(oldTotal-priceNum); 
+		  $("#div"+id).attr("choose",'false');
+	  }else
+	  {
+		  $("#totalPrice").html(oldTotal+priceNum);  
+		  $("#div"+id).attr("choose",'true');
+	  }
+	 
+  }
+  
+  qryCartProds("", "18907181648");
+
+  function qryCartProds(id, telephone) {
+    var obj = "";
+    var dig = null;
+    $.ajax({
+      type: "POST",
+      url: "/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
+      data: obj,
+      contentType: "application/json;charset=UTF-8",
+      dataType: "json",
+      beforeSend: function() {
+        //	$(".overlay").css({ 'display': 'block', 'opacity': '0.8' }); $(".showbox").stop(true).animate({ 'margin-top': '300px', 'opacity': '1' }, 0);
+      },
+      success: function(data) {
+        // $(".showbox").stop(true).animate({ 'margin-top': '250px', 'opacity': '0' }, 0); $(".overlay").css({ 'display': 'none', 'opacity': '0' });
+        try {
+          dig.close();
+        } catch(e) {
+
+}
+        var content = "";
+        count = data.size;
+        $.each(data.prods,
+        function(i, obj) {
+        	content+="<li class='block-item block-item-cart relative clearfix'>";
+        	content+="<div class='check-container'>"; 
+        	content+="<span class='check checked'>"; 
+        	content+="</span>"; 
+        	content+="</div>"; 
+        	content+="<div class='name-card name-card-3col clearfix'>"; 
+        	content+="<a href='http://wap.koudaitong.com/v2/showcase/goods?alias=jnknohil' class='thumb'>"; 
+        	content+="<img src='"+obj.imgUrl+"'>"; 
+        	content+="</a>"; 
+        	content+="<div class='detail'>"; 
+        	content+="<a href='http://wap.koudaitong.com/v2/showcase/goods?alias=jnknohil'>"; 
+        	content+="<h3 class='js-ellipsis' style='height: 32px; overflow: hidden;'>"; 
+        	content+="<i>"; 
+        	content+="香辣鸡腿汉堡+墨西哥鸡肉卷+可乐"; 
+        	content+="</i>"; 
+        	content+="</h3>"; 
+        	content+="</a>"; 
+        	content+="<p class='ellipsis'>"; 
+        	content+="</p>"; 
+        	content+="</div>"; 
+        	content+="<div class='right-col price-num'>"; 
+        	content+="<div class='price'>"; 
+        	content+="￥"; 
+        	content+="<span>"; 
+        	content+="16.00"; 
+        	content+="</span>"; 
+        	content+="</div>"; 
+        	content+="<div class='num'>"; 
+        	content+="×"; 
+        	content+="<span class='num-txt'>"; 
+        	content+="1"; 
+        	content+="</span>"; 
+        	content+="</div>"; 
+        	content+="<div class='error-box'>"; 
+        	content+="</div>"; 
+        	content+="</div>"; 
+        	content+="</div>"; 
+        	content+="<div class='delete-btn'> "; 
+        	content+="<span>"; 
+        	content+="删除"; 
+        	content+="</span>"; 
+        	content+="</div>"; 
+        	content+="</li>"; 
+        });
+
+        $("#template").html(content);
+        //var result=data.wakeContent;
+        //	$("#result").html(result);
+      },
+      error: function(data) {
+        $(".showbox").stop(true).animate({
+          'margin-top': '250px',
+          'opacity': '0'
+        },
+        0);
+        $(".overlay").css({
+          'display': 'none',
+          'opacity': '0'
+        });
+        $("#template").html("暂无信息");
+        //	$.dialog.alert(data.statusText, function(){window.location.reload(); return true;});
+      }
+    });
+  }
+  
+</script>
