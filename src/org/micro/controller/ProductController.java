@@ -70,4 +70,32 @@ public class ProductController
 			object.put("size", size);
 			out.println(object);
 	}
+	
+	@RequestMapping(params = "method=getCartProds")
+	public void getCartProds(HttpServletResponse response , String id,String telephone)
+	{
+		List list=null;
+		PrintWriter out = null;
+		response.setCharacterEncoding("UTF-8");
+		int size=0;
+		try 
+		{
+			out = response.getWriter();
+			list = productService.getCartProd(id, telephone);
+			} 
+			catch (QryException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			JSONObject object = new JSONObject();
+			JSONArray prods= JSONArray.fromObject(list);
+			
+			object.put("prods", prods);
+			object.put("size", prods.size());
+			out.println(object);
+	}
 }
