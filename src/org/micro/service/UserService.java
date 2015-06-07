@@ -27,6 +27,7 @@ public class UserService
 	@Autowired
 	private LoginDao loginDao;
 	
+	
 	public String qryUserList(String page , String rows) throws QryException
 	{
 		List<Map<String,String>> list =  userDao.qryUserList(page , rows);
