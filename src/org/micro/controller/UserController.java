@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONObject;
 
 import org.micro.service.UserService;
+import org.micro.util.QryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +25,13 @@ public class UserController
 	private UserService userService;
 	
 	@RequestMapping(params = "method=login")
-	public ModelAndView userLogin(HttpServletResponse response , HttpServletRequest request)
+	public ModelAndView userLogin(HttpServletResponse response , HttpServletRequest request) throws QryException
 	{
-		ModelAndView model = new ModelAndView();
-		
+		ModelAndView model = new ModelAndView("/view/shop/shopCart");
+		response.setCharacterEncoding("utf-8");
+		String telephone=request.getParameter("phone");
+		String password=request.getParameter("password");
+		Map user = userService.userLogin(telephone, password);
 		return model;
 	}
 	

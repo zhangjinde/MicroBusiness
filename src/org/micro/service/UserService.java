@@ -27,6 +27,15 @@ public class UserService
 	@Autowired
 	private LoginDao loginDao;
 	
+	public Map userLogin(String telephone,String password) throws QryException
+	{
+		List list = userDao.qryUser(telephone, password);
+		if(ObjectCensor.checkListIsNull(list))
+		{
+			return (Map) list.get(0);
+		}
+		return null;
+	}
 	
 	public String qryUserList(String page , String rows) throws QryException
 	{

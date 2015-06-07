@@ -20,7 +20,7 @@
     
     <div class="container js-modal-login">
                 <div class="account-form login-form">
-    <form class="js-login-form" method="GET" action="http://wap.koudaitong.com/v2/buyer/auth/login.jsonp">
+    <form class="js-login-form" method="GET" action="/user.do?">
                 <h2 class="js-login-title form-title big  ">
             <span>
                             请先登录账号
@@ -30,6 +30,7 @@
         <ul class="block block-form">
             <li class="block-item">
                 <label for="phone">手机号码</label>
+                <input type="hidden" name="method" value="login"> 
                 <input id="phone" type="tel" name="phone" maxlength="11" class="js-login-phone" autocomplete="off" placeholder="请输入您的手机号" value="">
             </li>
             <li class="block-item" style="margin-bottom: -1px">

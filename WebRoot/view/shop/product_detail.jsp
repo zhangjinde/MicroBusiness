@@ -317,7 +317,7 @@
 		<input id="phoneNum" type="hidden" value="${param.phoneNum}" />
 		<input id="productId" type="hidden" value="${param.productId}" />
 		<script type="text/javascript">
-			//getLocation();
+		//	getLocation();
 			function addCart()
 			{
 				var phoneNum = $("#phoneNum").val();

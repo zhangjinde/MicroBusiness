@@ -18,6 +18,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDao extends BaseDao
 {
+	public List<Map<String,String>>  qryUser(String telephone , String password) throws QryException
+	{
+		String sql="select t.* from customer_t t where customer_telephone=? and password=?";
+		ArrayList paramList = new ArrayList();
+    	paramList.add(telephone);
+    	paramList.add(password);
+    	return qryCenter.executeSqlByMapListWithTrans(sql, paramList);
+	}
+	
 	public List<Map<String,String>> qryUserList(String page , String rows) throws QryException
 	{
 		String query = "SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select t.user_id,t.user_name,t.user_priv,t.real_name,t.user_ip,to_char(t.start_date,'yyyy-mm-dd') start_date,to_char(t.end_date,'yyyy-mm-dd') end_date from vclass_user t where user_state = '00A' and user_priv != '#') A WHERE ROWNUM <= ?) WHERE RN >= ?";
