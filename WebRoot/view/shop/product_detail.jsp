@@ -194,7 +194,7 @@
 							<a href="#receiveAddrForm" class="js-buy-it btn btn-orange-dark" id="gotoBuy" data-effect="bounceInDown">立即购买</a>
 						</div>
 						<div class="btn-2-1">
-							<a href="javascript:;" class="js-add-cart btn btn-white" id="joinShopCart">加入购物车</a>
+							<a href="javascript:;" onclick="addCart()" class="js-add-cart btn btn-white" id="joinShopCart">加入购物车</a>
 						</div>
 					</div>
 				</div>
@@ -317,7 +317,31 @@
 		<input id="phoneNum" type="hidden" value="${param.phoneNum}" />
 		<input id="productId" type="hidden" value="${param.productId}" />
 		<script type="text/javascript">
-			getLocation();
+			//getLocation();
+			function addCart()
+			{
+				var phoneNum = $("#phoneNum").val();
+				var productId = $("#productId").val();
+				var productNum = $("#buyNum").val();
+				
+				var cart={"telephone":phoneNum,"productId":productId,"num":productNum};
+				$.ajax({
+					url:"/cart.do?method=addCart",
+					type:"POST",
+					data:"cart="+JSON.stringify(cart),
+					success:function(data){
+						if(data == "success")
+						{
+							window.location.href = "/product.do?method=payOrder";
+						}
+						else
+						{
+						//	alert(data);
+						}
+					}
+				})
+				
+			}
 			function addOrder()
 			{
 				var busId = $("#busId").val();

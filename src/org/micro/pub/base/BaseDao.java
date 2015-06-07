@@ -33,7 +33,7 @@ import org.springframework.stereotype.Repository;
  *</P>
  *
  */
-@Repository("hibernateDao")
+@Repository
 public abstract class BaseDao
 {
 	private HibernateTemplate hibernateTemplate;

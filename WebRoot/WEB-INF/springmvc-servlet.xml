@@ -28,6 +28,8 @@
 
 	<context:component-scan base-package="org.micro.service" />
 	
+	<context:component-scan base-package="org.micro.model" />
+	
 	<context:component-scan base-package="org.micro.dao" />
 	
 	<context:component-scan base-package="org.micro.pub" />
