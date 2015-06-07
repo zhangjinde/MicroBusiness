@@ -32,6 +32,7 @@ public class UserController
 		String telephone=request.getParameter("phone");
 		String password=request.getParameter("password");
 		Map user = userService.userLogin(telephone, password);
+		model.addObject("telephone", telephone);
 		return model;
 	}
 	

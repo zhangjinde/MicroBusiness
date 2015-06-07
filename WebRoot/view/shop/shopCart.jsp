@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
+	String phone =(String) request.getAttribute("telephone");
 %>
-<!DOCTYPE html>
-<html class="no-js " lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<!DOCTYPE html><html class="no-js " lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
     <meta charset="utf-8">
     <meta name="keywords" content="有赞,移动电商服务平台">
     <meta name="HandheldFriendly" content="True">
@@ -248,7 +248,7 @@
 		$("#prodNum"+id).val(numInt);
   }
   
-  qryCartProds("", "18907181648");
+  qryCartProds("", <%=phone%>);
 
   function qryCartProds(id, telephone) {
     var obj = "";
