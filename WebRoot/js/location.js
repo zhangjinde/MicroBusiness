@@ -24,7 +24,7 @@ function showPosition(position)
 	document.getElementById("yPos").value = y;
 	//配置Baidu Geocoding API 
 	var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&callback=renderReverse&location=" + x + "," + y + 
-	"&output=json&pois=0"; 
+	"&output=json&pois=0&coordtype=wgs84ll"; 
 	$.ajax({
 		type: "GET", 
 		dataType: "jsonp", 
