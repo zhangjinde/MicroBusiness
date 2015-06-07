@@ -56,8 +56,8 @@
 			<div class="bottom-cart clear-fix">
 				<div class="select-all checked"><span onclick="selectAll()" id="allselect" class="check"></span>全选</div>
 				<div class="total-price">合计：<span id="totalPrice" class="js-total-price">0</span>元</div>
-				<button href="javascript:;" class="js-go-pay btn btn-orange-dark font-size-14">结算</button>
-				<button href="javascript:;" class="j-delete-goods btn font-size-14 btn-red hide" disabled="true">删除</button>
+				<button id='pay' onclick="pay()" href="javascript:;" class="js-go-pay btn btn-orange-dark font-size-14">结算</button>
+				<button id='deleteProd' onclick="deleteProd() " href="javascript:;" class="j-delete-goods btn font-size-14 btn-red hide" disabled="true">删除</button>
 			</div>
 		</div>
 	</div>
@@ -88,6 +88,23 @@
  var prodsArray;
  // qryProds("", "18907181648");
 
+ function pay()
+ {
+	 
+ }
+ 
+ function deleteProd()
+ {
+	 for(var i=0;i<prodsArray.length;i++)
+     {
+		var id= prodsArray[i].productId;
+	 	if($("#div"+id).attr("choose")=='true')
+	 	{
+	 		$("#li"+id).addClass("hide");
+	 	}
+     }
+ }
+ 
  function edit()
  {
 	 if( $("#edit").html()=="编辑")
@@ -96,8 +113,9 @@
 	     {
 			 $("#tradeNumDiv"+prodsArray[i].productId).addClass("hide");
 			 $("#editNum"+prodsArray[i].productId).removeClass("hide");
-			
 	     }
+		 $("#deleteProd").removeClass("hide");
+		 $("#pay").addClass("hide");
 		 $("#edit").html("完成");
 	 }else
      {
@@ -250,7 +268,7 @@
         prodsArray=data.prods;
         $.each(data.prods,
         function(i, obj) {
-        	content+="<li class='block-item block-item-cart relative clearfix'>";
+        	content+="<li id='li"+obj.productId+"' class='block-item block-item-cart relative clearfix'>";
         	content+="<div class='check-container'>"; 
         	content+="<span id='div"+obj.productId+"' choose='false'  onclick=chooseProd("+obj.productId+","+obj.productPrice+") class='check'>"; 
         	content+="</span>"; 
