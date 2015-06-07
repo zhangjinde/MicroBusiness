@@ -43,6 +43,42 @@ public class ProductController
 		return model;
 	}
 	
+	/**
+	 * 获取所有商品
+	 * @param request
+	 * @param productId
+	 * @return
+	 */
+	@RequestMapping(params = "method=getProds")
+	public void getProdsAll(HttpServletResponse response , int page)
+	{
+		List list=null;
+		PrintWriter out = null;
+		response.setCharacterEncoding("UTF-8");
+		int size=0;
+		try 
+		{
+			out = response.getWriter();
+			list =	cacheManager.getProdsByPage(page);
+			size = cacheManager.getPageSize();
+			} 
+			catch (QryException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			JSONObject object = new JSONObject();
+			JSONArray prods= JSONArray.fromObject(list);
+			
+			object.put("prods", prods);
+			object.put("size", size);
+			out.println(object);
+	}
+	
+	
 	@RequestMapping(params = "method=getCartProds")
 	public void getCartProds(HttpServletResponse response , String id,String telephone)
 	{

@@ -74,4 +74,6 @@ public class ProductDao extends BaseDao
 		
 		return qryCenter.executeSqlByMapListWithTrans(sql.toString(), paramList);
 	}
+	
+	
 }
