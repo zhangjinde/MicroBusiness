@@ -13,4 +13,5 @@ public class HibernateObjectDao extends org.micro.pub.base.BaseDao
 		String hql=" from CartT as model from where model.state='A' and model.telephone=? and model.productId=?";
 		return this.find(hql, new String[]{ telephone,productId});
 	}
+	
 }

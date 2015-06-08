@@ -28,4 +28,13 @@ public class PayDao extends BaseDao
 		}
 		return "∂©µ•»Îø‚ ß∞‹";
 	}
+	
+	public List getOrderById(String wenxinId,String phone) throws QryException
+	{
+		String sql="select distinct(t.order_id), t.*,a.product_id,b.img_url,b.product_price,b.product_name from order_t t ,order_detail_t a,product_t b where t.order_id=a.order_id and a.product_id=b.product_id and t.sts='A' and t.telephone=?";
+		ArrayList arrayList = new ArrayList();
+		arrayList.add(phone);
+		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
+	}
+	
 }

@@ -3,12 +3,14 @@ package org.micro.service;
 import java.util.List;
 
 import org.micro.dao.HibernateObjectDao;
+import org.micro.dao.PayDao;
 import org.micro.model.CartT;
 import org.micro.pub.base.SysDate;
 import org.micro.pub.exception.JsonException;
 import org.micro.pub.sequence.SysId;
 import org.micro.util.JsonUtils;
 import org.micro.util.ObjectCensor;
+import org.micro.util.QryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,10 @@ public class ShopCartService
 {
 	@Autowired
 	private HibernateObjectDao hibernateObjectDao;
-   
+    
+	@Autowired
+	private PayDao payDao;
+	
 	@Autowired
 	private SysId sysId;
 	
@@ -44,4 +49,8 @@ public class ShopCartService
 		hibernateObjectDao.save(cartT);
 	}
 	 
+	public List getOrderById(String wenxinId,String phone) throws QryException
+	{
+		return payDao.getOrderById(wenxinId, phone);
+	}
 }
