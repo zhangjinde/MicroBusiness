@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.micro.dao.ConfigDao;
 import org.micro.dao.CustomerDao;
+import org.micro.dao.PayDao;
 import org.micro.dao.ProductDao;
 import org.micro.util.ObjectCensor;
 import org.micro.util.QryException;
@@ -21,6 +22,9 @@ public class ProductService
 	
 	@Autowired
 	private CustomerDao customerDao;
+	
+	@Autowired
+	private PayDao payDao;
 	
 	@Autowired
 	private ConfigDao configDao;
@@ -74,6 +78,24 @@ public class ProductService
 		else
 		{
 			model.setViewName("common/exception");
+		}
+	}
+	
+	public void payOrder(ModelAndView model , String busId , String orderId) throws QryException
+	{
+		List<Map<String,String>> list = payDao.getOrderInfo(orderId);
+		if(ObjectCensor.checkListIsNull(list))
+		{
+			Map map = list.get(0);
+			List<Map<String,String>> orderDetailList = payDao.getOrderDetailList(orderId);
+			map.put("orderDetailList", orderDetailList);
+			List<Map<String,String>> busDetailList = payDao.getBusDetailList(busId);
+			map.put("busDetailList", busDetailList);
+			model.addObject("orderInfo", map);
+		}
+		else
+		{
+			model.addObject("errorModel", "订单不存在请核实后重新尝试");
 		}
 	}
 	

@@ -221,7 +221,7 @@
 							<a href="#" target="_blank">会员中心</a>
 						</div>
 						<div class="ft-copyright" style="background-image:url()">
-							<a href="#" target="_blank">华莱士提供技术支持 </a>
+							<a href="#" target="_blank">华莱士提供技术支持</a>
 						</div>
 					</div>
 				</div>
@@ -317,7 +317,7 @@
 		<input id="phoneNum" type="hidden" value="${param.phoneNum}" />
 		<input id="productId" type="hidden" value="${param.productId}" />
 		<script type="text/javascript">
-		//	getLocation();
+			getLocation();
 			function addCart()
 			{
 				var phoneNum = $("#phoneNum").val();
@@ -330,7 +330,7 @@
 					type:"POST",
 					data:"cart="+JSON.stringify(cart),
 					success:function(data){
-						if(data == "success")
+						if(!isNaN(data))
 						{
 							window.location.href = "/product.do?method=payOrder";
 						}

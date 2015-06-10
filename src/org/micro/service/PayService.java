@@ -97,8 +97,8 @@ public class PayService
 				Map<String,String> map = list.get(i);
 				double newLong = Double.parseDouble(StringUtil.getMapKeyVal(map, "busLongitude"));
 				double newLat = Double.parseDouble(StringUtil.getMapKeyVal(map, "busLatitude"));
-				double xPosFloat = Double.parseDouble(xPos);
-				double yPosFloat = Double.parseDouble(yPos);
+				double xPosFloat = Double.parseDouble(yPos);
+				double yPosFloat = Double.parseDouble(xPos);
 				double dist = Math.abs(Rad.GetDistance(newLong, newLat, xPosFloat, yPosFloat));
 				if(dataMap == null || dist < dataFloat)
 				{

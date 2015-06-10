@@ -14,14 +14,10 @@ String path = request.getContextPath();
         <meta name="MobileOptimized" content="320">
         <meta name="format-detection" content="telephone=no">
         <meta http-equiv="cleartype" content="on">
-        <link rel="dns-prefetch" href="//tj.koudaitong.com/">
-        <link rel="dns-prefetch" href="//imgqn.koudaitong.com/">
-        <link rel="dns-prefetch" href="//kdt-static.qiniudn.com/">
-        <link rel="shortcut icon" href="http://kdt-static.qiniucdn.com/v2/image/yz_fc.ico">
         <title>待付款的订单</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="http://kdt-static.qiniucdn.com/v2/build_css/stylesheets/wap/base_2ced031129.css" onerror="_cdnFallback(this)">
-		<link rel="stylesheet" href="http://kdt-static.qiniucdn.com/v2/build_css/stylesheets/wap/projects/trade_626cf27050.css" onerror="_cdnFallback(this)">
+        <link rel="stylesheet" href="/pub/css/base_2ced031129.css" />
+		<link rel="stylesheet" href="/pub/css/trade_626cf27050.css">
 	</head>
     <body class=" " style="overflow: visible; height: auto; padding: 0px;">
         <div class="container js-page-content wap-page-order">
@@ -41,10 +37,10 @@ String path = request.getContextPath();
                             <div class="js-edit-address js-order-address express-panel express-panel-edit" style="padding-left:0;">
                                 <ul class="express-detail">
                                     <li class="clearfix">
-                                    	<span class="name">收货人：银凝</span>
-                                    	<span class="tel">18907181259</span>
+                                    	<span class="name">收货人：${orderInfo.customerName}</span>
+                                    	<span class="tel">${orderInfo.telephone}</span>
                                     </li>
-                                    <li class="address-detail">收货地址：湖北省武汉市江汉区常青五路99号</li>
+                                    <li class="address-detail">收货地址：${orderInfo.customerAddress}</li>
                                 </ul>
                             </div>
                         </div>
@@ -55,16 +51,17 @@ String path = request.getContextPath();
                 <!-- 商品列表 -->
                 <div class="js-goods-list-container block block-order block-border-top-none">
                     <div class="header">
-                        <span>店铺：Lapland_Alone</span>
+                        <span>店铺：${orderInfo.busName}</span>
                     </div>
                     <hr class="margin-0 left-10">
                         <div class="js-goods-list block block-list block-border-top-none block-border-bottom-none">
-                            <div class="block-item name-card name-card-3col clearfix block-sku-35857182">
-                                <a href="http://wap.koudaitong.com/v2/showcase/goods?alias=1h3qqc1dg&amp;from=kdt" class="thumb">
-                                    <img src="http://imgqn.koudaitong.com/upload_files/2015/01/18/Fsa70jcMs-3GcVtD1Cq5oRZQIhnt.png!100x100.jpg" alt="豆角茄子炒菜，米饭需单独购买 - 测试商品，不发货，不退款">
+                            <c:forEach items="${orderInfo.orderDetailList}" var="node">	
+                            	<div class="block-item name-card name-card-3col clearfix block-sku-35857182">
+                                	<a href="#" class="thumb">
+                                    <img src="#" alt="豆角茄子炒菜，米饭需单独购买 - 测试商品，不发货，不退款">
                                     </a>
                                     <div class="detail">
-                                        <a href="http://wap.koudaitong.com/v2/showcase/goods?alias=1h3qqc1dg&amp;from=kdt"><h3>豆角茄子炒菜，米饭需单独购买 - 测试商品，不发货，不退款</h3></a>
+                                        <a href="#"><h3>豆角茄子炒菜，米饭需单独购买 - 测试商品，不发货，不退款</h3></a>
                                         <p class="c-gray ellipsis">
                                         </p>
                                         <p class="js-error c-orange hide"></p>
@@ -74,13 +71,14 @@ String path = request.getContextPath();
                                         <div class="num">×<span class="num-txt">1</span></div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr class="margin-0 left-10">
-                            <div class="order-message clearfix js-order-message">
-                          		<textarea class="js-msg-container font-size-12" placeholder="给卖家留言..."></textarea>
-                            </div>
-                            <div class="bottom">总价<span class="c-orange pull-right">￥0.01</span></div>
-                        </div>
+                            </c:forEach>
+                         </div>
+                         <hr class="margin-0 left-10">
+                         <div class="order-message clearfix js-order-message">
+                       		<textarea class="js-msg-container font-size-12" placeholder="给卖家留言..."></textarea>
+                         </div>
+                         <div class="bottom">总价<span class="c-orange pull-right">￥0.01</span></div>
+                     </div>
                         <div class="js-step-topay">
                             <div class="js-used-coupon block" style="">
                             	<div class="block-item order-coupon relative">
@@ -94,10 +92,10 @@ String path = request.getContextPath();
 	                            </div>
                      		</div>
 		                     <div class="block">
-		                        <div class="js-order-total block-item order-total"><p>￥0.01 + ￥0.00运费
+		                        <div class="js-order-total block-item order-total"><p style="display:none">￥0.01 + ￥0.00运费
 		                        </p>
 		                        <strong class="js-real-pay c-orange js-real-pay-temp">
-		                            需付：￥0.01
+		                            需付：￥${orderInfo.orderPrice}
 		                        </strong></div>
 		                    </div>
 		                    <div class="action-container" id="confirm-pay-way-opts"><div style="margin-bottom: 10px;"><button type="button" data-pay-type="umpay" class="btn-pay btn btn-block btn-large btn-umpay  btn-green">信用卡付款</button></div><div style="margin-bottom: 10px;"><button type="button" data-pay-type="other" class="btn-pay btn btn-block btn-large btn-other  btn-white">其他支付方式</button></div></div>
@@ -120,7 +118,7 @@ String path = request.getContextPath();
                          <textarea id="footer-delay" style="display:none;">	&lt;div class="footer"&gt;
                           &lt;div class="copyright"&gt;
                           &lt;div class="ft-copyright"&gt;
-                          &lt;a href="http://m.youzan.com" target="_blank"&gt;有赞微商城提供技术支持&lt;/a&gt;
+                          &lt;a href="#" target="_blank"&gt;华莱士提供技术支持&lt;/a&gt;
                           &lt;/div&gt;
                           &lt;/div&gt;
                           &lt;/div&gt;
@@ -128,15 +126,13 @@ String path = request.getContextPath();
                       <div class="footer">
                        <div class="copyright">
                            <div class="ft-copyright">
-                              <a href="http://m.youzan.com" target="_blank">有赞微商城提供技术支持</a>
+                              <a href="#" target="_blank">华莱士提供技术支持</a>
                           </div>
                       </div>
                   </div>
           		 </div>
 				</div>
-               <script src="http://kdt-static.qiniucdn.com/v2/build/wap/common_452e0e827f.js" onerror="_cdnFallback(this)"></script>
-               <script src="http://kdt-static.qiniucdn.com/v2/build/wap/base_ffeae21149.js" onerror="_cdnFallback(this)"></script>
-               <script src="http://kdt-static.qiniucdn.com/v2/vendor/u_b.js" onerror="_cdnFallback(this)"></script>
-               <script src="http://kdt-static.qiniucdn.com/v2/build/wap/trade/confirm_adb1d72ac7.js" onerror="_cdnFallback(this)"></script>    
+               <script src="/js/base.js" language="javascript" type="text/javascript"></script>
+               <script src="/js/u_b.js" language="javascript" type="text/javascript"></script>
            </body>
        </html>
