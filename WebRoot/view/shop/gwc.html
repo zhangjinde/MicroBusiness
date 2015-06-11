@@ -9,7 +9,7 @@
     <link rel="dns-prefetch" href="http://imgqn.koudaitong.com/">
     <link rel="dns-prefetch" href="http://kdt-static.qiniudn.com/">
     <link rel="shortcut icon" href="http://kdt-static.qiniucdn.com/v2/image/yz_fc.ico">
-    <script type="text/javascript" src="/pub/js/jquery-1.11.3.min.js">
+    <script type="text/javascript" src="/micro/pub/js/jquery-1.11.3.min.js">
     <title>购物车</title>
 
    <script>
@@ -137,7 +137,7 @@
     var dig = null;
     $.ajax({
       type: "POST",
-      url: "/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
+      url: "/micro/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
       data: obj,
       contentType: "application/json;charset=UTF-8",
       dataType: "json",
@@ -250,7 +250,7 @@
     var dig = null;
     $.ajax({
       type: "POST",
-      url: "/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
+      url: "/micro/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
       data: obj,
       contentType: "application/json;charset=UTF-8",
       dataType: "json",
