@@ -58,17 +58,17 @@ String path = request.getContextPath();
                             <c:forEach items="${orderInfo.orderDetailList}" var="node">	
                             	<div class="block-item name-card name-card-3col clearfix block-sku-35857182">
                                 	<a href="#" class="thumb">
-                                    <img src="#" alt="豆角茄子炒菜，米饭需单独购买 - 测试商品，不发货，不退款">
+                                    <img src="${node.imgUrl}" alt="${node.productName} ${node.productDesc}">
                                     </a>
                                     <div class="detail">
-                                        <a href="#"><h3>豆角茄子炒菜，米饭需单独购买 - 测试商品，不发货，不退款</h3></a>
+                                        <a href="#"><h3>${node.productName} ${node.productDesc}</h3></a>
                                         <p class="c-gray ellipsis">
                                         </p>
                                         <p class="js-error c-orange hide"></p>
                                     </div>
                                     <div class="right-col">
-                                        <div class="price">￥<span>0.01</span></div>
-                                        <div class="num">×<span class="num-txt">1</span></div>
+                                        <div class="price">￥<span>${node.productPrice}</span></div>
+                                        <div class="num">×<span class="num-txt">${node.productNum}</span></div>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -77,7 +77,7 @@ String path = request.getContextPath();
                          <div class="order-message clearfix js-order-message">
                        		<textarea class="js-msg-container font-size-12" placeholder="给卖家留言..."></textarea>
                          </div>
-                         <div class="bottom">总价<span class="c-orange pull-right">￥0.01</span></div>
+                         <div class="bottom">总价<span class="c-orange pull-right">￥${orderInfo.orderPrice}</span></div>
                      </div>
                         <div class="js-step-topay">
                             <div class="js-used-coupon block" style="">
