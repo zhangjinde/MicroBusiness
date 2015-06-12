@@ -9,10 +9,10 @@
     <link rel="dns-prefetch" href="http://imgqn.koudaitong.com/">
     <link rel="dns-prefetch" href="http://kdt-static.qiniudn.com/">
     <link rel="shortcut icon" href="http://kdt-static.qiniucdn.com/v2/image/yz_fc.ico">
-    <script type="text/javascript" src="/pub/js/jquery-1.11.3.min.js">
+    <script type="text/javascript" src="/micro/pub/js/jquery-1.11.3.min.js">
     <title>购物车</title>
 
-    <script src="购物车_files/hm.js"></script><script>
+   <script>
     var _global = {"kdt_id":"803178","user_id":0,"run_mode":"online","debug":false,"project":"default","online_debug":false,"js":{"js_compress":true,"css_compress":true,"use_js_cdn":true,"use_css_cdn":true,"message_report":true,"checkbrowser":true,"hide_wx_nav":true,"qn_public":"kdt_img","qn_private":"kdt-private"},"query_path":"\/trade\/cart","query_key":"source=weixin11&kdt_id=803178&spm=h801336_sc801118_fake803178","real_query_path":"get:\/trade\/cart\/index.html","module":"trade","controller":"Trade_Cart_Controller","action":"index","full_action":"getIndexHtml","method":"get","format":"html","platform":"mobile","is_mobile":true,"authorize":"unknown","platform_version":"","mobile_system":"android","isFromShare":false,"page_size":320,"isShopDomain":false,"share":{"notShare":true},"jsBradgeSupport":true,"wuxi1_0_0":false,"source":"","track":"","nobody":"9aluue88uttl8g9khnnuh14gr4","mp_changed":false,"team_certificate":true,"is_secured_transactions":0,"hide_shopping_cart":0,"mp_data":{"logo":"http:\/\/imgqn.koudaitong.com\/upload_files\/2015\/01\/15\/Fsm23pJaMB-VvmrtOcwwv21VcIPc.jpg","team_name":"\u534e\u83b1\u58eb\u70b8\u9e21\u6c49\u5821","intro":"\u534e\u83b1\u58eb\u70b8\u9e21\u6c49\u5821\u5e97","is_display_footbar":"1","is_display_suffix_name":"1","suffix_name":"\u534e\u83b1\u58eb\u70b8\u9e21\u6c49\u5821","shopping_cart_style":"2","team_type":"youzan","team_physical":0},"wxpay_big":false,"alipay_env":true,"wxpay_env":false,"wxaddress_env":false,"is_owner_team":false,"weixin_jssdk_use":0,"fans_id":0,"is_fans":2,"fans_nickname":"","fans_type":0,"fans_token":"","mp_id":0,"fans_picture":"","proxy_fans_id":0,"youzan_fans_id":0,"youzan_fans_nickname":"","youzan_fans_picture":"","no_user_login":false,"buyer_id":"6167813","change_password_url":"","buyer":{"id":"6167813","phone":"18907181648","nick_name":"Lapland_Alone","avatar":"http:\/\/imgqn.koudaitong.com\/upload_files\/avatar.png"},"open_token":[],"directSeller":{"seller":"","is_display_directseller_button":false},"spm":{"logType":"sc","logId":"803178"},"url":{"base":"http:\/\/koudaitong.com","bbs":"http:\/\/bbs.youzan.com","cdn":"http:\/\/kdt-static.qiniucdn.com\/","cdn_static":"http:\/\/kdt-static.qiniucdn.com\/v2","cp":"http:\/\/cp.koudaitong.com","daxue":"http:\/\/xt.youzan.com","fenxiao":"http:\/\/fx.youzan.com","fuwu":"http:\/\/fuwu.youzan.com","img":"http:\/\/img.koudaitong.com","imgqn":"http:\/\/imgqn.koudaitong.com","login":"http:\/\/login.youzan.com","open":"\/\/open.koudaitong.com","static":"http:\/\/static.koudaitong.com\/v2","trade":"http:\/\/trade.koudaitong.com","v1":"http:\/\/koudaitong.com\/v1","v1_static":"http:\/\/static.koudaitong.com\/v1","v2":"http:\/\/koudaitong.com\/v2","wap":"http:\/\/wap.koudaitong.com\/v2","ws":"ws:\/\/im.koudaitong.com:83","www":"http:\/\/koudaitong.com\/v2","youzan":"http:\/\/youzan.com","matrix":"http:\/\/cp.qima-inc.com"}};        function _cdnFallback(n){if(!_cdnFb){var i=n.src;(new Image).src="//tj.koudaitong.com/1.gif?net_error=1&fileurl="+i,-1===window.location.href.indexOf("fenxiao/active/index")&&(motify.error("啊哦，有东西加载失败了，刷新下试试~"),_cdnFb=!0)}}function onReady(n,i){if(i){var o=function(){window[n]?i():setTimeout(function(){o(n,i)},1e3)};o(n,i)}}window.motify=window.motify||{},window.motify.error=function(n){document.body.insertAdjacentHTML("afterbegin",'<div class="common-error-tips c-red clearfix font-size-12"><a class="btn btn-white pull-right" onclick="location.reload();">刷新</a><p>'+n+"</p></div>")};var _cdnFb=!1;
 </script>
 
@@ -137,7 +137,7 @@
     var dig = null;
     $.ajax({
       type: "POST",
-      url: "/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
+      url: "/micro/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
       data: obj,
       contentType: "application/json;charset=UTF-8",
       dataType: "json",
@@ -250,7 +250,7 @@
     var dig = null;
     $.ajax({
       type: "POST",
-      url: "/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
+      url: "/micro/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
       data: obj,
       contentType: "application/json;charset=UTF-8",
       dataType: "json",

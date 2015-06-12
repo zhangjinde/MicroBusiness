@@ -5,5 +5,5 @@
 		<servlet-reload-check-secs>-1</servlet-reload-check-secs>
 		<prefer-web-inf-classes>false</prefer-web-inf-classes>
 	</container-descriptor> 
-	<context-root></context-root>
+	<context-root>micro</context-root>
 </weblogic-web-app>
