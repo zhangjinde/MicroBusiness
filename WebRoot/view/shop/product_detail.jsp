@@ -17,11 +17,11 @@
 		<link rel="shortcut icon" href="*.ico">
 		<title>微商城--${product.productName}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="/pub/css/base.css" >
-		<link rel="stylesheet" type="text/css" href="/pub/css/showcase_admin.css" >
-		<link rel="stylesheet" type="text/css" href="/pub/css/goods.css" >
-		<link rel="stylesheet" type="text/css" href="/pub/css/detail.s.min.css" >
-		<link rel="stylesheet" type="text/css" href="/pub/css/magnific-popup.css" >
+		<link rel="stylesheet" type="text/css" href="/micro/pub/css/base.css" >
+		<link rel="stylesheet" type="text/css" href="/micro/pub/css/showcase_admin.css" >
+		<link rel="stylesheet" type="text/css" href="/micro/pub/css/goods.css" >
+		<link rel="stylesheet" type="text/css" href="/micro/pub/css/detail.s.min.css" >
+		<link rel="stylesheet" type="text/css" href="/micro/pub/css/magnific-popup.css" >
 		<script src="/js/location.js" type="text/javascript"></script>
 		<script src="/pub/js/zepto.min.js" type="text/javascript"></script>
 		<script src="/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>

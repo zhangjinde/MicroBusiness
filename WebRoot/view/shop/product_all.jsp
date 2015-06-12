@@ -14,10 +14,10 @@
 		<link rel="shortcut icon" href="*.ico">
 		<title>回锅肉</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<link rel="stylesheet" href="/pub/css/base.css" >
-		<link rel="stylesheet" href="/pub/css/showcase_admin.css" >
-		<link rel="stylesheet" href="/pub/css/goods.css" >
-		<script type="text/javascript" src="/pub/js/jquery-1.11.3.min.js">
+		<link rel="stylesheet" href="/micro/pub/css/base.css" >
+		<link rel="stylesheet" href="/micro/pub/css/showcase_admin.css" >
+		<link rel="stylesheet" href="/micro/pub/css/goods.css" >
+		<script type="text/javascript" src="/micro/pub/js/jquery-1.11.3.min.js">
     </script>
 	</head>
 	  <body class=" " style="padding-bottom: 50px;">
@@ -219,7 +219,7 @@
 	   	var dig = null;
 	   	$.ajax({
 	   		type : "POST",
-	   		url : "/product.do?method=getProds&page="+page,
+	   		url : "/micro/product.do?method=getProds&page="+page,
 	   		data : obj,
 	   		contentType : "application/json;charset=UTF-8",
 	   		dataType : "json",
@@ -243,7 +243,7 @@
 	   			$.each(data.prods, function(i, obj)
 	   		    {
    					content+="<li class='js-goods-card goods-card goods-list normal'>";                                                
-   					content+="<a href='/product.do?method=getProduct&productId="+obj.productId+"&phoneNum=18907181259&busId=100' class='js-goods link clearfix' target='_blank' data-goods-id='9937870' title='"+obj.productName+"'>";  
+   					content+="<a href='/micro/product.do?method=getProduct&productId="+obj.productId+"&phoneNum=18907181259&busId=100' class='js-goods link clearfix' target='_blank' data-goods-id='9937870' title='"+obj.productName+"'>";  
    					content+="<div class='photo-block' style='background-color: rgb(255, 255, 255);'>";                             
    					content+="<img class='goods-photo js-goods-lazy' data-src=''src='"+obj.imgUrl+"' style='display: block;'>";                   
    					content+="</div>";                                                                                              
