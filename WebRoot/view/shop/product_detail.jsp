@@ -22,9 +22,9 @@
 		<link rel="stylesheet" type="text/css" href="/micro/pub/css/goods.css" >
 		<link rel="stylesheet" type="text/css" href="/micro/pub/css/detail.s.min.css" >
 		<link rel="stylesheet" type="text/css" href="/micro/pub/css/magnific-popup.css" >
-		<script src="/js/location.js" type="text/javascript"></script>
-		<script src="/pub/js/zepto.min.js" type="text/javascript"></script>
-		<script src="/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
+		<script src="/micro/js/location.js" type="text/javascript"></script>
+		<script src="/micro/pub/js/zepto.min.js" type="text/javascript"></script>
+		<script src="/micro/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
 		<style type="text/css">
 			.custom-richtext td{
 				border:none;
@@ -316,7 +316,7 @@
 		<input id="busId" type="hidden" value="${param.busId}" />
 		<input id="phoneNum" type="hidden" value="${param.phoneNum}" />
 		<input id="productId" type="hidden" value="${param.productId}" />
-		<script type="text/javascript" language="javascript" src="/js/prodDetail.js"></script>
+		<script type="text/javascript" language="javascript" src="/micro/js/prodDetail.js"></script>
 		<script type="text/javascript">
 			<c:choose>
 				<c:when test="${newUser=='Y'}">
