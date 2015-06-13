@@ -348,6 +348,7 @@
 					});
 				</c:otherwise>
 			</c:choose>
+			
 		</script>
 	</body>
 </html>

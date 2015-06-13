@@ -41,7 +41,7 @@ public class HttpUtil
 
 		try 
 		{
-			u = new URL(send_url);
+			u = new URL(url);
 			con = (HttpURLConnection) u.openConnection();
 			con.setRequestMethod("POST");
 			con.setDoOutput(true);
@@ -49,9 +49,9 @@ public class HttpUtil
 			con.setUseCaches(false);
 			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 			OutputStreamWriter osw = new OutputStreamWriter(con.getOutputStream(), "GBK");
-//			osw.write(sb.toString());
-//			osw.flush();
-//			osw.close();
+			osw.write(sb.toString());
+			osw.flush();
+			osw.close();
 		}
 		catch (Exception e) 
 		{
@@ -101,6 +101,7 @@ public class HttpUtil
 
 	public static void main(String[] args) 
 	{
+		
 		String url = "http://api.app2e.com/smsBigSend.api.php";
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("username", "haixing");

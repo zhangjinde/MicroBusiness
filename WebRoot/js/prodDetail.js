@@ -1,4 +1,5 @@
-getLocation();
+//getLocation();
+
 function addCart()
 {
 	var phoneNum = $("#phoneNum").val();
@@ -20,9 +21,10 @@ function addCart()
 			//	alert(data);
 			}
 		}
-	})
+	});
 	
 }
+
 function addOrder()
 {
 	var busId = $("#busId").val();

@@ -14,7 +14,7 @@
     <link rel="dns-prefetch" href="http://imgqn.koudaitong.com/">
     <link rel="dns-prefetch" href="http://kdt-static.qiniudn.com/">
     <link rel="shortcut icon" href="http://kdt-static.qiniucdn.com/v2/image/yz_fc.ico">
-    <script type="text/javascript" src="/pub/js/jquery-1.11.3.min.js">
+    <script type="text/javascript" src="/micro/pub/js/jquery-1.11.3.min.js">
     <title>购物车</title>
 
     <script src="购物车_files/hm.js"></script><script>
@@ -43,7 +43,7 @@
 	
 <div class="tabber  tabber-n3 tabber-double-11 clearfix">
 	<a class="active" href="http://wap.koudaitong.com/v2/trade/cart?source=weixin11&amp;kdt_id=803178">购物车</a>
-    <a class="" href="http://wap.koudaitong.com/v2/trade/record/index?source=weixin11&amp;kdt_id=803178">购物记录</a>
+    <a class="" href="/micro/cart.do?method=getOrder&phone=18907181259">购物记录</a>
     <a class="" href="http://wap.koudaitong.com/v2/trade/record/backs?source=weixin11&amp;kdt_id=803178">我的返现</a>
 </div>
 
@@ -142,7 +142,7 @@
     var dig = null;
     $.ajax({
       type: "POST",
-      url: "/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
+      url: "/micro/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
       data: obj,
       contentType: "application/json;charset=UTF-8",
       dataType: "json",
@@ -255,7 +255,7 @@
     var dig = null;
     $.ajax({
       type: "POST",
-      url: "/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
+      url: "/micro/product.do?method=getCartProds&id=" + id + "&telephone=" + telephone,
       data: obj,
       contentType: "application/json;charset=UTF-8",
       dataType: "json",
@@ -268,7 +268,7 @@
           dig.close();
         } catch(e) {
 
-}
+		}
         var content = "";
         count = data.size;
         prodsNum=data.size;

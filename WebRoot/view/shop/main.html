@@ -67,7 +67,7 @@
                   </a>
                 </li>
                 <li class="js-order">
-                  <a href="/view/user/login.html">
+                  <a href="/micro/view/user/login.html">
                     <span class="count user">
                     </span>
                     <span class="text">
@@ -886,3 +886,10 @@
   </body>
 
 </html>
+<script type="text/javascript" language="javascript">
+
+function userLogin()
+{
+	window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9de1544a58642739&redirect_uri=https%3a%2f%2fwww.hbywzc.cn%2fmicro%2foauth.do%3fmethod%3dgetCode&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+}
+</script>

@@ -25,7 +25,7 @@
                     
 <div class="tabber  tabber-n3 tabber-double-11 clearfix">
 	<a class="" href="/view/shop/gwc.html">购物车</a>
-    <a class="active" href="">购物记录</a>
+    <a class="active" href="/micro/cart.do?method=getOrder&phone=18907181259">购物记录</a>
     <a class="" href="">我的返现</a>
 </div>
                         <p style="height:10px;">&nbsp;</p>
