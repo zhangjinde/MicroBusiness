@@ -91,7 +91,11 @@ public class ProductService
 			map.put("orderDetailList", orderDetailList);
 			List<Map<String,String>> busDetailList = payDao.getBusDetailList(busId);
 			map.put("busDetailList", busDetailList);
+			List<Map<String,String>> custAddrList = payDao.getCustomerOrderAddr(orderId);
+			map.put("custAddrList", custAddrList);
 			model.addObject("orderInfo", map);
+			List<Map<String,String>> provList = configDao.getProvList();
+			model.addObject("provList", provList);
 		}
 		else
 		{

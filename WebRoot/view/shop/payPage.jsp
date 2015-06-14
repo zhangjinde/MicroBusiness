@@ -16,15 +16,28 @@ String path = request.getContextPath();
         <meta http-equiv="cleartype" content="on">
         <title>待付款的订单</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="/pub/css/base_2ced031129.css" />
-		<link rel="stylesheet" href="/pub/css/trade_626cf27050.css">
+        <link rel="stylesheet" href="/micro/pub/css/base_2ced031129.css" />
+		<link rel="stylesheet" href="/micro/pub/css/trade_626cf27050.css">
+		<script src="/micro/pub/js/util.js" type="text/javascript"></script>
+		<script src="/micro/pub/js/zepto.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="/micro/pub/css/magnific-popup.css">
+		<script src='/micro/pub/js/jquery.magnific-popup.min.js'></script>
+		<style type="text/css">
+			.custom-richtext td{
+				border:none;
+				border-bottom:1px solid #f0f0f0;
+			}
+			.addrForm td{
+				border-top:1px solid #f0f0f0;
+				vertical-align:middle;
+			}
+		</style>
 	</head>
     <body class=" " style="overflow: visible; height: auto; padding: 0px;">
         <div class="container js-page-content wap-page-order">
             <div class="content confirm-container" style="min-height: 568px;">
                 <div class="app app-order">
                     <div class="app-inner inner-order" id="js-page-content">
-                        <!-- 通知 -->
                         <!-- 物流 -->
                         <div class="block express" id="js-logistics-container" style="margin-top: -1px;"><div class="block-item logistics hide">
                             <!-- <h4 class="block-item-title">配送方式</h4> -->
@@ -33,7 +46,8 @@ String path = request.getContextPath();
                                 <button data-type="self-fetch" class="tag tag-big hide js-tabber-self-fetch" style="margin-top:-3px;margin-left: 5px">到店自提</button>
                             </div>
                         </div>
-                        <div class="js-logistics-content logistics-content js-express"><div class=""><div class="block block-form block-border-top-none block-border-bottom-none">
+                        <a href="#selectAddrForm" id="selectAddr" data-effect="bounceInDown">
+                        <div class="js-logistics-content logistics-content js-express" ><div class=""><div class="block block-form block-border-top-none block-border-bottom-none">
                             <div class="js-edit-address js-order-address express-panel express-panel-edit" style="padding-left:0;">
                                 <ul class="express-detail">
                                     <li class="clearfix">
@@ -45,7 +59,8 @@ String path = request.getContextPath();
                             </div>
                         </div>
                         <div class="js-logistics-tips logistics-tips font-size-12 c-orange hide">很抱歉，该地区暂不支持配送。</div>
-                    </div></div>
+                    </div></div></a>
+                    <input type="hidden" id="customerDetailId" value="${orderInfo.customerDetailId}" />
                     <div class="js-logistics-content logistics-content js-self-fetch hide"></div>
                 </div>
                 <!-- 商品列表 -->
@@ -91,6 +106,28 @@ String path = request.getContextPath();
 	                                </div>
 	                            </div>
                      		</div>
+                     		<div class="js-used-coupon block" style="">
+                            	<div class="block-item order-coupon relative">
+	                                <h4 class="block-item-title">送货店家</h4>
+	                                <div class="coupon-info-container">
+	                                 <div class="js-normal-coupon coupon-info c-gray-dark">
+	                                     <select class="pull-right" style="font-size:12px;font-family:Helvetica, 'STHeiti STXihei', 'Microsoft JhengHei', 'Microsoft YaHei', Tohoma, Arial;margin-top:3px;direction:rtl;" id="busInfo">
+			                         		<c:forEach items="${orderInfo.busDetailList}" var="node">
+			                         			<c:choose>
+			                         				<c:when test="${orderInfo.busDetailId==node.busDetailId}">
+					                     				<option value="${node.busDetailId}" selected="selected">${node.busDetailName}</option>
+			                         				</c:when>
+			                         				<c:otherwise>
+			                         					<option value="${node.busDetailId}">${node.busDetailName}</option>
+			                         				</c:otherwise>
+			                         			</c:choose>
+			                         		</c:forEach>
+			                         	</select>
+	                                 </div>
+	                                 <span class="arrow"></span>
+	                                </div>
+	                            </div>
+                     		</div>
 		                     <div class="block">
 		                        <div class="js-order-total block-item order-total"><p style="display:none">￥0.01 + ￥0.00运费
 		                        </p>
@@ -113,6 +150,154 @@ String path = request.getContextPath();
                         </div>
                     </div>
                 </div>
+                <form id="selectAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:auto">
+					<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">选择收货地址</h1>
+					<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
+						<c:forEach items="${orderInfo.custAddrList}" var="node">
+							<tr>
+								<td height="80">
+									<c:choose>
+										<c:when test="${node.isPrimary == 'A'}">
+											<a href="javascript:void(0)" onclick=""><img src="/micro/pub/img/gouPic.png" /></a>
+										</c:when>
+										<c:otherwise>
+											<a href="javascript:void(0)" onclick=""><img src="/micro/pub/img/chaPic.png" /></a>
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td height="80">
+									<input type="hidden" id="customerDetailId${node.customerDetailId}" value="${node.customerDetailId}" />
+									<input type="hidden" id="customerName${node.customerDetailId}" value="${node.customerName}" />
+									<input type="hidden" id="customerTelephone${node.customerDetailId}" value="${node.customerTelephone}" />
+									<input type="hidden" id="provId${node.customerDetailId}" value="${node.provId}" />
+									<input type="hidden" id="cityId${node.customerDetailId}" value="${node.provId}" />
+									<input type="hidden" id="districtId${node.customerDetailId}" value="${node.provId}" />
+									<input type="hidden" id="customerAddress${node.customerDetailId}" value="${node.customerAddress}" />
+									<input type="hidden" id="customerPostcode${node.customerDetailId}" value="${node.customerPostcode}" />
+									<p>${node.customerName},${node.customerTelephone}</p>
+									<p style="color:#777777">${node.customerAddress}</p>
+								</td>
+								<td height="80">
+									<a href="#receiveAddrForm" class="addrUpdateInfo" value="${node.customerDetailId}" data-effect="bounceInDown"><img src="/micro/pub/img/infoPic.png" /></a>
+								</td>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td height="80"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown"><img src="/micro/pub/img/addPic.png" /></a></td>
+							<td height="80"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown">新增地址</a></td>
+							<td height="80"><span class="arrow"></span></td>
+						</tr>
+					</table>
+				</form>
+                <form id="receiveAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:90%">
+					<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">收货地址</h1>
+					<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
+						<tr>
+							<td width="25%" style="padding-left:10px;color:#000;">收货人</td>
+							<td width="75%"><input id="name" name="name" type="text" placeholder="名字" style="border:none;background-color:transparent" required></td>
+						</tr>
+						<tr>
+							<td style="padding-left:10px;color:#000">联系电话</td>
+							<td><input id="phonenum" name="phonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent" required></td>
+						</tr>
+						<tr>
+							<td valign="middle" style="padding-left:10px;color:#000">选择地区</td>
+							<td valign="middle" style="padding-left:0px">
+								<select id="province" style="border:none;background-color:transparent" onchange="areaChange(this,'city')">
+					        		<option value="">选择省份</option>
+					        		<c:forEach items="${provList}" var="node">
+					        			<option value="${node.provinceId}">${node.provinceName}</option>
+					        		</c:forEach>
+					        	</select>
+					        	<select id="city" style="border:none;background-color:transparent" onchange="areaChange(this,'district')">
+					        		<option value="">选择城市</option>
+					        	</select>
+					        	<select id="district" style="border:none;background-color:transparent">
+					        		<option value="">选择区县</option>
+					        	</select>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding-left:10px;color:#000">详细地址</td>
+							<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent" required></td>
+						</tr>
+						<tr>
+							<td style="padding-left:10px;color:#000">邮政编码</td>
+							<td><input id="postCode" name="postCode	" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent" /></td>
+						</tr>
+						<tr>
+							<td valign="middle" colspan="2"><a href="javascript:;" id="saveBtn" style="background-color:#44b549;color:#fff;width:95%;height:35px;display:block;margin:0 auto;padding:0 0;text-align:center;line-height:35px;border-radius:5px">保存</a></td>
+						</tr>
+					</table>
+					<input type="hidden" id="selectCustomer" value="" />
+				</form>
+				<script type="text/javascript">
+				$(document).ready(function(){
+					$('.addrInfo').magnificPopup({
+			          type: 'inline',
+			          preloader: false,
+			          fixedContentPos: false,
+			          fixedBgPos: true,
+			          overflowY: 'auto',
+			          closeBtnInside: true,
+			          midClick: true,
+			          removalDelay: 300,
+			          mainClass: 'my-mfp-zoom-in',
+			          callbacks: {
+			          	beforeOpen: function() {
+			          		alert(1);
+			          	}
+			          }
+			        });
+			        $('.addrUpdateInfo').magnificPopup({
+			          type: 'inline',
+			          preloader: false,
+			          fixedContentPos: false,
+			          fixedBgPos: true,
+			          focus: '#name',
+			          overflowY: 'auto',
+			          closeBtnInside: true,
+			          midClick: true,
+			          removalDelay: 300,
+			          mainClass: 'my-mfp-zoom-in',
+			          callbacks: {
+			            beforeOpen: function() {
+			              if($(window).width() < 700) {
+			                this.st.focus = false;
+			              } else {
+			                this.st.focus = '#name';
+			              }
+			              alert(1);
+			              var detailId = $(this).attr("value");
+			              $("#name").val($("#customerName"+detailId).val());
+			              $("#phonenum").val($("#customerTelephone"+detailId).val());
+			              $("#province").val($("#provId"+detailId).val());
+			              $("#city").val($("#cityId"+detailId).val());
+			              $("#district").val($("#districtId"+detailId).val());
+			              $("#address").val($("#customerAddress"+detailId).val());
+			              $("#customerPostcode").val($("#customerPostcode"+detailId).val());
+			              $("#selectCustomer").val(detailId);
+			            }
+			          }
+			        });
+			        $('#selectAddr').magnificPopup({
+			          type: 'inline',
+			          preloader: false,
+			          fixedContentPos: false,
+			          fixedBgPos: true,
+			          overflowY: 'auto',
+			          closeBtnInside: true,
+			          midClick: true,
+			          removalDelay: 300,
+			          mainClass: 'my-mfp-zoom-in',
+			          callbacks: {
+			          	beforeOpen: function() {
+			          		alert(1);
+			          	}
+			          }
+			        });
+				});
+				</script>
                     <div id="js-self-fetch-modal" class="modal order-modal"></div>
   					<div class="footer">
                          <textarea id="footer-delay" style="display:none;">	&lt;div class="footer"&gt;
@@ -132,7 +317,5 @@ String path = request.getContextPath();
                   </div>
           		 </div>
 				</div>
-               <script src="/js/base.js" language="javascript" type="text/javascript"></script>
-               <script src="/js/u_b.js" language="javascript" type="text/javascript"></script>
            </body>
        </html>

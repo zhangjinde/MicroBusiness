@@ -23,6 +23,7 @@
 		<link rel="stylesheet" type="text/css" href="/micro/pub/css/detail.s.min.css" >
 		<link rel="stylesheet" type="text/css" href="/micro/pub/css/magnific-popup.css" >
 		<script src="/micro/js/location.js" type="text/javascript"></script>
+		<script src="/micro/pub/js/util.js" type="text/javascript"></script>
 		<script src="/micro/pub/js/zepto.min.js" type="text/javascript"></script>
 		<script src="/micro/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
 		<style type="text/css">
@@ -194,7 +195,7 @@
 							<a href="#receiveAddrForm" class="js-buy-it btn btn-orange-dark" id="gotoBuy" data-effect="bounceInDown">立即购买</a>
 						</div>
 						<div class="btn-2-1">
-							<a href="javascript:;" onclick="addCart()" class="js-add-cart btn btn-white" id="joinShopCart">加入购物车</a>
+							<a href="javascript:;" class="js-add-cart btn btn-white" id="joinShopCart">加入购物车</a>
 						</div>
 					</div>
 				</div>
@@ -261,13 +262,13 @@
 		</div>
 		<div id="right-icon" class="js-right-icon hide">
 			<div class="js-right-icon-container right-icon-container clearfix">
-				<a id="global-cart" href="#" class="icon hide">
+				<a id="global-cart" href="/micro/view/shop/shopCart.jsp" class="icon">
 					<p class="icon-img"></p>
 					<p class="icon-txt">
 						购物车
 					</p>
 				</a>
-				<a class="js-show-more-btn icon show-more-btn hide"></a>
+				<a class="js-show-more-btn icon show-more-btn"></a>
 			</div>
 		</div>
 		<form id="receiveAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:70%">

@@ -25,7 +25,7 @@ public class PayService
 	@Autowired
 	public PayDao payDao;
 	
-	public String addOrder(String busId , String phoneNum , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String provName , String cityName , String districtName , String addr , String postCode) throws QryException
+	public String addOrder(String busId , String phoneNum , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String provId , String cityId , String districtId , String addr , String postCode) throws QryException
 	{
 		if(ObjectCensor.isStrRegular(busId , phoneNum , productId , productNum))
 		{
@@ -40,14 +40,13 @@ public class PayService
 				return "商家详细信息有误，请核实后重新尝试";
 			}
 			String customerId = null;
-			if(ObjectCensor.isStrRegular(name , contactNum , provName , cityName , districtName , addr))
+			if(ObjectCensor.isStrRegular(name , contactNum , provId , cityId , districtId , addr))
 			{
-				customerId = customerDao.addCustomerDetail(busId, name, contactNum, provName, cityName, districtName, addr, postCode);
+				customerId = customerDao.addCustomerDetail(busId, name, contactNum, provId, cityId, districtId, addr, postCode);
 				if(!StringUtil.checkStringIsNum(customerId))
 				{
 					return "人员信息有误，请核实后重新尝试";
 				}
-				addr = new StringBuffer().append(provName).append(cityName).append(districtName).append(addr).toString();
 				phoneNum = contactNum;
 			}
 			else

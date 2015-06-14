@@ -1,4 +1,4 @@
-//getLocation();
+getLocation();
 
 function addCart()
 {
@@ -8,18 +8,11 @@ function addCart()
 	
 	var cart={"telephone":phoneNum,"productId":productId,"num":productNum};
 	$.ajax({
-		url:"/cart.do?method=addCart",
+		url:"/micro/cart.do?method=addCart",
 		type:"POST",
 		data:"cart="+JSON.stringify(cart),
 		success:function(data){
-			if(data == "success")
-			{
-				window.location.href = "/product.do?method=payOrder";
-			}
-			else
-			{
-			//	alert(data);
-			}
+			$("#right-icon").removeClass("hide");
 		}
 	});
 	
@@ -27,28 +20,59 @@ function addCart()
 
 function addOrder()
 {
+	var provId = $("#province").val();
+	var cityId = $("#city").val();
+	var districtId = $("#district").val();
+	var provName = $("#province").get(0).options[$("#province").get(0).selectedIndex].innerHTML;
+	var cityName = $("#city").get(0).options[$("#city").get(0).selectedIndex].innerHTML;
+	var districtName = $("#district").get(0).options[$("#district").get(0).selectedIndex].innerHTML;
+	var addr = $("#address").val();
+	if(provName != ""&&cityName != ""&&districtName != ""&&addr != "")
+	{
+		var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(provName+cityName+districtName+addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
+		$.ajax({
+			type: "GET", 
+			dataType: "jsonp", 
+			url: url, 
+			async:false,
+			success: function (json) { 
+				if (json == null || typeof (json) == "undefined") { 
+					return; 
+				} 
+				if (json.status != "0") { 
+					return; 
+				} 
+				setPlaceAxis(json.result.location);
+				payFunc(provName+cityName+districtName+addr,provId,cityId,districtId);
+			}
+		}); 
+	}
+	else
+	{
+		payFunc(provName+cityName+districtName+addr,provId,cityId,districtId);
+	}
+}
+
+function payFunc(addr,provId,cityId,districtId)
+{
 	var busId = $("#busId").val();
 	var phoneNum = $("#phoneNum").val();
 	var productId = $("#productId").val();
 	var productNum = $("#buyNum").val();
 	var productPrice = $("#productPrice").html();
-	var xPos = $("#xPos").val();
-	var yPos = $("#yPos").val();
 	var name = $("#name").val();
 	var contactNum = $("#phonenum").val();
-	var provName = $("#province").get(0).options[$("#province").get(0).selectedIndex].innerHTML;
-	var cityName = $("#city").get(0).options[$("#city").get(0).selectedIndex].innerHTML;
-	var districtName = $("#district").get(0).options[$("#district").get(0).selectedIndex].innerHTML;
-	var addr = $("#address").val();
+	var xPos = $("#xPos").val();
+	var yPos = $("#yPos").val();
 	var postCode = $("#postCode").val();
 	$.ajax({
-		url:"/pay.do?method=addOrder",
+		url:"/micro/pay.do?method=addOrder",
 		type:"POST",
-		data:"busId="+busId+"&phoneNum="+phoneNum+"&productId="+productId+"&productNum="+productNum+"&productPrice="+productPrice+"&xPos="+xPos+"&yPos="+yPos+"&name="+encodeURI(name)+"&contactNum="+contactNum+"&provName="+encodeURI(provName)+"&cityName="+encodeURI(cityName)+"&districtName="+encodeURI(districtName)+"&addr="+encodeURI(addr)+"&postCode="+postCode,
+		data:"busId="+busId+"&phoneNum="+phoneNum+"&productId="+productId+"&productNum="+productNum+"&productPrice="+productPrice+"&xPos="+xPos+"&yPos="+yPos+"&name="+encodeURI(name)+"&contactNum="+contactNum+"&provId="+provId+"&cityId="+cityId+"&districtId="+districtId+"&addr="+encodeURI(addr)+"&postCode="+postCode,
 		success:function(data){
 			if(!isNaN(data))
 			{
-				window.location.href = "/product.do?method=payOrder&busId="+busId+"&orderId="+data;
+				window.location.href = "/micro/product.do?method=payOrder&busId="+busId+"&orderId="+data;
 			}
 			else
 			{
@@ -57,6 +81,7 @@ function addOrder()
 		}
 	})
 }
+
 $("#plus").on('touchend',function(){
 	var numStr = $("#buyNum").val();
 	var num = parseInt(numStr);
@@ -103,37 +128,9 @@ $("#pOrder").on('touchend',function(){
 });
 
 $("#joinShopCart").on('touchend',function(){
-	
+	addCart();
 });
 
 $("#saveBtn").on('touchend',function(){
 	addOrder();
 });
-
-function areaChange(obj,flag)
-{
-	var selObj = document.getElementById(flag);
-	selObj.length = 1;
-	$.ajax({
-		url:"/pub.do?method=getAreaInfo",
-		type:"POST",
-		data:"areaFlag="+flag+"&areaValue="+obj.value,
-		success:function(data){
-			var dataObj = null;
-			try{
-				dataObj = eval("("+data+")");
-			}catch(e){
-				alert(data);
-			}
-			if(dataObj != null)
-			{
-				for(var i = 0,n = dataObj.length;i < n;i++)
-				{
-					selObj.length++;
-					selObj.options[selObj.length - 1].innerHTML = dataObj[i].areaValue;
-					selObj.options[selObj.length - 1].value = dataObj[i].areaFlag;
-				}
-			}
-		}
-	});
-}

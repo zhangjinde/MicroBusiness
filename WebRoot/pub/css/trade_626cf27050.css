@@ -287,9 +287,9 @@ textarea.txt.txt-black,textarea.txt input.txt.txt-black,input.txt.txt-black,inpu
 
 .goods-order-list-container .list li {
 	padding: 10px 0;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-bottom: 2px solid #e5e5e5;
 	position: relative
 }
@@ -308,9 +308,9 @@ textarea.txt.txt-black,textarea.txt input.txt.txt-black,input.txt.txt-black,inpu
 }
 
 .goods-order-list-container .list {
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-top: 2px solid #e5e5e5
 }
 
@@ -425,9 +425,9 @@ textarea.txt.txt-black,textarea.txt input.txt.txt-black,input.txt.txt-black,inpu
 	padding: 10px;
 	line-height: 22px;
 	border: 0px none;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-bottom: 2px solid #e5e5e5;
 	overflow: hidden
 }
@@ -484,9 +484,9 @@ textarea.txt.txt-black,textarea.txt input.txt.txt-black,input.txt.txt-black,inpu
 
 .block {
 	overflow: hidden;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-top: 2px solid #e5e5e5;
 	border-bottom: 2px solid #e5e5e5;
 	margin: 10px 0;
@@ -641,7 +641,7 @@ textarea.txt.txt-black,textarea.txt input.txt.txt-black,input.txt.txt-black,inpu
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.block.block-list li span.clear {
-		background: url("/pub/img/icon_clear@2x.png") center center
+		background: url("/micro/pub/img/icon_clear@2x.png") center center
 			no-repeat;
 		background-size: 100%
 	}
@@ -882,16 +882,16 @@ div.important-message.important-message-order:before {
 	left: 9px;
 	width: 20px;
 	height: 20px;
-	background-image: url("/pub/img/address/order.png");
+	background-image: url("/micro/pub/img/address/order.png");
 	background-size: 20px 20px
 }
 
 .append-message {
 	margin: 0;
 	padding: 5px 10px;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-bottom: 2px solid #e5e5e5;
 	background-color: #fff;
 	line-height: 20px;
@@ -945,7 +945,7 @@ div.important-message.important-message-order:before {
 	left: 11px;
 	width: 15px;
 	height: 17px;
-	background: url("/pub/img/trade/ling.png") no-repeat;
+	background: url("/micro/pub/img/trade/ling.png") no-repeat;
 	background-size: 15px 17px
 }
 
@@ -954,7 +954,7 @@ div.important-message.important-message-order:before {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.complain:before {
-		background-image: url("/pub/img/trade/ling@2x.png");
+		background-image: url("/micro/pub/img/trade/ling@2x.png");
 	}
 }
 
@@ -991,9 +991,9 @@ div.important-message.important-message-order:before {
 }
 
 .block.express .logistics-content {
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-bottom: 2px solid #e5e5e5
 }
 
@@ -1088,7 +1088,7 @@ div.important-message.important-message-order:before {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	div.important-message.important-message-order:before {
-		background-image: url("/pub/img/address/order@2x.png")
+		background-image: url("/micro/pub/img/address/order@2x.png")
 	}
 }
 
@@ -1176,9 +1176,9 @@ div.important-message.important-message-order:before {
 	font-size: 14px;
 	line-height: 1.5em;
 	padding: 3px 5px 5px;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-bottom: 2px solid #e5e5e5;
 	border-top: 1px solid #ccc;
 	-webkit-box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.2);
@@ -1234,9 +1234,9 @@ div.important-message.important-message-order:before {
 	color: #333;
 	font-size: 14px;
 	background-color: #fff;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-top: 2px solid #e5e5e5
 }
 
@@ -1255,9 +1255,9 @@ div.important-message.important-message-order:before {
 	height: 40px;
 	line-height: 40px;
 	border: 0px none;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-bottom: 2px solid #e5e5e5;
 	outline: 0px none;
 	background-color: #fff;
@@ -1444,7 +1444,7 @@ div.peerpay-gift .steps {
 div.peerpay-gift .steps .step {
 	position: relative;
 	margin: 0 auto;
-	background: url("/pub/img/peerpay_steps.png") no-repeat center
+	background: url("/micro/pub/img/peerpay_steps.png") no-repeat center
 		center
 }
 
@@ -1604,7 +1604,7 @@ div.peerpay-gift .steps hr {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.peerpay-gift .steps .step {
-		background: url("/pub/img/peerpay_steps@2x.png") no-repeat top left
+		background: url("/micro/pub/img/peerpay_steps@2x.png") no-repeat top left
 	}
 	.peerpay-gift .steps .step-3-1 {
 		background-position: 0 0;
@@ -1672,7 +1672,7 @@ div.peerpay-gift .steps hr {
 	z-index: 10;
 	width: 100%;
 	height: 7px;
-	background: url("/pub/img/peerpay/block_gray.png") no-repeat center
+	background: url("/micro/pub/img/peerpay/block_gray.png") no-repeat center
 		center;
 	background-size: auto 7px
 }
@@ -1876,7 +1876,7 @@ div.peerpay-gift .steps hr {
 	min-height: 90px;
 	text-align: left;
 	color: #333;
-	background: #fff url("/pub/img/order/paid_watermark.png") right 8px
+	background: #fff url("/micro/pub/img/order/paid_watermark.png") right 8px
 		no-repeat;
 	margin: 0;
 	padding: 0 5px
@@ -1915,7 +1915,7 @@ div.peerpay-gift .steps hr {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.paid-time {
-		background-image: url("/pub/img/order/paid_watermark@2x.png");
+		background-image: url("/micro/pub/img/order/paid_watermark@2x.png");
 		background-size: 130px 77px
 	}
 }
@@ -1980,7 +1980,7 @@ div.peerpay-gift .steps hr {
 .address-fm .publish-cancel .cancel-img {
 	height: 27px;
 	width: 27px;
-	background-image: url("/pub/img/showcase-1416814739063.png");
+	background-image: url("/micro/pub/img/showcase-1416814739063.png");
 	background-position: 0 -120px;
 	background-repeat: no-repeat
 }
@@ -1990,7 +1990,7 @@ div.peerpay-gift .steps hr {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.address-fm .publish-cancel .cancel-img {
-		background-image: url("/pub/img/showcase2x-1416814739063.png");
+		background-image: url("/micro/pub/img/showcase2x-1416814739063.png");
 		background-position: 0 -108px;
 		background-size: 40px auto
 	}
@@ -2234,7 +2234,7 @@ div.peerpay-gift .steps hr {
 	margin: 10px;
 	height: 27px;
 	width: 27px;
-	background-image: url("/pub/img/showcase-1416814739063.png");
+	background-image: url("/micro/pub/img/showcase-1416814739063.png");
 	background-position: 0 -120px;
 	background-repeat: no-repeat
 }
@@ -2246,7 +2246,7 @@ div.peerpay-gift .steps hr {
 	margin-top: -12px;
 	width: 20px;
 	height: 20px;
-	background-image: url("/pub/img/trade-1416817757559.png");
+	background-image: url("/micro/pub/img/trade-1416817757559.png");
 	background-repeat: no-repeat;
 	background-position: 0 0
 }
@@ -2260,12 +2260,12 @@ div.peerpay-gift .steps hr {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.address-list .cancel-img {
-		background-image: url("/pub/img/showcase2x-1416814739063.png");
+		background-image: url("/micro/pub/img/showcase2x-1416814739063.png");
 		background-position: 0 -108px;
 		background-size: 40px auto
 	}
 	.address-list .icon-check {
-		background-image: url("/pub/img/trade2x-1416817757559.png");
+		background-image: url("/micro/pub/img/trade2x-1416817757559.png");
 		background-size: 20px auto
 	}
 }
@@ -2374,9 +2374,9 @@ div.peerpay-gift .steps hr {
 	line-height: 22px;
 	min-height: 22px;
 	border: 0px none;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-bottom: 2px solid #e5e5e5;
 	position: relative
 }
@@ -2432,7 +2432,7 @@ div.peerpay-gift .steps hr {
 	left: -5px;
 	width: 25px;
 	height: 25px;
-	background-image: url("/pub/img/address/site.png");
+	background-image: url("/micro/pub/img/address/site.png");
 	background-size: 25px 25px
 }
 
@@ -2451,7 +2451,7 @@ div.peerpay-gift .steps hr {
 	right: 10px;
 	width: 16px;
 	height: 16px;
-	background-image: url("/pub/img/address/right_arrow.png");
+	background-image: url("/micro/pub/img/address/right_arrow.png");
 	background-size: 16px 16px
 }
 
@@ -2468,19 +2468,19 @@ div.peerpay-gift .steps hr {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.express-panel:before {
-		background-image: url("/pub/img/site@2x.png")
+		background-image: url("/micro/pub/img/site@2x.png")
 	}
 	.express-panel.express-panel-edit:after {
-		background-image: url("/pub/img/right_arrow@2x.png")
+		background-image: url("/micro/pub/img/right_arrow@2x.png")
 	}
 }
 
 .empty-address-tip {
 	position: relative;
 	padding: 15px 10px;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-top: 2px solid #e5e5e5;
 	background-color: #fff;
 	text-align: center;
@@ -2524,9 +2524,9 @@ div.peerpay-gift .steps hr {
 .top-bar {
 	padding: 10px 0;
 	position: relative;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-bottom: 2px solid #e5e5e5
 }
 
@@ -2550,7 +2550,7 @@ div.peerpay-gift .steps hr {
 	margin: 10px;
 	height: 27px;
 	width: 27px;
-	background-image: url("/pub/img/showcase-1416814739063.png");
+	background-image: url("/micro/pub/img/showcase-1416814739063.png");
 	background-position: 0 -120px;
 	background-repeat: no-repeat
 }
@@ -2560,7 +2560,7 @@ div.peerpay-gift .steps hr {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.top-bar .close {
-		background-image: url("/pub/img/showcase2x-1416814739063.png");
+		background-image: url("/micro/pub/img/showcase2x-1416814739063.png");
 		background-position: 0 -108px;
 		background-size: 40px auto;
 	}
@@ -2571,9 +2571,9 @@ div.peerpay-gift .steps hr {
 	padding: 4px 0;
 	background-color: #fff;
 	position: relative;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-top: 2px solid #e5e5e5;
 	border-bottom: 2px solid #e5e5e5
 }
@@ -2608,9 +2608,9 @@ div.peerpay-gift .steps hr {
 	background-color: white;
 	border: 0px none;
 	outline: 0px none;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-left: 2px solid #e5e5e5
 }
 
@@ -2644,7 +2644,7 @@ div.peerpay-gift .steps hr {
 	top: 20px;
 	width: 20px;
 	height: 20px;
-	background-image: url("/pub/img/trade-1416817757559.png");
+	background-image: url("/micro/pub/img/trade-1416817757559.png");
 	background-repeat: no-repeat;
 	background-position: 0 0
 }
@@ -2654,9 +2654,9 @@ div.peerpay-gift .steps hr {
 }
 
 .coupon-action-container {
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-top: 2px solid #e5e5e5;
 	padding: 10px;
 	margin: 0px
@@ -2676,7 +2676,7 @@ div.peerpay-gift .steps hr {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.coupon-list .coupon-item .label-check-img {
-		background-image: url("/pub/img/trade2x-1416817757559.png");
+		background-image: url("/micro/pub/img/trade2x-1416817757559.png");
 		background-size: 20px auto
 	}
 	.coupon-list .coupon-item.active .label-check-img {
@@ -2830,9 +2830,9 @@ div.peerpay-gift .steps hr {
 .popout-box .header {
 	position: relative;
 	margin-bottom: 10px;
-	-webkit-border-image: url("/pub/img/border-line.png") 2 stretch;
-	-moz-border-image: url("/pub/img/border-line.png") 2 stretch;
-	border-image: url("/pub/img/border-line.png") 2 stretch;
+	-webkit-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	-moz-border-image: url("/micro/pub/img/border-line.png") 2 stretch;
+	border-image: url("/micro/pub/img/border-line.png") 2 stretch;
 	border-bottom: 2px solid #e5e5e5
 }
 
@@ -3231,7 +3231,7 @@ body select {
 	width: 49px;
 	height: 13px;
 	top: 13px;
-	background: url("/pub/img/pay/baiduwap.png") no-repeat center
+	background: url("/micro/pub/img/pay/baiduwap.png") no-repeat center
 		center;
 	background-size: 49px 13px
 }
@@ -3245,7 +3245,7 @@ body select {
 		(-o-min-device-pixel-ratio: 3/2) , only screen and
 	(min-device-pixel-ratio: 1.5) {
 	.btn-pay .hot {
-		background-image: url("/pub/img/pay/baiduwap@2x.png")
+		background-image: url("/micro/pub/img/pay/baiduwap@2x.png")
 	}
 }
 

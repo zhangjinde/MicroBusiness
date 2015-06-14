@@ -41,7 +41,15 @@ public class PayDao extends BaseDao
 	
 	public List<Map<String,String>> getOrderInfo(String orderId) throws QryException
 	{
-		String sql = "select a.order_id,b.bus_id,a.bus_detail_id,c.bus_name,a.customer_id,d.customer_name,a.telephone,a.customer_address,a.order_price,b.bus_detail_name,b.bus_addr,b.bus_telephone from order_t a,business_detail_t b,business_t c,customer_t d where a.bus_detail_id = b.bus_detail_id and b.bus_id = c.bus_id and d.customer_id = a.customer_id and a.order_id = ?";
+		String sql = "select a.order_id,b.bus_id,a.bus_detail_id,c.bus_name,a.customer_id,e.customer_detail_id,d.customer_name,a.telephone,a.customer_address,a.order_price,b.bus_detail_name,b.bus_addr,b.bus_telephone from order_t a,business_detail_t b,business_t c,customer_t d,customer_address_t e where a.bus_detail_id = b.bus_detail_id and b.bus_id = c.bus_id and d.customer_id = a.customer_id and d.customer_id = e.customer_id and is_primary='A' and a.order_id = ?";
+		ArrayList arrayList = new ArrayList();
+		arrayList.add(orderId);
+		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
+	}
+	
+	public List<Map<String,String>> getCustomerOrderAddr(String orderId) throws QryException
+	{
+		String sql = "select a.customer_id,b.customer_detail_id,a.customer_name,a.customer_telephone,b.prov_id,b.city_id,b.district_id,c.customer_address,b.customer_postcode,b.is_primary from customer_t a,customer_address_t b,order_t c where a.customer_id = b.customer_id and c.customer_id = a.customer_id and c.order_id =?";
 		ArrayList arrayList = new ArrayList();
 		arrayList.add(orderId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
