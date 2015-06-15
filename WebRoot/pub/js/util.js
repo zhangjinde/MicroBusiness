@@ -1,6 +1,15 @@
-function areaChange(obj,flag)
+function areaChange(obj,flag,win)
 {
-	var selObj = document.getElementById(flag);
+	var selObj = null;
+	if(win == null)
+	{
+		selObj = document.getElementById(flag);
+	}
+	else
+	{
+		selObj = $("#"+flag,win).get(0);
+		flag = flag.substring(1);
+	}
 	selObj.length = 1;
 	$.ajax({
 		url:"/micro/pub.do?method=getAreaInfo",

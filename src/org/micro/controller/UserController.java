@@ -179,4 +179,61 @@ public class UserController
 		}
 	}
 	
+	@RequestMapping(params = "saveCustomer")
+	public void saveCustomer(HttpServletRequest request , HttpServletResponse response , String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	{
+		PrintWriter out = null;
+		try
+		{
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+//			String retVal = 
+//			out.write(userService.delUser(userId));
+		}
+		catch(Exception err)
+		{
+			err.printStackTrace();
+		}
+		finally
+		{
+			if(out != null)
+			{
+				out.close();
+			}
+		}
+	}
+	
+	@RequestMapping(params = "delCustomer")
+	public void delCustomer(HttpServletRequest request , HttpServletResponse response , String customerId , String customerDetailId)
+	{
+		PrintWriter out = null;
+		try
+		{
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+//			Map<String,String> userMap = (Map<String,String>)session.getAttribute("UserInfo");
+//			if(userMap != null)
+//			{
+//				out.write(userService.delUser(userId));
+//			}
+//			else
+//			{
+//				json.put("success", 0);
+//				json.put("msg", "É¾³ýÓÃ»§Ê§°Ü");
+//				out.write(json.toString());
+//			}
+		}
+		catch(Exception err)
+		{
+			err.printStackTrace();
+		}
+		finally
+		{
+			if(out != null)
+			{
+				out.close();
+			}
+		}
+	}
+	
 }
