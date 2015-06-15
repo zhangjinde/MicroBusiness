@@ -5,6 +5,7 @@ function areaChange(obj,flag)
 	$.ajax({
 		url:"/micro/pub.do?method=getAreaInfo",
 		type:"POST",
+		async:false,
 		data:"areaFlag="+flag+"&areaValue="+obj.value,
 		success:function(data){
 			var dataObj = null;

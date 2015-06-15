@@ -34,6 +34,130 @@ String path = request.getContextPath();
 		</style>
 	</head>
     <body class=" " style="overflow: visible; height: auto; padding: 0px;">
+    	<form id="selectAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:auto">
+			<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">选择收货地址</h1>
+			<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
+				<c:forEach items="${orderInfo.custAddrList}" var="node">
+					<tr>
+						<td height="80" width="15%" align="center">
+							<c:choose>
+								<c:when test="${node.isPrimary == 'A'}">
+									<a href="javascript:void(0)" onclick=""><img src="/micro/pub/img/gouPic.png" /></a>
+								</c:when>
+								<c:otherwise>
+									<a href="javascript:void(0)" onclick=""><img src="/micro/pub/img/chaPic.png" /></a>
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td height="80" width="70%">
+							<input type="hidden" id="customerDetailId${node.customerDetailId}" value="${node.customerDetailId}" />
+							<input type="hidden" id="customerName${node.customerDetailId}" value="${node.customerName}" />
+							<input type="hidden" id="customerTelephone${node.customerDetailId}" value="${node.customerTelephone}" />
+							<input type="hidden" id="provId${node.customerDetailId}" value="${node.provId}" />
+							<input type="hidden" id="cityId${node.customerDetailId}" value="${node.cityId}" />
+							<input type="hidden" id="districtId${node.customerDetailId}" value="${node.districtId}" />
+							<input type="hidden" id="customerAddress${node.customerDetailId}" value="${node.customerAddress}" />
+							<input type="hidden" id="customerPostcode${node.customerDetailId}" value="${node.customerPostcode}" />
+							<p>${node.customerName},${node.customerTelephone}</p>
+							<p style="color:#777777">${node.customerAddress}</p>
+						</td>
+						<td height="80" width="15%" align="center">
+							<a href="#updateAddrForm" class="addrUpdateInfo" value="${node.customerDetailId}" data-effect="bounceInDown"><img src="/micro/pub/img/infoPic.png" /></a>
+						</td>
+					</tr>
+				</c:forEach>
+				<tr>
+					<td height="80" align="center"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown"><img src="/micro/pub/img/addPic.png" /></a></td>
+					<td height="80"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown">新增地址</a></td>
+					<td height="80" align="center"><span class="arrow">&nbsp;</span></td>
+				</tr>
+			</table>
+		</form>
+		<form id="updateAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:90%">
+			<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">收货地址</h1>
+			<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
+				<tr>
+					<td width="25%" style="padding-left:10px;color:#000;">收货人</td>
+					<td width="75%"><input id="uname" name="uname" type="text" placeholder="名字" style="border:none;background-color:transparent" required></td>
+				</tr>
+				<tr>
+					<td style="padding-left:10px;color:#000">联系电话</td>
+					<td><input id="uphonenum" name="uphonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent" required></td>
+				</tr>
+				<tr>
+					<td valign="middle" style="padding-left:10px;color:#000">选择地区</td>
+					<td valign="middle" style="padding-left:8px">
+						<select id="uprovince" style="border:none;background-color:transparent" onchange="areaChange(this,'ucity')">
+			        		<option value="">选择省份</option>
+			        		<c:forEach items="${provList}" var="node">
+			        			<option value="${node.provinceId}">${node.provinceName}</option>
+			        		</c:forEach>
+			        	</select>
+			        	<select id="ucity" style="border:none;background-color:transparent" onchange="areaChange(this,'udistrict')">
+			        		<option value="">选择城市</option>
+			        	</select>
+			        	<select id="udistrict" style="border:none;background-color:transparent">
+			        		<option value="">选择区县</option>
+			        	</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding-left:10px;color:#000">详细地址</td>
+					<td><input id="uaddress" name="uaddress" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent;width:100%" required></td>
+				</tr>
+				<tr>
+					<td style="padding-left:10px;color:#000">邮政编码</td>
+					<td style="padding-left:8px"><input id="upostCode" name="upostCode" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent;width:100%" /></td>
+				</tr>
+				<tr>
+					<td valign="middle" colspan="2"><a href="javascript:;" id="usaveBtn" style="background-color:#44b549;color:#fff;width:95%;height:35px;display:block;margin:0 auto;padding:0 0;text-align:center;line-height:35px;border-radius:5px">保存</a></td>
+				</tr>
+				<tr>
+					<td valign="middle" colspan="2"><a href="javascript:;" id="udelBtn" style="background-color:#777;color:#fff;width:95%;height:35px;display:block;margin:0 auto;padding:0 0;text-align:center;line-height:35px;border-radius:5px">删除该地址</a></td>
+				</tr>
+			</table>
+		</form>
+        <form id="receiveAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:90%">
+			<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">收货地址</h1>
+			<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
+				<tr>
+					<td width="25%" style="padding-left:10px;color:#000;">收货人</td>
+					<td width="75%"><input id="name" name="name" type="text" placeholder="名字" style="border:none;background-color:transparent" required></td>
+				</tr>
+				<tr>
+					<td style="padding-left:10px;color:#000">联系电话</td>
+					<td><input id="phonenum" name="phonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent" required></td>
+				</tr>
+				<tr>
+					<td valign="middle" style="padding-left:10px;color:#000">选择地区</td>
+					<td valign="middle" style="padding-left:8px">
+						<select id="province" style="border:none;background-color:transparent" onchange="areaChange(this,'city')">
+			        		<option value="">选择省份</option>
+			        		<c:forEach items="${provList}" var="node">
+			        			<option value="${node.provinceId}">${node.provinceName}</option>
+			        		</c:forEach>
+			        	</select>
+			        	<select id="city" style="border:none;background-color:transparent" onchange="areaChange(this,'district')">
+			        		<option value="">选择城市</option>
+			        	</select>
+			        	<select id="district" style="border:none;background-color:transparent">
+			        		<option value="">选择区县</option>
+			        	</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding-left:10px;color:#000">详细地址</td>
+					<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent;width:100%" required></td>
+				</tr>
+				<tr>
+					<td style="padding-left:10px;color:#000">邮政编码</td>
+					<td style="padding-left:8px"><input id="postCode" name="postCode" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent;width:100%" /></td>
+				</tr>
+				<tr>
+					<td valign="middle" colspan="2"><a href="javascript:;" id="saveBtn" style="background-color:#44b549;color:#fff;width:95%;height:35px;display:block;margin:0 auto;padding:0 0;text-align:center;line-height:35px;border-radius:5px">保存</a></td>
+				</tr>
+			</table>
+		</form>
         <div class="container js-page-content wap-page-order">
             <div class="content confirm-container" style="min-height: 568px;">
                 <div class="app app-order">
@@ -150,154 +274,6 @@ String path = request.getContextPath();
                         </div>
                     </div>
                 </div>
-                <form id="selectAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:auto">
-					<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">选择收货地址</h1>
-					<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
-						<c:forEach items="${orderInfo.custAddrList}" var="node">
-							<tr>
-								<td height="80">
-									<c:choose>
-										<c:when test="${node.isPrimary == 'A'}">
-											<a href="javascript:void(0)" onclick=""><img src="/micro/pub/img/gouPic.png" /></a>
-										</c:when>
-										<c:otherwise>
-											<a href="javascript:void(0)" onclick=""><img src="/micro/pub/img/chaPic.png" /></a>
-										</c:otherwise>
-									</c:choose>
-								</td>
-								<td height="80">
-									<input type="hidden" id="customerDetailId${node.customerDetailId}" value="${node.customerDetailId}" />
-									<input type="hidden" id="customerName${node.customerDetailId}" value="${node.customerName}" />
-									<input type="hidden" id="customerTelephone${node.customerDetailId}" value="${node.customerTelephone}" />
-									<input type="hidden" id="provId${node.customerDetailId}" value="${node.provId}" />
-									<input type="hidden" id="cityId${node.customerDetailId}" value="${node.provId}" />
-									<input type="hidden" id="districtId${node.customerDetailId}" value="${node.provId}" />
-									<input type="hidden" id="customerAddress${node.customerDetailId}" value="${node.customerAddress}" />
-									<input type="hidden" id="customerPostcode${node.customerDetailId}" value="${node.customerPostcode}" />
-									<p>${node.customerName},${node.customerTelephone}</p>
-									<p style="color:#777777">${node.customerAddress}</p>
-								</td>
-								<td height="80">
-									<a href="#receiveAddrForm" class="addrUpdateInfo" value="${node.customerDetailId}" data-effect="bounceInDown"><img src="/micro/pub/img/infoPic.png" /></a>
-								</td>
-							</tr>
-						</c:forEach>
-						<tr>
-							<td height="80"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown"><img src="/micro/pub/img/addPic.png" /></a></td>
-							<td height="80"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown">新增地址</a></td>
-							<td height="80"><span class="arrow"></span></td>
-						</tr>
-					</table>
-				</form>
-                <form id="receiveAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:90%">
-					<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">收货地址</h1>
-					<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
-						<tr>
-							<td width="25%" style="padding-left:10px;color:#000;">收货人</td>
-							<td width="75%"><input id="name" name="name" type="text" placeholder="名字" style="border:none;background-color:transparent" required></td>
-						</tr>
-						<tr>
-							<td style="padding-left:10px;color:#000">联系电话</td>
-							<td><input id="phonenum" name="phonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent" required></td>
-						</tr>
-						<tr>
-							<td valign="middle" style="padding-left:10px;color:#000">选择地区</td>
-							<td valign="middle" style="padding-left:0px">
-								<select id="province" style="border:none;background-color:transparent" onchange="areaChange(this,'city')">
-					        		<option value="">选择省份</option>
-					        		<c:forEach items="${provList}" var="node">
-					        			<option value="${node.provinceId}">${node.provinceName}</option>
-					        		</c:forEach>
-					        	</select>
-					        	<select id="city" style="border:none;background-color:transparent" onchange="areaChange(this,'district')">
-					        		<option value="">选择城市</option>
-					        	</select>
-					        	<select id="district" style="border:none;background-color:transparent">
-					        		<option value="">选择区县</option>
-					        	</select>
-							</td>
-						</tr>
-						<tr>
-							<td style="padding-left:10px;color:#000">详细地址</td>
-							<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent" required></td>
-						</tr>
-						<tr>
-							<td style="padding-left:10px;color:#000">邮政编码</td>
-							<td><input id="postCode" name="postCode	" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent" /></td>
-						</tr>
-						<tr>
-							<td valign="middle" colspan="2"><a href="javascript:;" id="saveBtn" style="background-color:#44b549;color:#fff;width:95%;height:35px;display:block;margin:0 auto;padding:0 0;text-align:center;line-height:35px;border-radius:5px">保存</a></td>
-						</tr>
-					</table>
-					<input type="hidden" id="selectCustomer" value="" />
-				</form>
-				<script type="text/javascript">
-				$(document).ready(function(){
-					$('.addrInfo').magnificPopup({
-			          type: 'inline',
-			          preloader: false,
-			          fixedContentPos: false,
-			          fixedBgPos: true,
-			          overflowY: 'auto',
-			          closeBtnInside: true,
-			          midClick: true,
-			          removalDelay: 300,
-			          mainClass: 'my-mfp-zoom-in',
-			          callbacks: {
-			          	beforeOpen: function() {
-			          		alert(1);
-			          	}
-			          }
-			        });
-			        $('.addrUpdateInfo').magnificPopup({
-			          type: 'inline',
-			          preloader: false,
-			          fixedContentPos: false,
-			          fixedBgPos: true,
-			          focus: '#name',
-			          overflowY: 'auto',
-			          closeBtnInside: true,
-			          midClick: true,
-			          removalDelay: 300,
-			          mainClass: 'my-mfp-zoom-in',
-			          callbacks: {
-			            beforeOpen: function() {
-			              if($(window).width() < 700) {
-			                this.st.focus = false;
-			              } else {
-			                this.st.focus = '#name';
-			              }
-			              alert(1);
-			              var detailId = $(this).attr("value");
-			              $("#name").val($("#customerName"+detailId).val());
-			              $("#phonenum").val($("#customerTelephone"+detailId).val());
-			              $("#province").val($("#provId"+detailId).val());
-			              $("#city").val($("#cityId"+detailId).val());
-			              $("#district").val($("#districtId"+detailId).val());
-			              $("#address").val($("#customerAddress"+detailId).val());
-			              $("#customerPostcode").val($("#customerPostcode"+detailId).val());
-			              $("#selectCustomer").val(detailId);
-			            }
-			          }
-			        });
-			        $('#selectAddr').magnificPopup({
-			          type: 'inline',
-			          preloader: false,
-			          fixedContentPos: false,
-			          fixedBgPos: true,
-			          overflowY: 'auto',
-			          closeBtnInside: true,
-			          midClick: true,
-			          removalDelay: 300,
-			          mainClass: 'my-mfp-zoom-in',
-			          callbacks: {
-			          	beforeOpen: function() {
-			          		alert(1);
-			          	}
-			          }
-			        });
-				});
-				</script>
                     <div id="js-self-fetch-modal" class="modal order-modal"></div>
   					<div class="footer">
                          <textarea id="footer-delay" style="display:none;">	&lt;div class="footer"&gt;
@@ -317,5 +293,64 @@ String path = request.getContextPath();
                   </div>
           		 </div>
 				</div>
+				<script type="text/javascript">
+			        $('.addrUpdateInfo').magnificPopup({
+			          type: 'inline',
+			          preloader: false,
+			          fixedContentPos: false,
+			          fixedBgPos: true,
+			          focus: '#name',
+			          overflowY: 'auto',
+			          closeBtnInside: true,
+			          midClick: true,
+			          removalDelay: 300,
+			          mainClass: 'my-mfp-zoom-in'
+			        });
+			        $('#selectAddr').magnificPopup({
+			          type: 'inline',
+			          preloader: false,
+			          fixedContentPos: false,
+			          fixedBgPos: true,
+			          overflowY: 'auto',
+			          closeBtnInside: true,
+			          midClick: true,
+			          removalDelay: 300,
+			          mainClass: 'my-mfp-zoom-in',
+			          callbacks: {
+			          	change: function() {
+			          	  if($.magnificPopup.instance.currItem.src == "#updateAddrForm")
+			          	  {
+				          	  if($(window).width() < 700) {
+				                this.st.focus = false;
+				              } else {
+				                this.st.focus = '#name';
+				              }
+				              var win = $.magnificPopup.instance.content;
+				              var detailId = $('.addrUpdateInfo').attr("value");
+				              $("#uprovince",win).val($("#provId"+detailId).val());
+				              $("#uprovince",win).change();
+				              $("#uname",win).val($("#customerName"+detailId).val());
+				              $("#uphonenum",win).val($("#customerTelephone"+detailId).val());
+				              $("#ucity",win).val($("#cityId"+detailId).val());
+				              $("#ucity",win).change();
+				              $("#udistrict",win).val($("#districtId"+detailId).val());
+				              $("#uaddress",win).val($("#customerAddress"+detailId).val());
+				              $("#upostCode",win).val($("#customerPostcode"+detailId).val());
+			          	  }
+			            }
+			          }
+			        });
+			        $('.addrInfo').magnificPopup({
+			          type: 'inline',
+			          preloader: false,
+			          fixedContentPos: false,
+			          fixedBgPos: true,
+			          overflowY: 'auto',
+			          closeBtnInside: true,
+			          midClick: true,
+			          removalDelay: 300,
+			          mainClass: 'my-mfp-zoom-in'
+			        });
+				</script>
            </body>
        </html>
