@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 %>
 <!DOCTYPE HTML>
 <html class="no-js " lang="zh-CN" style="overflow: visible; height: auto; position: static;">
@@ -16,12 +16,12 @@ String path = request.getContextPath();
         <meta http-equiv="cleartype" content="on">
         <title>待付款的订单</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="/micro/pub/css/base_2ced031129.css" />
-		<link rel="stylesheet" href="/micro/pub/css/trade_626cf27050.css">
-		<script src="/micro/pub/js/util.js" type="text/javascript"></script>
-		<script src="/micro/pub/js/zepto.min.js" type="text/javascript"></script>
-		<link rel="stylesheet" href="/micro/pub/css/magnific-popup.css">
-		<script src='/micro/pub/js/jquery.magnific-popup.min.js'></script>
+        <link rel="stylesheet" href="<%=path %>/pub/css/base_2ced031129.css" />
+		<link rel="stylesheet" href="<%=path %>/pub/css/trade_626cf27050.css">
+		<script src="<%=path %>/pub/js/util.js" type="text/javascript"></script>
+		<script src="<%=path %>/pub/js/zepto.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="<%=path %>/pub/css/magnific-popup.css">
+		<script src='<%=path %>/pub/js/jquery.magnific-popup.min.js'></script>
 		<style type="text/css">
 			.custom-richtext td{
 				border:none;
@@ -31,9 +31,24 @@ String path = request.getContextPath();
 				border-top:1px solid #f0f0f0;
 				vertical-align:middle;
 			}
+			.gouPic{
+				width:26px;
+				height:26px;
+				display:block;
+				background-image:url('<%=path %>/pub/img/gouPic.png');
+				background-repeat:repeat;
+			}
+			.chaPic{
+				width:26px;
+				height:26px;
+				display:block;
+				background-image:url('<%=path %>/pub/img/chaPic.png');
+				background-repeat:repeat;
+			}
 		</style>
 	</head>
     <body class=" " style="overflow: visible; height: auto; padding: 0px;">
+    	<input type="hidden" id="customerId" value="${orderInfo.custAddrList.customerId}" />
         <div class="container js-page-content wap-page-order">
             <div class="content confirm-container" style="min-height: 568px;">
                 <div class="app app-order">
@@ -177,10 +192,10 @@ String path = request.getContextPath();
 								<td height="80" width="15%" align="center">
 									<c:choose>
 										<c:when test="${node.isPrimary == 'A'}">
-											<a href="javascript:void(0)" onclick=""><img src="/micro/pub/img/gouPic.png" /></a>
+											<a href="javascript:void(0)" class="gouPic" value="${node.customerDetailId}">&nbsp;</a>
 										</c:when>
 										<c:otherwise>
-											<a href="javascript:void(0)" onclick=""><img src="/micro/pub/img/chaPic.png" /></a>
+											<a href="javascript:void(0)" class="chaPic" value="${node.customerDetailId}">&nbsp;</a>
 										</c:otherwise>
 									</c:choose>
 								</td>
@@ -197,12 +212,12 @@ String path = request.getContextPath();
 									<p style="color:#777777">${node.customerAddress}</p>
 								</td>
 								<td height="80" width="15%" align="center">
-									<a href="#updateAddrForm" class="addrUpdateInfo" value="${node.customerDetailId}" data-effect="bounceInDown"><img src="/micro/pub/img/infoPic.png" /></a>
+									<a href="#updateAddrForm" class="addrUpdateInfo" value="${node.customerDetailId}" data-effect="bounceInDown"><img src="<%=path %>/pub/img/infoPic.png" /></a>
 								</td>
 							</tr>
 						</c:forEach>
 						<tr>
-							<td height="80" align="center"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown"><img src="/micro/pub/img/addPic.png" /></a></td>
+							<td height="80" align="center"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown"><img src="<%=path %>/pub/img/addPic.png" /></a></td>
 							<td height="80"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown">新增地址</a></td>
 							<td height="80" align="center"><span class="arrow">&nbsp;</span></td>
 						</tr>
@@ -293,70 +308,6 @@ String path = request.getContextPath();
 						</tr>
 					</table>
 				</form>
-				<script type="text/javascript">
-			        $('.addrUpdateInfo').magnificPopup({
-			          type: 'inline',
-			          preloader: false,
-			          fixedContentPos: false,
-			          fixedBgPos: true,
-			          focus: '#name',
-			          overflowY: 'auto',
-			          closeBtnInside: true,
-			          midClick: true,
-			          removalDelay: 300,
-			          mainClass: 'my-mfp-zoom-in'
-			        });
-			        $('#selectAddr').magnificPopup({
-			          type: 'inline',
-			          preloader: false,
-			          fixedContentPos: false,
-			          fixedBgPos: true,
-			          overflowY: 'auto',
-			          closeBtnInside: true,
-			          midClick: true,
-			          removalDelay: 300,
-			          mainClass: 'my-mfp-zoom-in',
-			          callbacks: {
-			          	change: function() {
-			          	  if($.magnificPopup.instance.currItem.src == "#updateAddrForm")
-			          	  {
-				          	  if($(window).width() < 700) {
-				                this.st.focus = false;
-				              } else {
-				                this.st.focus = '#name';
-				              }
-				              var win = $.magnificPopup.instance.content;
-				              var detailId = $('.addrUpdateInfo').attr("value");
-				              $("#uprovince",win).val($("#provId"+detailId).val());
-				              $("#uprovince",win).change(function(){
-				              	areaChange(this,'ucity',win);
-				              });
-				              $("#uprovince",win).change();
-				              $("#uname",win).val($("#customerName"+detailId).val());
-				              $("#uphonenum",win).val($("#customerTelephone"+detailId).val());
-				              $("#ucity",win).val($("#cityId"+detailId).val());
-				              $("#ucity",win).change(function(){
-				              	areaChange(this,'udistrict',win);
-				              });
-				              $("#ucity",win).change();
-				              $("#udistrict",win).val($("#districtId"+detailId).val());
-				              $("#uaddress",win).val($("#customerAddress"+detailId).val());
-				              $("#upostCode",win).val($("#customerPostcode"+detailId).val());
-			          	  }
-			            }
-			          }
-			        });
-			        $('.addrInfo').magnificPopup({
-			          type: 'inline',
-			          preloader: false,
-			          fixedContentPos: false,
-			          fixedBgPos: true,
-			          overflowY: 'auto',
-			          closeBtnInside: true,
-			          midClick: true,
-			          removalDelay: 300,
-			          mainClass: 'my-mfp-zoom-in'
-			        });
-				</script>
+				<script type="text/javascript" src="<%=path %>/js/payPage.js"></script>
            </body>
        </html>

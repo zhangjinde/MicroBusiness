@@ -77,45 +77,45 @@
 		    <li><a href="http://placehold.it/600x600" class="btn popup-link" data-effect="rubberBand">rubberBand</a>
 		    </li>
 		</ul>
-		<a href="#receiveAddrForm" id="addrInfo">ÐÂÔöµØÖ·</a>
+		<a href="#receiveAddrForm" id="addrInfo">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·</a>
 		<form id="receiveAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:90%">
-			<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">ÊÕ»õµØÖ·</h1>
+			<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">ï¿½Õ»ï¿½ï¿½ï¿½Ö·</h1>
 			<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
 				<tr>
-					<td width="25%" style="padding-left:10px;color:#000;">ÊÕ»õÈË</td>
-					<td width="75%"><input id="name" name="name" type="text" placeholder="Ãû×Ö" style="border:none;background-color:transparent" required></td>
+					<td width="25%" style="padding-left:10px;color:#000;">ï¿½Õ»ï¿½ï¿½ï¿½</td>
+					<td width="75%"><input id="name" name="name" type="text" placeholder="ï¿½ï¿½ï¿½ï¿½" style="border:none;background-color:transparent" required></td>
 				</tr>
 				<tr>
-					<td style="padding-left:10px;color:#000">ÁªÏµµç»°</td>
-					<td><input id="phonenum" name="phonenum" type="tel" placeholder="ÊÖ»ú»ò¹Ì»°" style="border:none;background-color:transparent" required></td>
+					<td style="padding-left:10px;color:#000">ï¿½ï¿½Ïµï¿½ç»°</td>
+					<td><input id="phonenum" name="phonenum" type="tel" placeholder="ï¿½Ö»ï¿½ï¿½Ì»ï¿½" style="border:none;background-color:transparent" required></td>
 				</tr>
 				<tr>
-					<td valign="middle" style="padding-left:10px;color:#000">Ñ¡ÔñµØÇø</td>
+					<td valign="middle" style="padding-left:10px;color:#000">Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½</td>
 					<td valign="middle" style="padding-left:0px">
 						<select id="province" style="border:none;background-color:transparent" onchange="areaChange(this,'city')">
-			        		<option value="">Ñ¡ÔñÊ¡·Ý</option>
+			        		<option value="">Ñ¡ï¿½ï¿½Ê¡ï¿½ï¿½</option>
 			        		<c:forEach items="${provList}" var="node">
 			        			<option value="${node.provinceId}">${node.provinceName}</option>
 			        		</c:forEach>
 			        	</select>
 			        	<select id="city" style="border:none;background-color:transparent" onchange="areaChange(this,'district')">
-			        		<option value="">Ñ¡Ôñ³ÇÊÐ</option>
+			        		<option value="">Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½</option>
 			        	</select>
 			        	<select id="district" style="border:none;background-color:transparent">
-			        		<option value="">Ñ¡ÔñÇøÏØ</option>
+			        		<option value="">Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>
 			        	</select>
 					</td>
 				</tr>
 				<tr>
-					<td style="padding-left:10px;color:#000">ÏêÏ¸µØÖ·</td>
-					<td><input id="address" name="address" type="text" placeholder="½ÖµÀÃÅÅÆÐÅÏ¢" style="border:none;background-color:transparent" required></td>
+					<td style="padding-left:10px;color:#000">ï¿½ï¿½Ï¸ï¿½ï¿½Ö·</td>
+					<td><input id="address" name="address" type="text" placeholder="ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢" style="border:none;background-color:transparent" required></td>
 				</tr>
 				<tr>
-					<td style="padding-left:10px;color:#000">ÓÊÕþ±àÂë</td>
-					<td><input id="postCode" name="postCode	" type="tel" placeholder="ÓÊÕþ±àÂë(Ñ¡Ìî)" style="border:none;background-color:transparent" /></td>
+					<td style="padding-left:10px;color:#000">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</td>
+					<td><input id="postCode" name="postCode	" type="tel" placeholder="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Ñ¡ï¿½ï¿½)" style="border:none;background-color:transparent" /></td>
 				</tr>
 				<tr>
-					<td valign="middle" colspan="2"><a href="javascript:;" id="saveBtn" style="background-color:#44b549;color:#fff;width:95%;height:35px;display:block;margin:0 auto;padding:0 0;text-align:center;line-height:35px;border-radius:5px">±£´æ</a></td>
+					<td valign="middle" colspan="2"><a href="javascript:;" id="saveBtn" style="background-color:#44b549;color:#fff;width:95%;height:35px;display:block;margin:0 auto;padding:0 0;text-align:center;line-height:35px;border-radius:5px">ï¿½ï¿½ï¿½ï¿½</a></td>
 				</tr>
 			</table>
 			<input type="hidden" id="selectCustomer" value="" />

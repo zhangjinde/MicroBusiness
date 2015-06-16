@@ -105,6 +105,19 @@ public class UserService
 		return json.toString();
 	}
 	
+	public String saveCustomer(String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	{
+		return userDao.saveCustomer(customerId, customerName, customerPhone, provId, cityId, districtId, addr, postCode);
+	}
 	
+	public String updateCustomer(String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	{
+		return userDao.updateCustomer(customerId, customerDetailId, customerName, customerPhone, provId, cityId, districtId, addr, postCode);
+	}
+	
+	public String delCustomer(String customerId , String customerDetailId)
+	{
+		return userDao.delCustomer(customerId, customerDetailId);
+	}
 	
 }

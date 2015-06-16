@@ -180,15 +180,39 @@ public class UserController
 	}
 	
 	@RequestMapping(params = "saveCustomer")
-	public void saveCustomer(HttpServletRequest request , HttpServletResponse response , String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	public void saveCustomer(HttpServletRequest request , HttpServletResponse response , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
 	{
 		PrintWriter out = null;
 		try
 		{
 			response.setCharacterEncoding("utf-8");
 			out = response.getWriter();
-//			String retVal = 
-//			out.write(userService.delUser(userId));
+			String retVal = userService.saveCustomer(customerId, customerName, customerPhone, provId, cityId, districtId, addr, postCode);
+			out.write(retVal);
+		}
+		catch(Exception err)
+		{
+			err.printStackTrace();
+		}
+		finally
+		{
+			if(out != null)
+			{
+				out.close();
+			}
+		}
+	}
+	
+	@RequestMapping(params = "updateCustomer")
+	public void updateCustomer(HttpServletRequest request , HttpServletResponse response , String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	{
+		PrintWriter out = null;
+		try
+		{
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+			String retVal = userService.updateCustomer(customerId, customerDetailId, customerName, customerPhone, provId, cityId, districtId, addr, postCode);
+			out.write(retVal);
 		}
 		catch(Exception err)
 		{
@@ -211,17 +235,8 @@ public class UserController
 		{
 			response.setCharacterEncoding("utf-8");
 			out = response.getWriter();
-//			Map<String,String> userMap = (Map<String,String>)session.getAttribute("UserInfo");
-//			if(userMap != null)
-//			{
-//				out.write(userService.delUser(userId));
-//			}
-//			else
-//			{
-//				json.put("success", 0);
-//				json.put("msg", "É¾³ýÓÃ»§Ê§°Ü");
-//				out.write(json.toString());
-//			}
+			String retVal = userService.delCustomer(customerId, customerDetailId);
+			out.write(retVal);
 		}
 		catch(Exception err)
 		{

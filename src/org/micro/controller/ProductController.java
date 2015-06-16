@@ -29,10 +29,10 @@ public class ProductController
 	private CacheManager cacheManager;
 	
 	@RequestMapping(params = "method=getProduct")
-	public ModelAndView getProduct(HttpServletRequest request , String busId , String productId , String phoneNum)
+	public ModelAndView getProduct(HttpServletRequest request , String busId , String productId , String openId)
 	{
 		ModelAndView model = new ModelAndView();
-		productService.getProductInfo(busId, productId, phoneNum, model);
+		productService.getProductInfo(busId, productId, openId, model);
 		return model;
 	}
 	

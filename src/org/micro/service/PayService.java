@@ -25,9 +25,9 @@ public class PayService
 	@Autowired
 	public PayDao payDao;
 	
-	public String addOrder(String busId , String phoneNum , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String provId , String cityId , String districtId , String addr , String postCode) throws QryException
+	public String addOrder(String busId , String openId , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String provId , String cityId , String districtId , String addr , String postCode) throws QryException
 	{
-		if(ObjectCensor.isStrRegular(busId , phoneNum , productId , productNum))
+		if(ObjectCensor.isStrRegular(busId , openId , productId , productNum))
 		{
 			Map<String,String> busDetailMap = getBusDetail(busId, xPos, yPos);
 			String busDetailId = null;
@@ -42,21 +42,20 @@ public class PayService
 			String customerId = null;
 			if(ObjectCensor.isStrRegular(name , contactNum , provId , cityId , districtId , addr))
 			{
-				customerId = customerDao.addCustomerDetail(busId, name, contactNum, provId, cityId, districtId, addr, postCode);
+				customerId = customerDao.addCustomerDetail(busId, openId, name, contactNum, provId, cityId, districtId, addr, postCode);
 				if(!StringUtil.checkStringIsNum(customerId))
 				{
 					return "人员信息有误，请核实后重新尝试";
 				}
-				phoneNum = contactNum;
 			}
 			else
 			{
-				List<Map<String,String>> customerList = customerDao.getCustomerInfo(phoneNum, busId);
+				List<Map<String,String>> customerList = customerDao.getCustomerInfo(openId, busId);
 				if(ObjectCensor.checkListIsNull(customerList))
 				{
 					Map<String,String> customerMap = customerList.get(0);
 					addr = StringUtil.getMapKeyVal(customerMap, "customerAddr");
-					phoneNum = StringUtil.getMapKeyVal(customerMap, "customerTelephone");
+					contactNum = StringUtil.getMapKeyVal(customerMap, "customerTelephone");
 					customerId = StringUtil.getMapKeyVal(customerMap, "customerId");
 				}
 				else
@@ -64,7 +63,7 @@ public class PayService
 					return "人员信息有误，请核实后重新尝试";
 				}
 			}
-			return payDao.addOrder(busDetailId, customerId, phoneNum, addr, productId, productNum, productPrice);
+			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productId, productNum, productPrice);
 		}
 		else
 		{

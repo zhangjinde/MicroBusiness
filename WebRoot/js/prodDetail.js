@@ -56,7 +56,7 @@ function addOrder()
 function payFunc(addr,provId,cityId,districtId)
 {
 	var busId = $("#busId").val();
-	var phoneNum = $("#phoneNum").val();
+	var openId = $("#openId").val();
 	var productId = $("#productId").val();
 	var productNum = $("#buyNum").val();
 	var productPrice = $("#productPrice").html();
@@ -68,7 +68,7 @@ function payFunc(addr,provId,cityId,districtId)
 	$.ajax({
 		url:"/micro/pay.do?method=addOrder",
 		type:"POST",
-		data:"busId="+busId+"&phoneNum="+phoneNum+"&productId="+productId+"&productNum="+productNum+"&productPrice="+productPrice+"&xPos="+xPos+"&yPos="+yPos+"&name="+encodeURI(name)+"&contactNum="+contactNum+"&provId="+provId+"&cityId="+cityId+"&districtId="+districtId+"&addr="+encodeURI(addr)+"&postCode="+postCode,
+		data:"busId="+busId+"&openId="+openId+"&productId="+productId+"&productNum="+productNum+"&productPrice="+productPrice+"&xPos="+xPos+"&yPos="+yPos+"&name="+encodeURI(name)+"&contactNum="+contactNum+"&provId="+provId+"&cityId="+cityId+"&districtId="+districtId+"&addr="+encodeURI(addr)+"&postCode="+postCode,
 		success:function(data){
 			if(!isNaN(data))
 			{

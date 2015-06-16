@@ -142,4 +142,43 @@ public class UserDao extends BaseDao
 		}
 		return -1;
 	}
+	
+	public String saveCustomer(String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	{
+		String sql = "insert into customer_address_t(customer_detail_id,customer_id,customer_addr,customer_postcode,is_primary,prov_id,city_id,district_id,customer_name,customer_telephone,create_date,state_date,sts) values(MICRO_CUSM_DET_SEQ.nextval,?,?,?,?,?,?,?,?,?,sysdate,sysdate,'A')";
+		if(jdbcTemplate.update(sql, new Object[]{customerId,addr,postCode,'P',provId,cityId,districtId,customerName,customerPhone}) > 0)
+		{
+			return "success";
+		}
+		else
+		{
+			return "failure";
+		}
+	}
+	
+	public String updateCustomer(String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	{
+		String sql = "update customer_address_t set customer_addr = ?,customer_postcode = ?,state_date = sysdate,prov_id = ?,city_id = ?,district_id = ?,customer_name = ?,customer_telephone = ? where customer_detail_id = ?";
+		if(jdbcTemplate.update(sql, new Object[]{addr,postCode,provId,cityId,districtId,customerName,customerPhone,customerDetailId}) > 0)
+		{
+			return "success";
+		}
+		else
+		{
+			return "failure";
+		}
+	}
+	
+	public String delCustomer(String customerId , String customerDetailId)
+	{
+		String sql = "delete from customer_address_t where customer_detail_id = ?";
+		if(jdbcTemplate.update(sql, new Object[]{customerDetailId}) > 0)
+		{
+			return "success";
+		}
+		else
+		{
+			return "failure";
+		}
+	}
 }

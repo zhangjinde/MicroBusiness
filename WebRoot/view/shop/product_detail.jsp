@@ -315,7 +315,7 @@
 		<input id="xPos" type="hidden" value="" />
 		<input id="yPos" type="hidden" value="" />
 		<input id="busId" type="hidden" value="${param.busId}" />
-		<input id="phoneNum" type="hidden" value="${param.phoneNum}" />
+		<input id="openId" type="hidden" value="${param.openId}" />
 		<input id="productId" type="hidden" value="${param.productId}" />
 		<script type="text/javascript" language="javascript" src="/micro/js/prodDetail.js"></script>
 		<script type="text/javascript">

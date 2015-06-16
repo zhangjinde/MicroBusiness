@@ -29,7 +29,7 @@ public class ProductService
 	@Autowired
 	private ConfigDao configDao;
 	
-	public void getProductInfo(String busId , String productId , String phoneNum , ModelAndView model)
+	public void getProductInfo(String busId , String productId , String openId , ModelAndView model)
 	{
 		boolean errorFlag = false;
 		if(ObjectCensor.isStrRegular(productId) && StringUtil.checkStringIsNum(productId))
@@ -43,7 +43,7 @@ public class ProductService
 					List<Map<String,String>> productOrderList = productDao.getProductWithOrder(productId);
 					map.put("productOrderList", productOrderList);
 					model.addObject("product", map);
-					List<Map<String,String>> customerList = customerDao.getCustomer(phoneNum, busId);
+					List<Map<String,String>> customerList = customerDao.getCustomer(openId, busId);
 					if(ObjectCensor.checkListIsNull(customerList))
 					{
 						model.addObject("newUser", "N");
