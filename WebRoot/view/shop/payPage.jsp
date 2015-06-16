@@ -48,7 +48,6 @@
 		</style>
 	</head>
     <body class=" " style="overflow: visible; height: auto; padding: 0px;">
-    	<input type="hidden" id="customerId" value="${orderInfo.custAddrList.customerId}" />
         <div class="container js-page-content wap-page-order">
             <div class="content confirm-container" style="min-height: 568px;">
                 <div class="app app-order">
@@ -200,6 +199,7 @@
 									</c:choose>
 								</td>
 								<td height="80" width="70%">
+									<input type="hidden" class="customerId" value="${node.customerId}" />
 									<input type="hidden" id="customerDetailId${node.customerDetailId}" value="${node.customerDetailId}" />
 									<input type="hidden" id="customerName${node.customerDetailId}" value="${node.customerName}" />
 									<input type="hidden" id="customerTelephone${node.customerDetailId}" value="${node.customerTelephone}" />
