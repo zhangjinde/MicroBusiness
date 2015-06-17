@@ -94,7 +94,7 @@ function Rad(d){
      return s;
  } 
  
- function getPlaceAxisByAddr(addr)
+ function getPlaceAxisByAddr(addr,funcName)
  {
 	var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
 	$.ajax({
@@ -109,16 +109,20 @@ function Rad(d){
 			if (json.status != "0") { 
 				return; 
 			} 
-			setPlaceAxis(json.result.location); 
+			setPlaceAxis(json.result.location,funcName); 
 		}
 	}); 
  }
  
- function setPlaceAxis(obj)
+ function setPlaceAxis(obj,funcName)
  {
 	//获得经度纬度 
 	var x = obj.lat; 
 	document.getElementById("xPos").value = x;
 	var y = obj.lng; 
 	document.getElementById("yPos").value = y;
+	if(funcName != null)
+	{
+		eval(funcName+"()");
+	}
  }

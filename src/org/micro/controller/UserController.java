@@ -179,15 +179,15 @@ public class UserController
 		}
 	}
 	
-	@RequestMapping(params = "saveCustomer")
-	public void saveCustomer(HttpServletRequest request , HttpServletResponse response , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	@RequestMapping(params = "method=saveCustomer")
+	public void saveCustomer(HttpServletRequest request , HttpServletResponse response , String orderId , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String provName , String cityName , String distName , String addr , String postCode)
 	{
 		PrintWriter out = null;
 		try
 		{
 			response.setCharacterEncoding("utf-8");
 			out = response.getWriter();
-			String retVal = userService.saveCustomer(customerId, customerName, customerPhone, provId, cityId, districtId, addr, postCode);
+			String retVal = userService.saveCustomer(orderId, customerId, customerName, customerPhone, provId, cityId, districtId, provName, cityName , distName, addr, postCode);
 			out.write(retVal);
 		}
 		catch(Exception err)
@@ -203,15 +203,15 @@ public class UserController
 		}
 	}
 	
-	@RequestMapping(params = "updateCustomer")
-	public void updateCustomer(HttpServletRequest request , HttpServletResponse response , String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	@RequestMapping(params = "method=updateCustomer")
+	public void updateCustomer(HttpServletRequest request , HttpServletResponse response , String orderId ,  String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String provName , String cityName , String distName , String addr , String postCode)
 	{
 		PrintWriter out = null;
 		try
 		{
 			response.setCharacterEncoding("utf-8");
 			out = response.getWriter();
-			String retVal = userService.updateCustomer(customerId, customerDetailId, customerName, customerPhone, provId, cityId, districtId, addr, postCode);
+			String retVal = userService.updateCustomer(orderId, customerId, customerDetailId, customerName, customerPhone, provId, cityId, districtId, provName, cityName, distName, addr, postCode);
 			out.write(retVal);
 		}
 		catch(Exception err)
@@ -227,7 +227,7 @@ public class UserController
 		}
 	}
 	
-	@RequestMapping(params = "delCustomer")
+	@RequestMapping(params = "method=delCustomer")
 	public void delCustomer(HttpServletRequest request , HttpServletResponse response , String customerId , String customerDetailId)
 	{
 		PrintWriter out = null;

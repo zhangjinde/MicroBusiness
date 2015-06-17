@@ -14,6 +14,7 @@ import org.micro.util.QryCenter;
 import org.micro.util.QryException;
 import org.micro.util.StringUtil;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class UserDao extends BaseDao
@@ -143,12 +144,27 @@ public class UserDao extends BaseDao
 		return -1;
 	}
 	
-	public String saveCustomer(String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	@Transactional
+	public String saveCustomer(String orderId , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String provName , String cityName , String distName , String addr , String postCode)
 	{
-		String sql = "insert into customer_address_t(customer_detail_id,customer_id,customer_addr,customer_postcode,is_primary,prov_id,city_id,district_id,customer_name,customer_telephone,create_date,state_date,sts) values(MICRO_CUSM_DET_SEQ.nextval,?,?,?,?,?,?,?,?,?,sysdate,sysdate,'A')";
-		if(jdbcTemplate.update(sql, new Object[]{customerId,addr,postCode,'P',provId,cityId,districtId,customerName,customerPhone}) > 0)
+		String sql = "update customer_address_t set is_primary='P',state_date=sysdate where customer_id = ? ";
+		if(jdbcTemplate.update(sql, new Object[]{customerId}) > 0)
 		{
-			return "success";
+			sql = "insert into customer_address_t(customer_detail_id,customer_id,customer_addr,customer_postcode,is_primary,prov_id,city_id,district_id,customer_name,customer_telephone,create_date,state_date,sts) values(MICRO_CUSM_DET_SEQ.nextval,?,?,?,?,?,?,?,?,?,sysdate,sysdate,'A')";
+			if(jdbcTemplate.update(sql, new Object[]{customerId,addr,postCode,"A",provId,cityId,districtId,customerName,customerPhone}) > 0)
+			{
+				addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
+				sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
+				if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)
+				{
+					sql = "update order_t set telephone = ?,customer_address = ? where order_id = ?";
+					if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,orderId}) > 0)
+					{
+						return "success";
+					}
+				}
+			}
+			return "failure";
 		}
 		else
 		{
@@ -156,29 +172,60 @@ public class UserDao extends BaseDao
 		}
 	}
 	
-	public String updateCustomer(String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	@Transactional
+	public String updateCustomer(String orderId , String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String provName , String cityName , String distName , String addr , String postCode) throws QryException
 	{
 		String sql = "update customer_address_t set customer_addr = ?,customer_postcode = ?,state_date = sysdate,prov_id = ?,city_id = ?,district_id = ?,customer_name = ?,customer_telephone = ? where customer_detail_id = ?";
 		if(jdbcTemplate.update(sql, new Object[]{addr,postCode,provId,cityId,districtId,customerName,customerPhone,customerDetailId}) > 0)
 		{
-			return "success";
+			sql = "select * from customer_address_t where customer_detail_id = ? and is_primary = 'A'";
+			ArrayList paramList = new ArrayList();
+			paramList.add(customerDetailId);
+			List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sql, paramList);
+			if(ObjectCensor.checkListIsNull(list))
+			{
+				addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
+				Map<String,String> map = list.get(0);
+				sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
+				if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)
+				{
+					sql = "update order_t set telephone = ?,customer_address = ? where order_id = ?";
+					if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,orderId}) > 0)
+					{
+						return "success";
+					}
+				}
+			}
+			else
+			{
+				return "success";
+			}
+		}
+		return "failure";
+	}
+	
+	public String delCustomer(String customerId , String customerDetailId) throws QryException
+	{
+		String sql = "select * from customer_address_t where customer_detail_id = ? and is_primary = 'A'";
+		ArrayList paramList = new ArrayList();
+		paramList.add(customerDetailId);
+		List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sql, paramList);
+		if(ObjectCensor.checkListIsNull(list))
+		{
+			return "删除失败:该地址信息正在使用";
 		}
 		else
 		{
-			return "failure";
+			sql = "delete from customer_address_t where customer_detail_id = ?";
+			if(jdbcTemplate.update(sql, new Object[]{customerDetailId}) > 0)
+			{
+				return "success";
+			}
+			else
+			{
+				return "failure";
+			}
 		}
 	}
 	
-	public String delCustomer(String customerId , String customerDetailId)
-	{
-		String sql = "delete from customer_address_t where customer_detail_id = ?";
-		if(jdbcTemplate.update(sql, new Object[]{customerDetailId}) > 0)
-		{
-			return "success";
-		}
-		else
-		{
-			return "failure";
-		}
-	}
 }

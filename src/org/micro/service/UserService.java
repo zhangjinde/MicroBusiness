@@ -105,17 +105,17 @@ public class UserService
 		return json.toString();
 	}
 	
-	public String saveCustomer(String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	public String saveCustomer(String orderId , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId  , String provName , String cityName , String distName , String addr , String postCode)
 	{
-		return userDao.saveCustomer(customerId, customerName, customerPhone, provId, cityId, districtId, addr, postCode);
+		return userDao.saveCustomer(orderId, customerId, customerName, customerPhone, provId, cityId, districtId, provName, cityName, distName, addr, postCode);
 	}
 	
-	public String updateCustomer(String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String addr , String postCode)
+	public String updateCustomer(String orderId , String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String provName , String cityName , String distName , String addr , String postCode) throws QryException
 	{
-		return userDao.updateCustomer(customerId, customerDetailId, customerName, customerPhone, provId, cityId, districtId, addr, postCode);
+		return userDao.updateCustomer(orderId, customerId, customerDetailId, customerName, customerPhone, provId, cityId, districtId, provName, cityName, distName, addr, postCode);
 	}
 	
-	public String delCustomer(String customerId , String customerDetailId)
+	public String delCustomer(String customerId , String customerDetailId) throws QryException
 	{
 		return userDao.delCustomer(customerId, customerDetailId);
 	}

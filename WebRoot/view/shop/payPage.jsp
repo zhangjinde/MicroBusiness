@@ -19,9 +19,10 @@
         <link rel="stylesheet" href="<%=path %>/pub/css/base_2ced031129.css" />
 		<link rel="stylesheet" href="<%=path %>/pub/css/trade_626cf27050.css">
 		<script src="<%=path %>/pub/js/util.js" type="text/javascript"></script>
+		<script type="text/javascript" src="<%=path %>/js/location.js"></script>
 		<script src="<%=path %>/pub/js/zepto.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="<%=path %>/pub/css/magnific-popup.css">
-		<script src='<%=path %>/pub/js/jquery.magnific-popup.min.js'></script>
+		<script type="text/javascript" src='<%=path %>/pub/js/jquery.magnific-popup.min.js'></script>
 		<style type="text/css">
 			.custom-richtext td{
 				border:none;
@@ -48,6 +49,10 @@
 		</style>
 	</head>
     <body class=" " style="overflow: visible; height: auto; padding: 0px;">
+    	<input type="hidden" id="orderId" value="${param.orderId}" />
+    	<input type="hidden" id="busId" value="${param.busId}" />
+    	<input type="hidden" id="xPos" value="" />
+    	<input type="hidden" id="yPos" value="" />
         <div class="container js-page-content wap-page-order">
             <div class="content confirm-container" style="min-height: 568px;">
                 <div class="app app-order">
@@ -68,7 +73,7 @@
                                     	<span class="name">收货人：${orderInfo.customerName}</span>
                                     	<span class="tel">${orderInfo.telephone}</span>
                                     </li>
-                                    <li class="address-detail">收货地址：${orderInfo.customerAddress}</li>
+                                    <li class="address-detail">收货地址：<span id="custAddr">${orderInfo.customerAddress}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -200,7 +205,7 @@
 								</td>
 								<td height="80" width="70%">
 									<input type="hidden" class="customerId" value="${node.customerId}" />
-									<input type="hidden" id="customerDetailId${node.customerDetailId}" value="${node.customerDetailId}" />
+									<input type="hidden" class="customerDetailId" value="${node.customerDetailId}" />
 									<input type="hidden" id="customerName${node.customerDetailId}" value="${node.customerName}" />
 									<input type="hidden" id="customerTelephone${node.customerDetailId}" value="${node.customerTelephone}" />
 									<input type="hidden" id="provId${node.customerDetailId}" value="${node.provId}" />
@@ -212,12 +217,12 @@
 									<p style="color:#777777">${node.customerAddress}</p>
 								</td>
 								<td height="80" width="15%" align="center">
-									<a href="#updateAddrForm" class="addrUpdateInfo" value="${node.customerDetailId}" data-effect="bounceInDown"><img src="<%=path %>/pub/img/infoPic.png" /></a>
+									<a href="javascript:void(0)" class="addrUpdateInfo" value="${node.customerDetailId}" data-effect="bounceInDown"><img src="<%=path %>/pub/img/infoPic.png" /></a>
 								</td>
 							</tr>
 						</c:forEach>
 						<tr>
-							<td height="80" align="center"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown"><img src="<%=path %>/pub/img/addPic.png" /></a></td>
+							<td height="80" align="center"><a href="javascript:void(0)" class="addrInfo" data-effect="bounceInDown"><img src="<%=path %>/pub/img/addPic.png" /></a></td>
 							<td height="80"><a href="#receiveAddrForm" class="addrInfo" data-effect="bounceInDown">新增地址</a></td>
 							<td height="80" align="center"><span class="arrow">&nbsp;</span></td>
 						</tr>

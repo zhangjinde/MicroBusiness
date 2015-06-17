@@ -83,7 +83,7 @@ public class PayService
 		}
 	}
 	
-	private Map<String,String> getBusDetail(String busId , String xPos , String yPos) throws QryException
+	public Map<String,String> getBusDetail(String busId , String xPos , String yPos) throws QryException
 	{
 		List<Map<String,String>> list = businessDao.getBusDetailList(busId);
 		if(ObjectCensor.isStrRegular(xPos , yPos) && StringUtil.checkStringIsNum(xPos) && StringUtil.checkStringIsNum(yPos))
@@ -116,6 +116,18 @@ public class PayService
 			{
 				return null;
 			}
+		}
+	}
+	
+	public String setOrderAddr(String customerId , String customerDetailId , String orderId) throws QryException
+	{
+		if(ObjectCensor.isStrRegular(customerId , customerDetailId , orderId) && StringUtil.checkStringIsNum(customerId) && StringUtil.checkStringIsNum(customerDetailId) && StringUtil.checkStringIsNum(orderId))
+		{
+			return payDao.setOrderAddr(customerId, customerDetailId, orderId);
+		}
+		else
+		{
+			return "参数有误,请核实后重新尝试";
 		}
 	}
 	 

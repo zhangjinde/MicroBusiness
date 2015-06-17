@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.micro.util.ObjectCensor;
 import org.micro.util.QryException;
 import org.micro.util.StringUtil;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class PayDao extends BaseDao
 {
+	@Transactional
 	public String addOrder(String busDetailId , String customerId , String telephone , String customerAddr , String productId , String productNum, String productPrice) throws QryException
 	{
 		String sql = "insert into order_t(order_id,bus_detail_id,customer_id,telephone,customer_address,order_price,create_date,expire_date,state_date,sts) values (MICRO_ORDER_SEQ.nextval,?,?,?,?,?,sysdate,sysdate+1,sysdate,'A')";
@@ -49,7 +52,7 @@ public class PayDao extends BaseDao
 	
 	public List<Map<String,String>> getCustomerOrderAddr(String orderId) throws QryException
 	{
-		String sql = "select a.customer_id,b.customer_detail_id,b.customer_name,b.customer_telephone,b.prov_id,b.city_id,b.district_id,c.customer_address,b.customer_postcode,b.is_primary from customer_t a,customer_address_t b,order_t c where a.customer_id = b.customer_id and c.customer_id = a.customer_id and c.order_id = ?";
+		String sql = "select a.customer_id,b.customer_detail_id,b.customer_name,b.customer_telephone,b.prov_id,b.city_id,b.district_id,b.customer_addr customer_address,b.customer_postcode,b.is_primary from customer_t a,customer_address_t b,order_t c where a.customer_id = b.customer_id and c.customer_id = a.customer_id and c.order_id = ?";
 		ArrayList arrayList = new ArrayList();
 		arrayList.add(orderId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
@@ -69,6 +72,40 @@ public class PayDao extends BaseDao
 		ArrayList arrayList = new ArrayList();
 		arrayList.add(busId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
+	}
+	
+	@Transactional
+	public String setOrderAddr(String customerId , String customerDetailId , String orderId) throws QryException
+	{
+		String sql = "update customer_address_t set is_primary='P',state_date=sysdate where customer_id = ? ";
+		jdbcTemplate.update(sql, new Object[]{customerId});
+		sql = "update customer_address_t set is_primary='A',state_date=sysdate where customer_detail_id = ?";
+		jdbcTemplate.update(sql, new Object[]{customerDetailId});
+		sql = "select * from customer_address_t a,province_t b,city_t c,district_t d where b.province_id = a.prov_id and c.city_id = a.city_id and d.district_id = a.district_id and customer_id = ?";
+		ArrayList arrayList = new ArrayList();
+		arrayList.add(customerDetailId);
+		List list = qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
+		if(ObjectCensor.checkListIsNull(list))
+		{
+			Map map = (Map)list.get(0);
+			String provName = StringUtil.getMapKeyVal(map, "provinceName");
+			String cityName = StringUtil.getMapKeyVal(map, "cityName");
+			String districtName = StringUtil.getMapKeyVal(map, "districtName");
+			String customerName = StringUtil.getMapKeyVal(map, "customerName");
+			String customerPhone = StringUtil.getMapKeyVal(map, "customerTelephone");
+			String addr = StringUtil.getMapKeyVal(map, "customerAddr");
+			addr = new StringBuffer().append(provName).append(cityName).append(districtName).toString();
+			sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
+			if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)
+			{
+				sql = "update order_t set telephone = ?,customer_address = ? where order_id = ?";
+				if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,orderId}) > 0)
+				{
+					return "success";
+				}
+			}
+		}
+		return "success";
 	}
 	
 }
