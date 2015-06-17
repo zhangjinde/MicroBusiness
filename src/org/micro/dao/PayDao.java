@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.micro.util.ObjectCensor;
 import org.micro.util.QryException;
 import org.micro.util.StringUtil;
 import org.springframework.stereotype.Repository;
@@ -33,10 +34,19 @@ public class PayDao extends BaseDao
 	
 	public List getOrderById(String wenxinId,String phone) throws QryException
 	{
-		String sql="select distinct(t.order_id), t.*,a.product_id,b.img_url,b.product_price,b.product_name from order_t t ,order_detail_t a,product_t b where t.order_id=a.order_id and a.product_id=b.product_id and t.sts='A' and t.telephone=?";
+		StringBuffer sql= new StringBuffer("select distinct(t.order_id), t.*,a.product_id,b.img_url,b.product_price,b.product_name from order_t t ,order_detail_t a,product_t b where t.order_id=a.order_id and a.product_id=b.product_id and t.sts='A' ");
 		ArrayList arrayList = new ArrayList();
-		arrayList.add(phone);
-		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
+		if(!ObjectCensor.checkObjectIsNull(wenxinId))
+		{
+			sql.append("and t.weixin_id=? ");
+			arrayList.add(wenxinId);
+		}
+		if(!ObjectCensor.checkObjectIsNull(phone))
+		{
+			sql.append("and t.telephone=? ");
+			arrayList.add(phone);
+		}
+		return qryCenter.executeSqlByMapListWithTrans(sql.toString(), arrayList);
 	}
 	
 	public List<Map<String,String>> getOrderInfo(String orderId) throws QryException

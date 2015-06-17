@@ -2,10 +2,12 @@ package org.micro.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.micro.pub.exception.JsonException;
 import org.micro.service.ShopCartService;
+import org.micro.util.WeixinAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,15 +32,19 @@ public class ShopCartController
 	}
 	
 	@RequestMapping(params = "method=getOrder")
-	public ModelAndView getOrderById(HttpServletResponse response , String  phone) 
+	public ModelAndView getOrderById(HttpServletResponse response ,HttpServletRequest request) throws Exception 
 	{
+		String codeId = request.getParameter("code");
+		String phone = request.getParameter("phone");
+		String openId=WeixinAuth.getOpenId(codeId);
 		ModelAndView model = new ModelAndView("view/shop/pay_history");
 		response.setCharacterEncoding("utf-8");
 		List list = null;
 		try
 		{
-			list = shopCartService.getOrderById("", phone);
-		} catch (Exception e) {
+			list = shopCartService.getOrderById(openId, phone);
+		} catch (Exception e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

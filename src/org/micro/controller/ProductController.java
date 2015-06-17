@@ -10,18 +10,25 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.micro.pub.cache.CacheManager;
 import org.micro.service.ProductService;
+import org.micro.util.ObjectCensor;
 import org.micro.util.QryException;
+import org.micro.util.WeixinAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
+
 @Controller
 @RequestMapping("/product.do")
 public class ProductController 
 {
+	public static Log log =LogFactory.getLog(ProductController.class);
 	@Autowired
 	private ProductService productService;
 	
@@ -29,11 +36,23 @@ public class ProductController
 	private CacheManager cacheManager;
 	
 	@RequestMapping(params = "method=getProduct")
-	public ModelAndView getProduct(HttpServletRequest request , String busId , String productId , String openId)
+	public ModelAndView getProduct(HttpServletRequest request) throws Exception
 	{
-		ModelAndView model = new ModelAndView();
-		productService.getProductInfo(busId, productId, openId, model);
-		return model;
+		 ModelAndView model = new ModelAndView();
+		 String busId =request.getParameter("busId");
+		 String productId=request.getParameter("productId"); 
+		 String openId=request.getParameter("openId");/*已经存在*/
+		 
+		 if(!ObjectCensor.checkObjectIsNull(openId))/*第一次获取*/
+		 {
+			  String codeId=request.getParameter("code");
+			  log.error("code:"+codeId);
+			  openId=WeixinAuth.getOpenId(codeId);
+			  log.error("openid:"+openId);
+		 }
+		
+		 productService.getProductInfo(busId, productId, openId, model);
+		 return model;
 	}
 	
 	@RequestMapping(params = "method=payOrder")
