@@ -31,21 +31,42 @@
     </script>
   <script type="text/javascript">
   
-	  function toMyCart()
-	  {
-		  var url= "https://www.hbywzc.cn/micro/oauth.do?method=getCode&page=shopCart";
-		  var openid=getCookie("openid");
-		  if(openid=='' || openid==null)
-		  {
-			  var url="";
-			  encodeURL(url); 
-		  }else
-		  {
-			  window.location.href="https://www.hbywzc.cn/micro/view/shop/shopCart.jsp?openid="+openid;
-		  }
-	  }
+  init();
+  function init()
+  {
+	 setCookie("openid","oLsjhsuYDJZMpNK0jt09X8Wtt5DY"); 
+	  
+  	 var url="https://www.hbywzc.cn/micro/oauth.do?method=getCode&page=shop";
+  	 var openid=getCookie("openid");
+  	 var id='<%=openId%>';
+  	 
+  	 if(openid=='' || openid==null)
+  	 {
+  		  encodeURL(url); 
+  	 }else if(id!='' && id!=null && id!='null')
+  	 {
+  		 setCookie("openid",'<%=openId%>'); 
+  	 }
+  }
+
   
-    </script>
+  function toMyCart()
+  {
+	  var url= "https://www.hbywzc.cn/micro/oauth.do?method=getCode&page=shopCart";
+	  alert(getCookie("openid"));
+	  var openid=getCookie("openid");
+	  if(openid=='' || openid==null)
+	  {
+		  var url="";
+		  encodeURL(url); 
+	  }else
+	  {
+		 // window.location.href="https://www.hbywzc.cn/micro/view/shop/shopCart.jsp?openid="+openid;
+		  window.location.href="http://localhost:7001/micro/view/shop/shopCart.jsp?openid="+openid;
+	  }
+  }
+  
+</script>
     
     <style>
       .content{background-color:#02813e}
@@ -93,7 +114,7 @@
                   </a>
                 </li>
                 <li class="js-order">
-                  <a href="/micro/view/user/login.html">
+                  <a onclick="toMyCart()" href="javascript:;">
                     <span class="count user">
                     </span>
                     <span class="text">
@@ -916,7 +937,7 @@
 //userLogin();
 function getProds(productId)
 {
-	 var url="https://www.hbywzc.cn/micro/product.do?method=getProduct&productId=10001&busId=100";
+	 var url="https://www.hbywzc.cn/micro/product.do?method=getProduct&productId="+productId+"&busId=100";
 	 var openid=getCookie("openid");
 	 if(openid=='' || openid==null)
 	 {
@@ -926,6 +947,5 @@ function getProds(productId)
 	 	 window.location.href = url+"&openId="openid;
 	 }
 }
-
 
 </script>

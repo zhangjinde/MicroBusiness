@@ -48,7 +48,7 @@ public class HttpsUtil
 			// 从上述SSLContext对象中得到SSLSocketFactory对象
 			SSLSocketFactory ssf = sslContext.getSocketFactory();
 			// 创建URL对象
-			URL u = new URL(url);
+			URL u = new URL(null,url,new sun.net.www.protocol.https.Handler());
 			HostnameVerifier hv = new HostnameVerifier() {
 				public boolean verify(String urlHostName, SSLSession session) {
 					return urlHostName.equals(session.getPeerHost());
