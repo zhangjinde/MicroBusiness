@@ -21,6 +21,24 @@
     </script>
     <script type="text/javascript" src="/micro/pub/js/jquery.json.min.js">
     </script>
+    <script type="text/javascript" src="/micro/js/global.js">
+   
+    </script>
+  <script type="text/javascript">
+  
+	  function toMyCart()
+	  {
+		  var url= "https://www.hbywzc.cn/micro/oauth.do?method=getCode&page=shopCart";
+		  var openid=getCookie("openid");
+		  if(openid=='')
+		  {
+			  var url="";
+			  encodeURL(url)	  
+		  }
+	  }
+  
+    </script>
+    
     <style>
       .content{background-color:#02813e}
     </style>
@@ -887,9 +905,15 @@
 
 </html>
 <script type="text/javascript" language="javascript">
-
+//userLogin();
 function userLogin()
 {
-	window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9de1544a58642739&redirect_uri=https%3a%2f%2fwww.hbywzc.cn%2fmicro%2foauth.do%3fmethod%3dgetCode&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+	var url= "https://www.hbywzc.cn/micro/oauth.do?method=getCode&productId=10001&page=product_detail";
+	var str=encodeURIComponent(url);
+	var ss = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9de1544a58642739&redirect_uri="+str+"&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+	alert(ss);
+	//window.location.href = str;
 }
+
+
 </script>

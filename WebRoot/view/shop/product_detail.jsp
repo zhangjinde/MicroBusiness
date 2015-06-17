@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String path = request.getContextPath();
+	String openId =(String) request.getAttribute("openid");
 %>
 <!DOCTYPE HTML>
 <html class="no-js admin responsive-320" lang="zh-CN">
@@ -77,7 +78,7 @@
 						<div class="sku-detail-inner adv-opts-inner">
 				            <dl>
 								<dt style="margin-top:10px">
-									数量：
+									数量：<%=openId %>
 								</dt>
 								<dd>
 									<div class="num_wrap">
