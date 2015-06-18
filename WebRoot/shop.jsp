@@ -39,7 +39,6 @@
   	 var url="https://www.hbywzc.cn/micro/oauth.do?method=getCode&page=shop";
   	 var openid=getCookie("openid");
   	 var id='<%=openId%>';
-  	 
   	 if(openid=='' || openid==null)
   	 {
   		  encodeURL(url); 
@@ -178,8 +177,8 @@
                   <!--商品区域-->
                   <!--展现类型判断-->
                   <li class="js-goods-card goods-card goods-list small-pic card ">
-                    <a href="/micro/product.do?method=getProduct&productId=10001&openId=46546541234&busId=100" class="js-goods link clearfix"
-                    target="_blank" data-goods-id="9933317" title="鳕鱼堡+上校鸡块+香辣鸡翅">
+                    <a class="js-goods link clearfix prods"
+                    target="_blank" data-goods-id="10001" title="鳕鱼堡+上校鸡块+香辣鸡翅">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
                         <img class="goods-photo js-goods-lazy"  src="/micro/pub/img/11.jpg"
                         style="display: block;">
@@ -935,16 +934,22 @@
 </html>
 <script type="text/javascript" language="javascript">
 //userLogin();
+$(document).ready(function(){
+	$(".prods").click(function(){
+		getProds($(this).attr("data-goods-id"));
+	});
+});
 function getProds(productId)
 {
-	 var url="https://www.hbywzc.cn/micro/product.do?method=getProduct&productId="+productId+"&busId=100";
+	 var url="/micro/product.do?method=getProduct&productId="+productId+"&busId=100";
 	 var openid=getCookie("openid");
 	 if(openid=='' || openid==null)
 	 {
 		  encodeURL(url); 
-	 }else
+	 }
+	 else
 	 {
-	 	 window.location.href = url+"&openId="openid;
+	 	 window.location.href = url+"&openId="+openid;
 	 }
 }
 

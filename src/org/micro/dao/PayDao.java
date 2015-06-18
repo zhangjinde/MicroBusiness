@@ -90,7 +90,7 @@ public class PayDao extends BaseDao
 		jdbcTemplate.update(sql, new Object[]{customerId});
 		sql = "update customer_address_t set is_primary='A',state_date=sysdate where customer_detail_id = ?";
 		jdbcTemplate.update(sql, new Object[]{customerDetailId});
-		sql = "select * from customer_address_t a,province_t b,city_t c,district_t d where b.province_id = a.prov_id and c.city_id = a.city_id and d.district_id = a.district_id and customer_id = ?";
+		sql = "select * from customer_address_t a,province_t b,city_t c,district_t d where b.province_id = a.prov_id and c.city_id = a.city_id and d.district_id = a.district_id and customer_detail_id = ?";
 		ArrayList arrayList = new ArrayList();
 		arrayList.add(customerDetailId);
 		List list = qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
@@ -103,7 +103,7 @@ public class PayDao extends BaseDao
 			String customerName = StringUtil.getMapKeyVal(map, "customerName");
 			String customerPhone = StringUtil.getMapKeyVal(map, "customerTelephone");
 			String addr = StringUtil.getMapKeyVal(map, "customerAddr");
-			addr = new StringBuffer().append(provName).append(cityName).append(districtName).toString();
+			addr = new StringBuffer().append(provName).append(cityName).append(districtName).append(addr).toString();
 			sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
 			if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)
 			{

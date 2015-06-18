@@ -43,7 +43,7 @@ public class ProductController
 		 String productId=request.getParameter("productId"); 
 		 String openId=request.getParameter("openId");/*已经存在*/
 		 
-		 if(!ObjectCensor.checkObjectIsNull(openId))/*第一次获取*/
+		 if(ObjectCensor.checkObjectIsNull(openId))/*第一次获取*/
 		 {
 			  String codeId=request.getParameter("code");
 			  log.error("code:"+codeId);
