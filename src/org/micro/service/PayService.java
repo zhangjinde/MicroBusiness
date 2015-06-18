@@ -25,7 +25,7 @@ public class PayService
 	@Autowired
 	public PayDao payDao;
 	
-	public String addOrder(String busId , String openId , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String provId , String cityId , String districtId , String addr , String postCode) throws QryException
+	public String addOrder(String busId , String openId , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String addr , String postCode) throws QryException
 	{
 		if(ObjectCensor.isStrRegular(busId , openId , productId , productNum))
 		{
@@ -40,9 +40,9 @@ public class PayService
 				return "商家详细信息有误，请核实后重新尝试";
 			}
 			String customerId = null;
-			if(ObjectCensor.isStrRegular(name , contactNum , provId , cityId , districtId , addr))
+			if(ObjectCensor.isStrRegular(name , contactNum , addr))
 			{
-				customerId = customerDao.addCustomerDetail(busId, openId, name, contactNum, provId, cityId, districtId, addr, postCode);
+				customerId = customerDao.addCustomerDetail(busId, openId, name, contactNum, addr, postCode);
 				if(!StringUtil.checkStringIsNum(customerId))
 				{
 					return "人员信息有误，请核实后重新尝试";
@@ -54,7 +54,6 @@ public class PayService
 				if(ObjectCensor.checkListIsNull(customerList))
 				{
 					Map<String,String> customerMap = customerList.get(0);
-					addr = StringUtil.getMapKeyVal(customerMap, "customerAddr");
 					contactNum = StringUtil.getMapKeyVal(customerMap, "customerTelephone");
 					customerId = StringUtil.getMapKeyVal(customerMap, "customerId");
 				}

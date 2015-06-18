@@ -284,23 +284,6 @@
 					<td><input id="phonenum" name="phonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent" required></td>
 				</tr>
 				<tr>
-					<td valign="middle" style="padding-left:10px;color:#000">选择地区</td>
-					<td valign="middle" style="padding-left:0px">
-						<select id="province" style="border:none;background-color:transparent" onchange="areaChange(this,'city')">
-			        		<option value="">选择省份</option>
-			        		<c:forEach items="${provList}" var="node">
-			        			<option value="${node.provinceId}">${node.provinceName}</option>
-			        		</c:forEach>
-			        	</select>
-			        	<select id="city" style="border:none;background-color:transparent" onchange="areaChange(this,'district')">
-			        		<option value="">选择城市</option>
-			        	</select>
-			        	<select id="district" style="border:none;background-color:transparent">
-			        		<option value="">选择区县</option>
-			        	</select>
-					</td>
-				</tr>
-				<tr>
 					<td style="padding-left:10px;color:#000">详细地址</td>
 					<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent" required></td>
 				</tr>
@@ -340,6 +323,10 @@
 			              } else {
 			                this.st.focus = '#name';
 			              }
+			            },
+			            open:function(){
+			            	var addrName = $("#addrName").html();
+			            	$("#address").val(addrName);
 			            }
 			          }
 			        });

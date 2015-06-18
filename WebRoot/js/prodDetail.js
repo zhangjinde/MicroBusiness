@@ -20,16 +20,10 @@ function addCart()
 
 function addOrder()
 {
-	var provId = $("#province").val();
-	var cityId = $("#city").val();
-	var districtId = $("#district").val();
-	var provName = $("#province").get(0).options[$("#province").get(0).selectedIndex].innerHTML;
-	var cityName = $("#city").get(0).options[$("#city").get(0).selectedIndex].innerHTML;
-	var districtName = $("#district").get(0).options[$("#district").get(0).selectedIndex].innerHTML;
 	var addr = $("#address").val();
-	if(provName != ""&&cityName != ""&&districtName != ""&&addr != "")
+	if(addr != "")
 	{
-		var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(provName+cityName+districtName+addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
+		var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
 		$.ajax({
 			type: "GET", 
 			dataType: "jsonp", 
@@ -43,17 +37,18 @@ function addOrder()
 					return; 
 				} 
 				setPlaceAxis(json.result.location);
-				payFunc(provName+cityName+districtName+addr,provId,cityId,districtId);
+				payFunc(addr);
 			}
 		}); 
 	}
 	else
 	{
-		payFunc(provName+cityName+districtName+addr,provId,cityId,districtId);
+		var addrName = $("#addrName").html();
+		payFunc(addrName);
 	}
 }
 
-function payFunc(addr,provId,cityId,districtId)
+function payFunc(addr)
 {
 	var busId = $("#busId").val();
 	var openId = $("#openId").val();
@@ -68,7 +63,7 @@ function payFunc(addr,provId,cityId,districtId)
 	$.ajax({
 		url:"/micro/pay.do?method=addOrder",
 		type:"POST",
-		data:"busId="+busId+"&openId="+openId+"&productId="+productId+"&productNum="+productNum+"&productPrice="+productPrice+"&xPos="+xPos+"&yPos="+yPos+"&name="+encodeURI(name)+"&contactNum="+contactNum+"&provId="+provId+"&cityId="+cityId+"&districtId="+districtId+"&addr="+encodeURI(addr)+"&postCode="+postCode,
+		data:"busId="+busId+"&openId="+openId+"&productId="+productId+"&productNum="+productNum+"&productPrice="+productPrice+"&xPos="+xPos+"&yPos="+yPos+"&name="+encodeURI(name)+"&contactNum="+contactNum+"&addr="+encodeURI(addr)+"&postCode="+postCode,
 		success:function(data){
 			if(!isNaN(data))
 			{

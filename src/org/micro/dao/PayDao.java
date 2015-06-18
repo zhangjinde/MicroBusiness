@@ -114,6 +114,29 @@ public class PayDao extends BaseDao
 				}
 			}
 		}
+		else
+		{
+			sql = "select * from customer_address_t where customer_detail_id = ?";
+			arrayList = new ArrayList();
+			arrayList.add(customerDetailId);
+			list = qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
+			if(ObjectCensor.checkListIsNull(list))
+			{
+				Map map = (Map)list.get(0);
+				String customerName = StringUtil.getMapKeyVal(map, "customerName");
+				String customerPhone = StringUtil.getMapKeyVal(map, "customerTelephone");
+				String addr = StringUtil.getMapKeyVal(map, "customerAddr");
+				sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
+				if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)
+				{
+					sql = "update order_t set telephone = ?,customer_address = ? where order_id = ?";
+					if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,orderId}) > 0)
+					{
+						return "success";
+					}
+				}
+			}
+		}
 		return "success";
 	}
 	

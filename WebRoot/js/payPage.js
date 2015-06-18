@@ -51,19 +51,23 @@ $('#selectAddr').magnificPopup({
           }
           var win = $.magnificPopup.instance.content;
           var detailId = curCustDetId;
-          $("#uprovince",win).val($("#provId"+detailId).val());
-          $("#uprovince",win).change(function(){
-          	areaChange(this,'ucity',win);
-          });
-          $("#uprovince",win).change();
+          var provId = $("#provId"+detailId).val();
+          $("#uprovince",win).val(provId);
+          if(provId != "")
+    	  {
+	          $("#uprovince",win).change(function(){
+	          	areaChange(this,'ucity',win);
+	          });
+	          $("#uprovince",win).change();
+	          $("#ucity",win).val($("#cityId"+detailId).val());
+	          $("#ucity",win).change(function(){
+	          	areaChange(this,'udistrict',win);
+	          });
+	          $("#ucity",win).change();
+	          $("#udistrict",win).val($("#districtId"+detailId).val());
+    	  }
           $("#uname",win).val($("#customerName"+detailId).val());
           $("#uphonenum",win).val($("#customerTelephone"+detailId).val());
-          $("#ucity",win).val($("#cityId"+detailId).val());
-          $("#ucity",win).change(function(){
-          	areaChange(this,'udistrict',win);
-          });
-          $("#ucity",win).change();
-          $("#udistrict",win).val($("#districtId"+detailId).val());
           $("#uaddress",win).val($("#customerAddress"+detailId).val());
           $("#upostCode",win).val($("#customerPostcode"+detailId).val());
   	  }
@@ -93,21 +97,6 @@ $("#saveBtn").on('touchstart',function(){
 	{
 		alert("联系电话不能为空");
 		$("#phonenum").focus();
-	}
-	else if(province == "")
-	{
-		alert("请先选择省份");
-		$("#province").focus();
-	}
-	else if(city == "")
-	{
-		alert("请先选择城市");
-		$("#city").focus();
-	}
-	else if(district == "")
-	{
-		alert("请先选择区县");
-		$("#district").focus();
 	}
 	else if(address == "")
 	{
