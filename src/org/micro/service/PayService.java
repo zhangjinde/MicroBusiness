@@ -25,7 +25,7 @@ public class PayService
 	@Autowired
 	public PayDao payDao;
 	
-	public String addOrder(String busId , String openId , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String addr , String postCode) throws QryException
+	public String addOrder(String busId , String openId , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String addr , String postCode , String provId , String cityId , String districtId) throws QryException
 	{
 		if(ObjectCensor.isStrRegular(busId , openId , productId , productNum))
 		{
@@ -40,9 +40,9 @@ public class PayService
 				return "商家详细信息有误，请核实后重新尝试";
 			}
 			String customerId = null;
-			if(ObjectCensor.isStrRegular(name , contactNum , addr))
+			if(ObjectCensor.isStrRegular(name , contactNum , addr , provId , cityId , districtId))
 			{
-				customerId = customerDao.addCustomerDetail(busId, openId, name, contactNum, addr, postCode);
+				customerId = customerDao.addCustomerDetail(busId, openId, name, contactNum, addr, postCode, provId , cityId , districtId);
 				if(!StringUtil.checkStringIsNum(customerId))
 				{
 					return "人员信息有误，请核实后重新尝试";
@@ -59,7 +59,7 @@ public class PayService
 				}
 				else
 				{
-					return "人员信息有误，请核实后重新尝试";
+					customerId = "";
 				}
 			}
 			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productId, productNum, productPrice);

@@ -84,10 +84,16 @@ $("#saveBtn").on('touchstart',function(){
 	var address = $("#address").val();
 	var postCode = $("#postCode").val();
 	var customerId = $(".customerId").val();
+	var openId = $("#openId").val();
+	var busId = $("#busId").val();
 	var orderId = $("#orderId").val();
 	var provName = $("#province").get(0).options[$("#province").get(0).selectedIndex].innerHTML;
 	var cityName = $("#city").get(0).options[$("#city").get(0).selectedIndex].innerHTML;
 	var distName = $("#district").get(0).options[$("#district").get(0).selectedIndex].innerHTML;
+	if(customerId == null)
+	{
+		customerId = "";
+	}
 	if(name == "")
 	{
 		alert("收货人不能为空");
@@ -108,7 +114,7 @@ $("#saveBtn").on('touchstart',function(){
 		$.ajax({
 			url:"/micro/user.do?method=saveCustomer",
 			type:"POST",
-			data:"orderId="+orderId+"&customerId="+customerId+"&customerName="+name+"&customerPhone="+phonenum+"&provId="+province+"&cityId="+city+"&districtId="+district+"&addr="+address+"&postCode="+postCode+"&provName="+encodeURI(provName)+"&cityName="+encodeURI(cityName)+"&distName="+encodeURI(distName),
+			data:"openId="+openId+"&orderId="+orderId+"&busId="+busId+"&customerId="+customerId+"&customerName="+name+"&customerPhone="+phonenum+"&provId="+province+"&cityId="+city+"&districtId="+district+"&addr="+address+"&postCode="+postCode+"&provName="+encodeURI(provName)+"&cityName="+encodeURI(cityName)+"&distName="+encodeURI(distName),
 			success:function(data){
 				if(data == "success")
 				{

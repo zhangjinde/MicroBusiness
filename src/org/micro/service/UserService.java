@@ -9,7 +9,9 @@ import java.util.Map;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.micro.dao.CustomerDao;
 import org.micro.dao.LoginDao;
+import org.micro.dao.PayDao;
 import org.micro.dao.UserDao;
 import org.micro.pub.base.SysDate;
 import org.micro.util.MD5Util;
@@ -26,6 +28,12 @@ public class UserService
 	
 	@Autowired
 	private LoginDao loginDao;
+	
+	@Autowired
+	private CustomerDao customerDao;
+	
+	@Autowired
+	private PayDao payDao;
 	
 	public Map userLogin(String telephone,String password) throws QryException
 	{
@@ -105,9 +113,18 @@ public class UserService
 		return json.toString();
 	}
 	
-	public String saveCustomer(String orderId , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId  , String provName , String cityName , String distName , String addr , String postCode)
+	public String saveCustomer(String busId , String openId , String orderId , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId  , String provName , String cityName , String distName , String addr , String postCode) throws QryException
 	{
-		return userDao.saveCustomer(orderId, customerId, customerName, customerPhone, provId, cityId, districtId, provName, cityName, distName, addr, postCode);
+		if(ObjectCensor.isStrRegular(customerId))
+		{
+			return userDao.saveCustomer(orderId, customerId, customerName, customerPhone, provId, cityId, districtId, provName, cityName, distName, addr, postCode);
+		}
+		else
+		{
+			customerId = customerDao.addCustomerDetail(busId, openId, customerName, customerPhone, addr, postCode, provId, cityId, districtId);
+			addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
+			return payDao.saveNewUserOrder(orderId, customerPhone, addr, customerId);
+		}
 	}
 	
 	public String updateCustomer(String orderId , String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String provName , String cityName , String distName , String addr , String postCode) throws QryException

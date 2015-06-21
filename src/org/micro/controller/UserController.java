@@ -180,14 +180,14 @@ public class UserController
 	}
 	
 	@RequestMapping(params = "method=saveCustomer")
-	public void saveCustomer(HttpServletRequest request , HttpServletResponse response , String orderId , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String provName , String cityName , String distName , String addr , String postCode)
+	public void saveCustomer(HttpServletRequest request , HttpServletResponse response , String busId , String openId , String orderId , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId , String provName , String cityName , String distName , String addr , String postCode)
 	{
 		PrintWriter out = null;
 		try
 		{
 			response.setCharacterEncoding("utf-8");
 			out = response.getWriter();
-			String retVal = userService.saveCustomer(orderId, customerId, customerName, customerPhone, provId, cityId, districtId, provName, cityName , distName, addr, postCode);
+			String retVal = userService.saveCustomer(busId , openId , orderId, customerId, customerName, customerPhone, provId, cityId, districtId, provName, cityName , distName, addr, postCode);
 			out.write(retVal);
 		}
 		catch(Exception err)

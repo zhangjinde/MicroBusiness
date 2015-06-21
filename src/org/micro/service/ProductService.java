@@ -81,12 +81,17 @@ public class ProductService
 		}
 	}
 	
-	public void payOrder(ModelAndView model , String busId , String orderId) throws QryException
+	public void payOrder(ModelAndView model , String busId , String orderId , String name) throws QryException
 	{
 		List<Map<String,String>> list = payDao.getOrderInfo(orderId);
 		if(ObjectCensor.checkListIsNull(list))
 		{
 			Map map = list.get(0);
+			String customerName = StringUtil.getMapKeyVal(map, "customerName");
+			if(!ObjectCensor.isStrRegular(customerName))
+			{
+				map.put("customerName", name);
+			}
 			List<Map<String,String>> orderDetailList = payDao.getOrderDetailList(orderId);
 			map.put("orderDetailList", orderDetailList);
 			List<Map<String,String>> busDetailList = payDao.getBusDetailList(busId);

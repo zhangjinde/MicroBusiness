@@ -51,6 +51,7 @@
     <body class=" " style="overflow: visible; height: auto; padding: 0px;">
     	<input type="hidden" id="orderId" value="${param.orderId}" />
     	<input type="hidden" id="busId" value="${param.busId}" />
+    	<input type="hidden" id="openId" value="${param.openId}" />
     	<input type="hidden" id="xPos" value="" />
     	<input type="hidden" id="yPos" value="" />
         <div class="container js-page-content wap-page-order">

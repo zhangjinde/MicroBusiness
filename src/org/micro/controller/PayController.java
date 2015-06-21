@@ -21,14 +21,14 @@ public class PayController
 	private PayService payService;
 	
 	@RequestMapping(params = "method=addOrder")
-	public void addOrder(HttpServletRequest request , HttpServletResponse response , String busId , String openId , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String addr , String postCode)
+	public void addOrder(HttpServletRequest request , HttpServletResponse response , String busId , String openId , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String addr , String postCode , String provId , String cityId , String districtId)
 	{
 		PrintWriter out = null;
 		try
 		{
 			response.setCharacterEncoding("utf-8");
 			out = response.getWriter();
-			String retVal = payService.addOrder(busId, openId, productId, productNum, productPrice, xPos, yPos, name, contactNum, addr, postCode);
+			String retVal = payService.addOrder(busId, openId, productId, productNum, productPrice, xPos, yPos, name, contactNum, addr, postCode, provId, cityId, districtId);
 			out.write(retVal);
 		}
 		catch(Exception err)

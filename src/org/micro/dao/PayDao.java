@@ -53,7 +53,7 @@ public class PayDao extends BaseDao
 	
 	public List<Map<String,String>> getOrderInfo(String orderId) throws QryException
 	{
-		String sql = "select a.order_id,b.bus_id,a.bus_detail_id,c.bus_name,a.customer_id,e.customer_detail_id,d.customer_name,a.telephone,a.customer_address,a.order_price,b.bus_detail_name,b.bus_addr,b.bus_telephone from order_t a,business_detail_t b,business_t c,customer_t d,customer_address_t e where a.bus_detail_id = b.bus_detail_id and b.bus_id = c.bus_id and d.customer_id = a.customer_id and d.customer_id = e.customer_id and is_primary='A' and a.order_id = ?";
+		String sql = "select m.order_id,m.bus_id,m.bus_detail_id,m.bus_name,m.customer_id,n.customer_detail_id,n.customer_name,m.telephone,m.customer_address,m.order_price,m.bus_detail_name,m.bus_addr,m.bus_telephone from (select a.order_id,b.bus_id,a.bus_detail_id,c.bus_name,a.customer_id,a.telephone,a.customer_address,a.order_price,b.bus_detail_name,b.bus_addr,b.bus_telephone from order_t a,business_detail_t b,business_t c where a.bus_detail_id = b.bus_detail_id and b.bus_id = c.bus_id and a.order_id = ?) m,(select d.customer_id,e.customer_detail_id,d.customer_name from customer_t d,customer_address_t e where d.customer_id = e.customer_id and is_primary='A') n where m.customer_id = n.customer_id(+)";
 		ArrayList arrayList = new ArrayList();
 		arrayList.add(orderId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
@@ -138,6 +138,19 @@ public class PayDao extends BaseDao
 			}
 		}
 		return "success";
+	}
+	
+	public String saveNewUserOrder(String orderId , String customerPhone , String addr , String customerId)
+	{
+		String sql = "update order_t set telephone = ?,customer_address = ?,customer_id = ? where order_id = ?";
+		if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,customerId,orderId}) > 0)
+		{
+			return "success";
+		}
+		else
+		{
+			return "failure";
+		}
 	}
 	
 }

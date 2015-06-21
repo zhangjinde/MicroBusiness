@@ -277,19 +277,19 @@
 			<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
 				<tr>
 					<td width="25%" style="padding-left:10px;color:#000;">收货人</td>
-					<td width="75%"><input id="name" name="name" type="text" placeholder="名字" style="border:none;background-color:transparent" required></td>
+					<td width="75%"><input id="name" name="name" type="text" placeholder="名字" style="border:none;background-color:transparent;width:100%" required></td>
 				</tr>
 				<tr>
 					<td style="padding-left:10px;color:#000">联系电话</td>
-					<td><input id="phonenum" name="phonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent" required></td>
+					<td><input id="phonenum" name="phonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent;width:100%" required></td>
 				</tr>
 				<tr>
 					<td style="padding-left:10px;color:#000">详细地址</td>
-					<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent" required></td>
+					<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent;width:100%" required></td>
 				</tr>
 				<tr>
 					<td style="padding-left:10px;color:#000">邮政编码</td>
-					<td><input id="postCode" name="postCode	" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent" /></td>
+					<td><input id="postCode" name="postCode	" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent;width:100%" /></td>
 				</tr>
 				<tr>
 					<td valign="middle" colspan="2"><a href="javascript:;" id="saveBtn" style="background-color:#44b549;color:#fff;width:95%;height:35px;display:block;margin:0 auto;padding:0 0;text-align:center;line-height:35px;border-radius:5px">保存</a></td>
