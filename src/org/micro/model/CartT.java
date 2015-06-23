@@ -1,4 +1,5 @@
 package org.micro.model;
+// default package
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -24,6 +25,7 @@ public class CartT implements java.io.Serializable {
 	private String state;
 	private Date createDate;
 	private String num;
+	private String weixinId;
 
 	// Constructors
 
@@ -38,7 +40,8 @@ public class CartT implements java.io.Serializable {
 
 	/** full constructor */
 	public CartT(String cartId, String productId, String customerId,
-			String telephone, String state, Date createDate, String num) {
+			String telephone, String state, Date createDate, String num,
+			String weixinId) {
 		this.cartId = cartId;
 		this.productId = productId;
 		this.customerId = customerId;
@@ -46,6 +49,7 @@ public class CartT implements java.io.Serializable {
 		this.state = state;
 		this.createDate = createDate;
 		this.num = num;
+		this.weixinId = weixinId;
 	}
 
 	// Property accessors
@@ -112,6 +116,15 @@ public class CartT implements java.io.Serializable {
 
 	public void setNum(String num) {
 		this.num = num;
+	}
+
+	@Column(name = "WEIXIN_ID", length = 28)
+	public String getWeixinId() {
+		return this.weixinId;
+	}
+
+	public void setWeixinId(String weixinId) {
+		this.weixinId = weixinId;
 	}
 
 }

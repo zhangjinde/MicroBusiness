@@ -207,8 +207,8 @@
                     </a>
                   </li>
                   <li class="js-goods-card goods-card goods-list small-pic card ">
-                    <a href="http://wap.koudaitong.com/v2/goods/c4vfxjch" class="js-goods link clearfix"
-                    target="_blank" data-goods-id="9932992" title="牛肉汉堡+田园鲜疏汉堡+可乐">
+                    <a class="js-goods link clearfix prods"
+                    target="_blank" data-goods-id="10002" title="牛肉汉堡+田园鲜疏汉堡+可乐">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
                         <img class="goods-photo js-goods-lazy"   src="/micro/pub/img/12.jpg"
                         style="display: block;">
@@ -237,8 +237,8 @@
                     </a>
                   </li>
                   <li class="js-goods-card goods-card goods-list small-pic card ">
-                    <a href="http://wap.koudaitong.com/v2/goods/11wrxwmtn" class="js-goods link clearfix"
-                    target="_blank" data-goods-id="9932548" title="田园鲜蔬汉堡+上校鸡块+可乐">
+                    <a class="js-goods link clearfix prods"
+                    target="_blank" data-goods-id="10003" title="田园鲜蔬汉堡+上校鸡块+可乐">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
                         <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FjcIDaLN6QLbY0VrJWp_XYzc82dT.jpg!140x140+2x.jpg"
                         src="/micro/pub/img/13.jpg" style="display: block;">
@@ -267,8 +267,8 @@
                     </a>
                   </li>
                   <li class="js-goods-card goods-card goods-list small-pic card ">
-                    <a href="http://wap.koudaitong.com/v2/goods/doeo4jf1" class="js-goods link clearfix"
-                    target="_blank" data-goods-id="9932335" title="双层培根红肠堡+香辣鸡翅一对+可乐">
+                    <a class="js-goods link clearfix prods"
+                    target="_blank" data-goods-id="10004" title="双层培根红肠堡+香辣鸡翅一对+可乐">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
                         <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FkA6p3Qz50aQigc1-2D3c3DJkp0O.jpg!140x140+2x.jpg"
                          src="/micro/pub/img/14.jpg" style="display: block;">
@@ -297,8 +297,8 @@
                     </a>
                   </li>
                   <li class="js-goods-card goods-card goods-list small-pic card ">
-                    <a href="http://wap.koudaitong.com/v2/goods/19ducdsvx" class="js-goods link clearfix"
-                    target="_blank" data-goods-id="9932001" title="BBQ烤鸡+紫薯豌豆派+可乐">
+                    <a class="js-goods link clearfix prods"
+                    target="_blank" data-goods-id="10005" title="BBQ烤鸡+紫薯豌豆派+可乐">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
                         <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FmVCP4H7wLEts1rK6YqoF1ZcNLFa.jpg!140x140+2x.jpg"
                          src="/micro/pub/img/15.jpg" style="display: block;">
@@ -327,8 +327,8 @@
                     </a>
                   </li>
                   <li class="js-goods-card goods-card goods-list small-pic card ">
-                    <a href="http://wap.koudaitong.com/v2/goods/jnknohil" class="js-goods link clearfix"
-                    target="_blank" data-goods-id="9931590" title="香辣鸡腿汉堡+墨西哥鸡肉卷+可乐">
+                    <a class="js-goods link clearfix prods"
+                    target="_blank" data-goods-id="10006" title="香辣鸡腿汉堡+墨西哥鸡肉卷+可乐">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
                         <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FsYO8iqxk0gQGlQ8f3enjA3KUr9Z.jpg!140x140+2x.jpg"
                         src="/micro/pub/img/16.jpg" style="display: block;">
@@ -367,8 +367,8 @@
       <!-- 商品区域 -->
       <!-- 展现类型判断 -->
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/dgs5l35e" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9937870" title="牛牛牛卷">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10007" title="牛牛牛卷">
           <div class="photo-block" data-width="756" data-height="756" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy"  
             src="/micro/pub/img/21.jpg" style="display: block;">
@@ -397,8 +397,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/19b2rzszn" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9928438" title="墨西哥鸡肉卷">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10008" title="墨西哥鸡肉卷">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" 
             src="/micro/pub/img/22.jpg" style="display: block;">
@@ -427,8 +427,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/1acks7p9d" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9928154" title="BBQ烤鸡">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10009" title="BBQ烤鸡">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy"  
             src="/micro/pub/img/23.jpg" style="display: block;">
@@ -457,8 +457,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/g5g9el3" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9927851" title="双层培根红肠堡">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10010" title="双层培根红肠堡">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" 
             src="/micro/pub/img/24.jpg" style="display: block;">
@@ -487,8 +487,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/68gffzxx" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9927253" title="鳕鱼堡">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10011" title="鳕鱼堡">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" 
             src="/micro/pub/img/25.jpg" style="display: block;">
@@ -516,8 +516,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/x3s7bkvs" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9926886" title="德式烤肠牛堡">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10012" title="德式烤肠牛堡">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy"  
             src="/micro/pub/img/26.jpg" style="display: block;">
@@ -546,8 +546,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/1b8q81poj" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9926526" title="牛肉汉堡">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10013" title="牛肉汉堡">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy"  
              src="/micro/pub/img/27.jpg" style="display: block;">
@@ -584,8 +584,8 @@
       <!-- 商品区域 -->
       <!-- 展现类型判断 -->
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/1gt6z8qgr" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9930968" title="香辣鸡翅">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10014" title="香辣鸡翅">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FnfUcgNlTNgKjaaOPCAbC2jRYujZ.jpg!140x140+2x.jpg"
            src="/micro/pub/img/31.jpg" style="display: block;">
@@ -613,8 +613,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/1cks7z47z" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9930477" title="脆皮炸鸡">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10015" title="脆皮炸鸡">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FuhVo0p36Nw4_JFLAdZdwwnSzg90.jpg!140x140+2x.jpg"
             src="/micro/pub/img/32.jpg" style="display: block;">
@@ -642,8 +642,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/b8ncib10" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9930216" title="香辣骨肉串">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10016" title="香辣骨肉串">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FiqdsdPmCRaeQJUMm2fwFzr6aRhJ.jpg!140x140+2x.jpg"
            src="/micro/pub/img/33.jpg" style="display: block;">
@@ -672,8 +672,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/1efw7lj3x" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9929952" title="鸡米花">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10017" title="鸡米花">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FutSbHGmYc0xoAr2BC99MTByX423.jpg!140x140+2x.jpg"
           src="/micro/pub/img/34.jpg" style="display: block;">
@@ -701,8 +701,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/kyv7aavg" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9929640" title="辣子鸡块">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10018" title="辣子鸡块">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FlruAxbusd0tADg-OvnQ6FRAOnUx.jpg!140x140+2x.jpg"
             src="/micro/pub/img/35.jpg" style="display: block;">
@@ -730,8 +730,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/1eemtw13x" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9929336" title="上校鸡块">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10019" title="上校鸡块">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FiIb6eFAuMp7XzEXMAg2JPLvX3iu.jpg!140x140+2x.jpg"
            src="/micro/pub/img/36.jpg" style="display: block;">
@@ -759,8 +759,8 @@
         </a>
       </li>
       <li class="js-goods-card goods-card goods-list small-pic card ">
-        <a href="http://wap.koudaitong.com/v2/goods/impnl2zq" class="js-goods link clearfix"
-        target="_blank" data-goods-id="9929119" title="紫薯豌豆派">
+        <a class="js-goods link clearfix prods"
+        target="_blank" data-goods-id="10020" title="紫薯豌豆派">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
             <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FlWLqqlLBJo39jIrP7AG_EmYLaJ0.jpg!140x140+2x.jpg"
             src="/micro/pub/img/37.jpg" style="display: block;">

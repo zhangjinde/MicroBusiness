@@ -32,9 +32,9 @@ public class ShopCartService
 		cartT.setState("A");
 		cartT.setCreateDate(SysDate.getSysDate());
 		
-		String telephone=cartT.getTelephone();
+		String weixinId=cartT.getWeixinId();
 		String productId = cartT.getProductId();
-		List<CartT> cartTs = hibernateObjectDao.getCartById(telephone,productId, "");
+		List<CartT> cartTs = hibernateObjectDao.getCartById(weixinId,productId, "");
 		if(ObjectCensor.checkListIsNull(cartTs))
 		{
 			CartT cartT2 = cartTs.get(0);

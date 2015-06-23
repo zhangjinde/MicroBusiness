@@ -44,6 +44,30 @@ public class PayController
 		}
 	}
 	
+	@RequestMapping(params = "method=payCart")
+	public void payCart(HttpServletRequest request , HttpServletResponse response , String busId , String openId , String productInfo , String xPos , String yPos , String name , String contactNum , String addr , String postCode , String provId , String cityId , String districtId , String totalPrice)
+	{
+		PrintWriter out = null;
+		try
+		{
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+			String retVal = payService.addOrder(busId, openId, productInfo, xPos, yPos, name, contactNum, addr, postCode, provId, cityId, districtId, totalPrice);
+			out.write(retVal);
+		}
+		catch(Exception err)
+		{
+			err.printStackTrace();
+		}
+		finally
+		{
+			if(out != null)
+			{
+				out.close();
+			}
+		}
+	}
+	
 	@RequestMapping(params = "method=getBusinessAxis")
 	public void getBusinessAxis(HttpServletResponse response , String xPos , String yPos , String busId)
 	{

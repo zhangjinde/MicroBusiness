@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class HibernateObjectDao extends org.micro.pub.base.BaseDao
 {
-	public List<CartT> getCartById(String telephone,String productId,String customerId)
+	public List<CartT> getCartById(String weixinId,String productId,String customerId)
 	{
-		String hql=" from CartT as model from where model.state='A' and model.telephone=? and model.productId=?";
-		return this.find(hql, new String[]{ telephone,productId});
+		String hql=" from CartT as model from where model.state='A' and model.weixinId=? and model.productId=?";
+		return this.find(hql, new String[]{ weixinId,productId});
 	}
 	
 }

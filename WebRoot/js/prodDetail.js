@@ -2,11 +2,11 @@ getLocation();
 
 function addCart()
 {
-	var phoneNum = $("#phoneNum").val();
+	var openId = $("#openId").val();
 	var productId = $("#productId").val();
 	var productNum = $("#buyNum").val();
 	
-	var cart={"telephone":phoneNum,"productId":productId,"num":productNum};
+	var cart={"weixinId":openId,"productId":productId,"num":productNum};
 	$.ajax({
 		url:"/micro/cart.do?method=addCart",
 		type:"POST",

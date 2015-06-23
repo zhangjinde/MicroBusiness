@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.micro.util.ObjectCensor;
 import org.micro.util.QryException;
 import org.micro.util.StringUtil;
@@ -29,6 +32,32 @@ public class PayDao extends BaseDao
 					List list = qryCenter.executeSqlByMapListWithTrans(sql, new ArrayList());
 					return StringUtil.getMapKeyVal((Map)list.get(0), "orderVal");
 				}
+			}
+		}
+		return "¶©µ¥Èë¿âÊ§°Ü";
+	}
+	
+	@Transactional
+	public String addOrder(String busDetailId , String customerId , String telephone , String customerAddr , String productInfo , String totalPrice) throws QryException
+	{
+		JSONArray json = JSONArray.fromObject(productInfo);
+		String sql = "insert into order_t(order_id,bus_detail_id,customer_id,telephone,customer_address,order_price,create_date,expire_date,state_date,sts) values (MICRO_ORDER_SEQ.nextval,?,?,?,?,?,sysdate,sysdate+1,sysdate,'A')";
+		if(jdbcTemplate.update(sql, new Object[]{busDetailId,customerId,telephone,customerAddr,totalPrice}) > 0)
+		{
+			sql = "insert into order_flow_t(order_flow_id,order_id,order_flow_state,create_date,state_date,is_cur_state) values(MICRO_ORDER_FLOW_SEQ.nextval,MICRO_ORDER_SEQ.currval,'A',sysdate,sysdate,'A')";
+			if(jdbcTemplate.update(sql) > 0)
+			{
+				for(int i = 0,n = json.size();i < n;i++)
+				{
+					JSONObject obj = json.getJSONObject(i);
+					sql = "insert into order_detail_t(order_detail_id,order_id,product_id,product_num,create_date,state_date,sts) values(MICRO_ORDER_DET_SEQ.nextval,MICRO_ORDER_SEQ.currval,?,?,sysdate,sysdate,'A')";
+					String productId = StringUtil.getJSONObjectKeyVal(obj, "productId");
+					String productNum = StringUtil.getJSONObjectKeyVal(obj, "productNum");
+					jdbcTemplate.update(sql, new Object[]{productId,productNum});
+				}
+				sql = "select MICRO_ORDER_SEQ.nextval-1 order_val from dual";
+				List list = qryCenter.executeSqlByMapListWithTrans(sql, new ArrayList());
+				return StringUtil.getMapKeyVal((Map)list.get(0), "orderVal");
 			}
 		}
 		return "¶©µ¥Èë¿âÊ§°Ü";
