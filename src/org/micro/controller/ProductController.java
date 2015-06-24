@@ -47,7 +47,10 @@ public class ProductController
 		 {
 			  String codeId=request.getParameter("code");
 			  log.error("code:"+codeId);
-			  openId=WeixinAuth.getOpenId(codeId);
+			  if(!ObjectCensor.checkObjectIsNull(codeId))/*第一次获取*/
+			  {
+				  	openId=WeixinAuth.getOpenId(codeId);
+			  }
 			  log.error("openid:"+openId);
 		 }
 		
