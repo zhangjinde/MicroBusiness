@@ -65,9 +65,11 @@ function payFunc(addr)
 		type:"POST",
 		data:"busId="+busId+"&openId="+openId+"&productId="+productId+"&productNum="+productNum+"&productPrice="+productPrice+"&xPos="+xPos+"&yPos="+yPos+"&name="+encodeURI(name)+"&contactNum="+contactNum+"&addr="+encodeURI(addr)+"&postCode="+postCode,
 		success:function(data){
+			var orderId = data;
+			data = data.substring(1);
 			if(!isNaN(data))
 			{
-				window.location.href = "/micro/product.do?method=payOrder&busId="+busId+"&orderId="+data+"&openId="+openId+"&name="+encodeURI(name);
+				window.location.href = "/micro/product.do?method=payOrder&busId="+busId+"&orderId="+orderId+"&openId="+openId+"&name="+encodeURI(name);
 			}
 			else
 			{
