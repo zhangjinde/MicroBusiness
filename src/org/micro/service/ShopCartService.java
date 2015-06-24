@@ -1,7 +1,9 @@
 package org.micro.service;
 
 import java.util.List;
+import java.util.Map;
 
+import org.micro.dao.CustomerDao;
 import org.micro.dao.HibernateObjectDao;
 import org.micro.dao.PayDao;
 import org.micro.model.CartT;
@@ -13,6 +15,7 @@ import org.micro.util.ObjectCensor;
 import org.micro.util.QryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 @Service
 public class ShopCartService 
@@ -25,6 +28,9 @@ public class ShopCartService
 	
 	@Autowired
 	private SysId sysId;
+	
+	@Autowired
+	private CustomerDao customerDao;
 	
 	public void addShopCart(String cart) throws JsonException
 	{
@@ -52,5 +58,18 @@ public class ShopCartService
 	public List getOrderById(String wenxinId,String phone) throws QryException
 	{
 		return payDao.getOrderById(wenxinId, phone);
+	}
+	
+	public void gotoShopCart(ModelAndView model ,String openid ,String busId) throws QryException
+	{
+		List<Map<String,String>> customerList = customerDao.getCustomer(openid, busId);
+		if(ObjectCensor.checkListIsNull(customerList))
+		{
+			model.addObject("newUser", "N");
+		}
+		else
+		{
+			model.addObject("newUser", "Y");
+		}
 	}
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.micro.pub.exception.JsonException;
 import org.micro.service.ShopCartService;
+import org.micro.util.QryException;
 import org.micro.util.WeixinAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,22 @@ public class ShopCartController
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping(params = "method=gotoShopCart")
+	public ModelAndView gotoShopCart(HttpServletResponse response ,HttpServletRequest request ,String openid ,String busId)
+	{
+		ModelAndView model = new ModelAndView("view/shop/shopCart");
+		try 
+		{
+			shopCartService.gotoShopCart(model, openid, busId);
+		}
+		catch (QryException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return model;
 	}
 	
 	@RequestMapping(params = "method=getOrder")

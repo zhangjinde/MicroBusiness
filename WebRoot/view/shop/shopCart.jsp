@@ -12,19 +12,19 @@
 <html class="no-js " lang="zh-CN">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	    <meta charset="utf-8">
 	    <meta name="keywords" content="移动电商服务平台">
 	    <meta name="HandheldFriendly" content="True">
 	    <meta name="MobileOptimized" content="320">
 	    <meta name="format-detection" content="telephone=no">
 	    <meta http-equiv="cleartype" content="on">
-	    <script type="text/javascript" src="/micro/pub/js/jquery-1.11.3.min.js">
+	    <script type="text/javascript" src="<%=path %>/pub/js/jquery-1.11.3.min.js">
 	    <title>购物车</title>
-		<link rel="stylesheet" type="text/css" href="/micro/pub/css/magnific-popup.css" />
-	   	<script type="text/javascript" src="/micro/js/global.js"></script>
-	   	<script src="/micro/js/location.js" type="text/javascript"></script>
-		<script src="/micro/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	   	<script type="text/javascript" src="<%=path %>/js/global.js"></script>
+	   	<script src="<%=path %>/js/location.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="<%=path %>/pub/css/magnific-popup.css" />
+		<script src="<%=path %>/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
 	  	<link rel="stylesheet" href="<%=path %>/pub/css/base_2ced031129.css" />
 	    <link rel="stylesheet" href="<%=path %>/pub/css/order_list_50b8447040.css" />
 	    <link rel="stylesheet" href="<%=path %>/pub/css/trade_626cf27050.css" />
@@ -46,11 +46,11 @@
 					<ul class="list block block-list block-list-cart block-border-none">
 					 <div id="template" />
 					</ul>
-					<div class="js-bottom-opts bottom-fix" style="padding:0;">
+					<div class="js-bottom-opts bottom-fix" style="padding:0;z-index:1">
 						<div class="bottom-cart clear-fix">
 							<div class="select-all checked"><span onclick="selectAll()" id="allselect" class="check"></span>全选</div>
 							<div class="total-price">合计：<span id="totalPrice" class="js-total-price">0</span>元</div>
-							<button id='pay' href="javascript:;" class="js-go-pay btn btn-orange-dark font-size-14">结算</button>
+							<button id='pay' href="#receiveAddrForm" class="js-go-pay btn btn-orange-dark font-size-14">结算</button>
 							<button id='deleteProd' onclick="deleteProd() " href="javascript:;" class="j-delete-goods btn font-size-14 btn-red hide" disabled="true">删除</button>
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 				    </div>
 				</div>
 			</div>
-			<form id="receiveAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:70%">
+			<form id="receiveAddrForm" class="mfp-hide white-popup-block" style="background-color:#fafafa;position:fixed;bottom:0px;left:0px;right:0px;margin:0 auto;height:80%;z-index:5">
 				<h1 align="center" style="height:45px;font-size:16px;line-height:45px;color:#000">收货地址</h1>
 				<table width="100%" height="85%" align="center" style="margin:0 auto;padding:0 0;" class="addrForm">
 					<tr>
@@ -101,6 +101,7 @@
 			<input id="yPos" type="hidden" value="" />
 			<input id="busId" type="hidden" value="${param.busId}" />
 			<input id="openId" type="hidden" value="<%=openId %>" />
+			<span id="addrName" style="display:none"></span>
 		</div>
 	</body>
 	<script type="text/javascript" language="JavaScript" src="/micro/js/shopCart.js"></script>
@@ -132,10 +133,13 @@
 		            }
 		          }
 		        });
-			</c:when>
-			<c:otherwise>
-				$("#pay").on('touchend',function(){
-					payFunc();
+		        $("#saveBtn").click(function(){
+					addOrder();
+				});
+    		</c:when>
+        	<c:otherwise>
+				$("#pay").click(function(){
+					addOrder();
 				});
 			</c:otherwise>
 		</c:choose>

@@ -263,7 +263,7 @@
 		</div>
 		<div id="right-icon" class="js-right-icon hide">
 			<div class="js-right-icon-container right-icon-container clearfix">
-				<a id="global-cart" href="/micro/view/shop/shopCart.jsp?openid=${param.openId}&busId=${param.busId}" class="icon">
+				<a id="global-cart" href="/micro/cart.do?method=gotoShopCart&openid=${param.openId}&busId=${param.busId}" class="icon">
 					<p class="icon-img"></p>
 					<p class="icon-txt">
 						购物车

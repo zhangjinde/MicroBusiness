@@ -1,3 +1,11 @@
+getLocation();
+
+var ProductObj = function(productId , productNum , productPrice){
+	this.productId = productId;
+	this.productNum = productNum;
+	this.productPrice = productPrice;
+}
+
 $(document).ready(function(){
 	var openId = $("#openId").val();
 	qryCartProds(openId, "");
@@ -17,7 +25,37 @@ var prodsNum=0;
 var prodsCount=0;
 var prodsArray;
 
-function payFunc()
+function addOrder()
+{
+	var addr = $("#address").val();
+	if(addr != "")
+	{
+		var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
+		$.ajax({
+			type: "GET", 
+			dataType: "jsonp", 
+			url: url, 
+			async:false,
+			success: function (json) { 
+				if (json == null || typeof (json) == "undefined") { 
+					return; 
+				} 
+				if (json.status != "0") { 
+					return; 
+				} 
+				setPlaceAxis(json.result.location);
+				payFunc(addr);
+			}
+		}); 
+	}
+	else
+	{
+		var addrName = $("#addrName").html();
+		payFunc(addrName);
+	}
+}
+
+function payFunc(addr)
 {
 	var arr = [];
 	for(var i = 0,n = prodsArray.length;i < n;i++)
@@ -28,7 +66,44 @@ function payFunc()
 			arr.push(prodsArray[i]);
 		}
 	}
-	alert(arr.join(""));
+	if(arr.length != 0)
+	{
+		var xPos = $("#xPos").val();
+		var yPos = $("#yPos").val();
+		var busId = $("#busId").val();
+		var openId = $("#openId").val();
+		var name = $("#name").val();
+		var contactNum = $("#phonenum").val();
+		var postCode = $("#postCode").val();
+		var totalPrice = $("#totalPrice").html();
+		var prodJson = [];
+		for(var i = 0,n = arr.length;i < n;i++)
+		{
+			var obj = new ProductObj(arr[i].productId,arr[i].num,arr[i].productPrice);
+			prodJson.push(obj);
+		}
+		var productInfo = JSON.stringify(prodJson);
+		$.ajax({
+			url:"/micro/pay.do?method=payCart",
+			type:"POST",
+			data:"busId="+busId+"&openId="+openId+"&productInfo="+encodeURI(productInfo)+"&xPos="+xPos+"&yPos="+yPos+"&name="+encodeURI(name)+"&contactNum="+contactNum+"&addr="+encodeURI(addr)+"&postCode="+postCode+"&provId=&cityId=&districtId=&totalPrice="+totalPrice,
+			success:function(data)
+			{
+				if(!isNaN(data))
+				{
+					window.location.href = "/micro/product.do?method=payOrder&busId="+busId+"&orderId="+data+"&openId="+openId+"&name="+encodeURI(name);
+				}
+				else
+				{
+					alert(data);
+				}
+			}
+		});
+	}
+	else
+	{
+		alert("请先勾选要结算的产品");
+	}
 }
 
 function deleteProd()
@@ -45,7 +120,7 @@ function deleteProd()
  
 function edit()
 {
-	if( $("#edit").html()=="编辑")
+	if($("#edit").html()=="编辑")
 	{
 		for(var i=0;i<prodsArray.length;i++)
 		{
@@ -143,6 +218,7 @@ function qryCartProds(id, telephone)
 	    count = data.size;
 	    prodsNum=data.size;
 	    prodsArray=data.prods;
+	    var openId = $("#openId").val();
 	    $.each(data.prods, function(i, obj) {
 	    	content+="<li id='li"+obj.productId+"' class='block-item block-item-cart relative clearfix'>";
 	    	content+="<div class='check-container'>"; 
@@ -150,11 +226,11 @@ function qryCartProds(id, telephone)
 	    	content+="</span>"; 
 	    	content+="</div>"; 
 	    	content+="<div class='name-card name-card-3col clearfix'>"; 
-	    	content+="<a href='/micro/product.do?method=getProduct&productId="+obj.productId+"&busId=100&openId=${param.openid}' class='thumb'>"; 
+	    	content+="<a href='/micro/product.do?method=getProduct&productId="+obj.productId+"&busId=100&openId="+openId+"' class='thumb'>"; 
 	    	content+="<img src='"+obj.imgUrl+"'>"; 
 	    	content+="</a>"; 
 	    	content+="<div class='detail'>"; 
-	    	content+="<a href='/micro/product.do?method=getProduct&productId="+obj.productId+"&busId=100&openId=${param.openid}'>"; 
+	    	content+="<a href='/micro/product.do?method=getProduct&productId="+obj.productId+"&busId=100&openId="+openId+"'>"; 
 	    	content+="<h3 class='js-ellipsis' style='height: 32px; overflow: hidden;'>"; 
 	    	content+="<i>"; 
 	    	content+=obj.productName; 
