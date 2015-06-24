@@ -124,8 +124,12 @@ function edit()
 	{
 		for(var i=0;i<prodsArray.length;i++)
 		{
-			$("#tradeNumDiv"+prodsArray[i].productId).addClass("hide");
-			$("#editNum"+prodsArray[i].productId).removeClass("hide");
+			var prodId=prodsArray[i].productId;
+			$("#tradeNumDiv"+prodId).addClass("hide");
+			$("#editNum"+prodId).removeClass("hide");
+			var num=$("#tradeNum"+prodId).html();
+			$("#prodNum"+prodId).val(num);
+			 
 		}
 		$("#deleteProd").removeClass("hide");
 		$("#pay").addClass("hide");
