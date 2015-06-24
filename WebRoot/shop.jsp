@@ -52,7 +52,6 @@
   function toMyCart()
   {
 	  var url= "https://www.hbywzc.cn/micro/oauth.do?method=getCode&page=shopCart";
-	  alert(getCookie("openid"));
 	  var openid=getCookie("openid");
 	  if(openid=='' || openid==null)
 	  {
@@ -60,8 +59,7 @@
 		  encodeURL(url); 
 	  }else
 	  {
-		 // window.location.href="https://www.hbywzc.cn/micro/view/shop/shopCart.jsp?openid="+openid;
-		  window.location.href="http://localhost:7001/micro/view/shop/shopCart.jsp?openid="+openid;
+		  window.location.href="/micro/view/shop/shopCart.jsp?openid="+openid;
 	  }
   }
   
