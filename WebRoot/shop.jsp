@@ -794,7 +794,7 @@
           </div>
         </div>
         <div class="content-sidebar">
-          <a href="http://wap.koudaitong.com/v2/showcase/homepage?kdt_id=803178"
+          <a href="/micro/shop.jsp"
           class="link">
             <div class="sidebar-section shop-card">
               <div class="table-cell">
@@ -837,39 +837,19 @@
         style="background-color: #02813e;">
           <ul class="clearfix">
             <li>
-              <a href="http://wap.koudaitong.com/v2/home/13q1v5ag6" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FgoMDhfG936BFs3_HI83rWv7YgPb.jpg);
-              background-size: 50px 50px
-              ">
-              </a>
+              <a href="/micro/shop.jsp" title="店铺首页" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FgoMDhfG936BFs3_HI83rWv7YgPb.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="http://wap.koudaitong.com/v2/usercenter/136i551w3" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FloXBZIB_ZdrgWQ9RbL9_KII7vRp.jpg);
-              background-size: 50px 50px
-              ">
-              </a>
+              <a href="/micro/view/shop/user_center.jsp" title="查询订单" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FloXBZIB_ZdrgWQ9RbL9_KII7vRp.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="http://wap.koudaitong.com/v2/usercenter/136i551w3" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/29/FipGucD7DSfIDx8A-5MZhNShqCj6.jpg);
-              background-size: 50px 50px
-              ">
-              </a>
+              <a href="/micro/view/shop/user_center.jsp" title="会员中心" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/29/FipGucD7DSfIDx8A-5MZhNShqCj6.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="tel://4007366517" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FvYYLvzwv0CJGxbWSM-jdF2NcgxB.jpg);
-              background-size: 50px 50px
-              ">
-              </a>
+              <a href="tel://4007366517" title="呼叫客服" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FvYYLvzwv0CJGxbWSM-jdF2NcgxB.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="http://wap.koudaitong.com/v2/feature/oma5aeh1" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/28/Fmy18MTGsvgvsYbxrRvl47g6Vbzg.jpg);
-              background-size: 50px 50px
-              ">
-              </a>
+              <a href="http://wap.koudaitong.com/v2/feature/oma5aeh1" title="门店导航" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/28/Fmy18MTGsvgvsYbxrRvl47g6Vbzg.jpg);background-size: 50px 50px"></a>
             </li>
           </ul>
         </div>

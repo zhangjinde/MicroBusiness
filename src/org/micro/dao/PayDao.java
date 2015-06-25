@@ -19,11 +19,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class PayDao extends BaseDao
 {
 	@Transactional
-	public String addOrder(String busDetailId , String customerId , String telephone , String customerAddr , String productId , String productNum, String productPrice) throws QryException
+	public String addOrder(String busDetailId , String customerId , String telephone , String customerAddr , String productId , String productNum, String productPrice, String openId) throws QryException
 	{
 		String prefix = generateOrderIdPrefix();
-		String sql = "insert into order_t(order_id,bus_detail_id,customer_id,telephone,customer_address,order_price,create_date,expire_date,state_date,sts) values (?||MICRO_ORDER_SEQ.nextval,?,?,?,?,?,sysdate,sysdate+1,sysdate,'A')";
-		if(jdbcTemplate.update(sql, new Object[]{prefix,busDetailId,customerId,telephone,customerAddr,String.valueOf(Double.parseDouble(productNum)*Double.parseDouble(productPrice))}) > 0)
+		String sql = "insert into order_t(order_id,bus_detail_id,customer_id,telephone,customer_address,order_price,create_date,expire_date,state_date,sts,weixin_id) values (?||MICRO_ORDER_SEQ.nextval,?,?,?,?,?,sysdate,sysdate+1,sysdate,'A',?)";
+		if(jdbcTemplate.update(sql, new Object[]{prefix,busDetailId,customerId,telephone,customerAddr,String.valueOf(Double.parseDouble(productNum)*Double.parseDouble(productPrice)),openId}) > 0)
 		{
 			sql = "insert into order_detail_t(order_detail_id,order_id,product_id,product_num,create_date,state_date,sts) values(MICRO_ORDER_DET_SEQ.nextval,?||MICRO_ORDER_SEQ.currval,?,?,sysdate,sysdate,'A')";
 			if(jdbcTemplate.update(sql, new Object[]{prefix,productId,productNum})>0)
@@ -41,12 +41,12 @@ public class PayDao extends BaseDao
 	}
 	
 	@Transactional
-	public String addOrder(String busDetailId , String customerId , String telephone , String customerAddr , String productInfo , String totalPrice) throws QryException
+	public String addOrder(String busDetailId , String customerId , String telephone , String customerAddr , String productInfo , String totalPrice, String openId) throws QryException
 	{
 		String prefix = generateOrderIdPrefix();
 		JSONArray json = JSONArray.fromObject(productInfo);
-		String sql = "insert into order_t(order_id,bus_detail_id,customer_id,telephone,customer_address,order_price,create_date,expire_date,state_date,sts) values (?||MICRO_ORDER_SEQ.nextval,?,?,?,?,?,sysdate,sysdate+1,sysdate,'A')";
-		if(jdbcTemplate.update(sql, new Object[]{prefix,busDetailId,customerId,telephone,customerAddr,totalPrice}) > 0)
+		String sql = "insert into order_t(order_id,bus_detail_id,customer_id,telephone,customer_address,order_price,create_date,expire_date,state_date,sts,weixin_id) values (?||MICRO_ORDER_SEQ.nextval,?,?,?,?,?,sysdate,sysdate+1,sysdate,'A',?)";
+		if(jdbcTemplate.update(sql, new Object[]{prefix,busDetailId,customerId,telephone,customerAddr,totalPrice,openId}) > 0)
 		{
 			sql = "insert into order_flow_t(order_flow_id,order_id,order_flow_state,create_date,state_date,is_cur_state) values(MICRO_ORDER_FLOW_SEQ.nextval,?||MICRO_ORDER_SEQ.currval,'A',sysdate,sysdate,'A')";
 			if(jdbcTemplate.update(sql, new Object[]{prefix}) > 0)
@@ -191,6 +191,42 @@ public class PayDao extends BaseDao
 		{
 			return "failure";
 		}
+	}
+	
+	public List<Map<String,String>> qryOrderList(String orderType , String openId , int pageNum , int pageSize) throws QryException
+	{
+		String sql = "SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select a.order_id,a.order_price,a.sts from order_t a where a.sts = ? and a.weixin_id = ? order by a.state_date desc) A WHERE ROWNUM <= ?) WHERE RN >= ?";
+		ArrayList paramList = new ArrayList();
+		paramList.add(orderType);
+		paramList.add(openId);
+    	paramList.add(pageNum * pageSize);
+    	paramList.add((pageNum - 1) * pageSize + 1);
+    	return qryCenter.executeSqlByMapListWithTrans(sql, paramList);
+	}
+	
+	public List<Map<String,String>> qryOrderDetailInfo(String orderIds) throws QryException
+	{
+		if(ObjectCensor.isStrRegular(orderIds))
+		{
+			StringBuilder sb = new StringBuilder("select a.order_id,c.product_name,c.product_price,b.product_num,c.img_url from order_t a,order_detail_t b,product_t c where a.order_id = b.order_id and b.product_id = c.product_id and a.order_id in (");
+			sb.append(orderIds);
+			sb.append(")");
+			return qryCenter.executeSqlByMapListWithTrans(sb.toString() , new ArrayList());
+		}
+		else
+		{
+			return new ArrayList<Map<String,String>>();
+		}
+	}
+	
+	public String qryOrderListCnt(String orderType , String openId) throws QryException
+	{
+		String sql = "select count(*) total from order_t a where a.sts = ? and a.weixin_id = ?";
+		ArrayList paramList = new ArrayList();
+		paramList.add(orderType);
+		paramList.add(openId);
+		List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sql, paramList);
+		return StringUtil.getMapKeyVal(list.get(0), "total");
 	}
 	
 }

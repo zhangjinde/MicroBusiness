@@ -65,7 +65,7 @@ public class PayService
 					customerId = "";
 				}
 			}
-			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productId, productNum, productPrice);
+			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productId, productNum, productPrice, openId);
 		}
 		else
 		{
@@ -110,7 +110,7 @@ public class PayService
 					customerId = "";
 				}
 			}
-			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productInfo, totalPrice);
+			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productInfo, totalPrice, openId);
 		}
 		else
 		{
