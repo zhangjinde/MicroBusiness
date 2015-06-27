@@ -69,7 +69,7 @@ function payFunc(addr)
 			data = data.substring(1);
 			if(!isNaN(data))
 			{
-				window.location.href = "/micro/product.do?method=payOrder&busId="+busId+"&orderId="+orderId+"&openId="+openId+"&name="+encodeURI(name);
+				window.location.href = "/micro/product.do?method=payOrder&busId="+busId+"&orderId="+orderId+"&openId="+openId;
 			}
 			else
 			{

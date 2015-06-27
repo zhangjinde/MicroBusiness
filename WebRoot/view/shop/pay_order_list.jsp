@@ -99,6 +99,7 @@
 	<body class=" " onload="loaded()">
 		<input type="hidden" id="orderType" value="${param.orderType}" />
 		<input type="hidden" id="openId" value="${param.openId}" />
+		<input type="hidden" id="busId" value="${param.busId}" />
 		<div class="container" style="height:100%;width:100%">
 	        <div class="content">
 	        	<div id="order-list-container">

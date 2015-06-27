@@ -36,7 +36,7 @@
 				<div class="tabber  tabber-n3 tabber-double-11 clearfix">
 					<a class="active" href="/micro/view/shop/shopCart.jsp?openid=${param.openid}">购物车</a>
 				    <a class="" onclick="toOrderPage()" href="javascript:;">购物记录</a>
-				    <a class="" href="http://wap.koudaitong.com/v2/trade/record/backs?source=weixin11&amp;kdt_id=803178">我的返现</a>
+				    <a class="" href="/micro/view/shop/returnNowPage.jsp">我的返现</a>
 				</div>
 				<div id="cart-container" class="block block-order">
 					<div class="header js-list-header">
@@ -60,7 +60,7 @@
 		        <textarea id="footer-delay" style="display:none;">	&lt;div class="footer"&gt;
 					    &lt;div class="copyright"&gt;
 					    &lt;div class="ft-copyright"&gt;
-				    &lt;a href="http://m.youzan.com" target="_blank"&gt;华莱士提供技术支持&lt;/a&gt;
+				    &lt;a href="#" target="_blank"&gt;华莱士提供技术支持&lt;/a&gt;
 				&lt;/div&gt;
 					    &lt;/div&gt;
 					&lt;/div&gt;

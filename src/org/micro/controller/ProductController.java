@@ -59,11 +59,11 @@ public class ProductController
 	}
 	
 	@RequestMapping(params = "method=payOrder")
-	public ModelAndView payOrder(HttpServletRequest request , String busId , String orderId , String openId , String name)
+	public ModelAndView payOrder(HttpServletRequest request , String busId , String orderId , String openId)
 	{
 		ModelAndView model = new ModelAndView("view/shop/payPage");
 		try {
-			productService.payOrder(model, busId, orderId, name);
+			productService.payOrder(model, busId, orderId);
 		} catch (QryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

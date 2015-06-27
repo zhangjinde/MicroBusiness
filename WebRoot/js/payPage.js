@@ -25,6 +25,7 @@ function setAxis()
 			if(dataObj != null)
 			{
 				$("#busInfo").val(dataObj.busDetailId);
+				$("#busInstance").val(dataObj.busInstance);
 			}
 		}
 	});
@@ -253,3 +254,17 @@ $(".addrUpdateInfo").on('touchstart',function(){
 	  }
 	}, 0);
 });
+
+function getProds(productId)
+{
+	 var url="/micro/product.do?method=getProduct&productId="+productId+"&busId=100";
+	 var openId = $("#openId").val();
+	 if(openId=='' || openId==null)
+	 {
+		  encodeURL(url); 
+	 }
+	 else
+	 {
+	 	 window.location.href = url+"&openId="+openId;
+	 }
+}

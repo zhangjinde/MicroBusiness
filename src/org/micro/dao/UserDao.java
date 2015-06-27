@@ -157,8 +157,8 @@ public class UserDao extends BaseDao
 				sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
 				if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)
 				{
-					sql = "update order_t set telephone = ?,customer_address = ? where order_id = ?";
-					if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,orderId}) > 0)
+					sql = "update order_t set telephone = ?,customer_address = ?,customer_name = ? where order_id = ?";
+					if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,customerName,orderId}) > 0)
 					{
 						return "success";
 					}
@@ -189,8 +189,8 @@ public class UserDao extends BaseDao
 				sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
 				if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)
 				{
-					sql = "update order_t set telephone = ?,customer_address = ? where order_id = ?";
-					if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,orderId}) > 0)
+					sql = "update order_t set telephone = ?,customer_address = ?,customer_name = ? where order_id = ?";
+					if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,customerName,orderId}) > 0)
 					{
 						return "success";
 					}

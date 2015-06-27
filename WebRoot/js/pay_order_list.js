@@ -5,6 +5,7 @@ load_content = function(refresh, next_page) {
 	setTimeout(function() {
 		var orderType = $("#orderType").val();
 		var openId = $("#openId").val();
+		var busId = $("#busId").val();
 		if(next_page == null)
 		{
 			next_page = 1;
@@ -69,7 +70,7 @@ load_content = function(refresh, next_page) {
 					arr.push("<div class='opt-btn'>");
 					if(json.data[i].sts == 'A')
 					{
-						arr.push("<a class='btn btn-orange btn-in-order-list' href='javascript:;' onclick=payMoney('"+json.data[i].orderId+"')>付款</a>");
+						arr.push("<a class='btn btn-orange btn-in-order-list' href='/micro/product.do?method=payOrder&busId="+busId+"&orderId="+json.data[i].orderId+"&openId="+openId+"'>付款</a>");
 					}
 					else 
 					{
@@ -198,11 +199,6 @@ function loaded() {
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
 function cancelOrderFunc(orderId)
-{
-	
-}
-
-function payMoney(orderId)
 {
 	
 }

@@ -116,14 +116,14 @@
               </a>
             </li>
             <li>
-              <a href="/micro/view/shop/user_center.jsp" style="
+              <a href="/micro/view/shop/user_center.jsp?busId=100" style="
               background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FloXBZIB_ZdrgWQ9RbL9_KII7vRp.jpg);
               background-size: 50px 50px
               ">
               </a>
             </li>
             <li>
-              <a href="/micro/view/shop/user_center.jsp" style="
+              <a href="/micro/view/shop/user_center.jsp?busId=100" style="
               background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/29/FipGucD7DSfIDx8A-5MZhNShqCj6.jpg);
               background-size: 50px 50px
               ">
@@ -154,7 +154,7 @@
               target="_blank">
                 店铺主页
               </a>
-              <a href="/micro/view/shop/user_center.jsp"
+              <a href="/micro/view/shop/user_center.jsp?busId=100"
               target="_blank">
                 会员中心
               </a>

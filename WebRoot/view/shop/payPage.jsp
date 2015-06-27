@@ -92,11 +92,11 @@
                         <div class="js-goods-list block block-list block-border-top-none block-border-bottom-none">
                             <c:forEach items="${orderInfo.orderDetailList}" var="node">	
                             	<div class="block-item name-card name-card-3col clearfix block-sku-35857182">
-                                	<a href="#" class="thumb">
+                                	<a href="javascript:void(0)" onclick="getProds(${node.productId})" class="thumb">
                                     <img src="${node.imgUrl}" alt="${node.productName} ${node.productDesc}">
                                     </a>
                                     <div class="detail">
-                                        <a href="#"><h3>${node.productName} ${node.productDesc}</h3></a>
+                                        <a href="javascript:void(0)" onclick="getProds(${node.productId})"><h3>${node.productName} ${node.productDesc}</h3></a>
                                         <p class="c-gray ellipsis">
                                         </p>
                                         <p class="js-error c-orange hide"></p>
@@ -143,6 +143,7 @@
 			                         			</c:choose>
 			                         		</c:forEach>
 			                         	</select>
+			                         	<input type="hidden" id="busInstance" value="" />
 	                                 </div>
 	                                 <span class="arrow"></span>
 	                                </div>
@@ -182,6 +183,10 @@
                       </textarea>
                       <div class="footer">
                        <div class="copyright">
+                       	   <div class="ft-links">
+						   	  <a href="/micro/shop.jsp" target="_blank">店铺主页</a>
+							  <a href="/micro/view/shop/user_center.jsp?busId=100" target="_blank">会员中心</a>
+						   </div>
                            <div class="ft-copyright">
                               <a href="#" target="_blank">华莱士提供技术支持</a>
                           </div>

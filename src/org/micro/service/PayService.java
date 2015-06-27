@@ -28,7 +28,7 @@ public class PayService
 	@Autowired
 	public PayDao payDao;
 	
-	public String addOrder(String busId , String openId , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String addr , String postCode , String provId , String cityId , String districtId) throws QryException
+	public String addOrder(String busId , String openId , String productId , String productNum , String productPrice , String xPos , String yPos , String name , String contactNum , String addr , String postCode , String provId , String cityId , String districtId) throws Exception
 	{
 		if(ObjectCensor.isStrRegular(busId , openId , productId , productNum))
 		{
@@ -65,7 +65,7 @@ public class PayService
 					customerId = "";
 				}
 			}
-			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productId, productNum, productPrice, openId);
+			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productId, productNum, productPrice, openId, name);
 		}
 		else
 		{
@@ -73,7 +73,7 @@ public class PayService
 		}
 	}
 	
-	public String addOrder(String busId , String openId , String productInfo , String xPos , String yPos , String name , String contactNum , String addr , String postCode , String provId , String cityId , String districtId , String totalPrice) throws QryException
+	public String addOrder(String busId , String openId , String productInfo , String xPos , String yPos , String name , String contactNum , String addr , String postCode , String provId , String cityId , String districtId , String totalPrice) throws Exception
 	{
 		if(ObjectCensor.isStrRegular(busId , openId , productInfo))
 		{
@@ -110,7 +110,7 @@ public class PayService
 					customerId = "";
 				}
 			}
-			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productInfo, totalPrice, openId);
+			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productInfo, totalPrice, openId, name);
 		}
 		else
 		{
@@ -138,6 +138,10 @@ public class PayService
 					dataMap = map;
 					dataFloat = dist;
 				}
+			}
+			if(!ObjectCensor.checkObjectIsNull(dataMap))
+			{
+				dataMap.put("busInstance", String.valueOf(dataFloat));
 			}
 			return dataMap;
 		}

@@ -26,13 +26,13 @@
 					</div>
 					<div class="order-related">
 						<div class="block block-list list-vertical">
-							<a class="block-item link clearfix icon-order" href="<%=path %>/view/shop/pay_order_list.jsp?orderType=F" target="_blank"><p class="title-info c-black font-size-14">全部订单</p></a>
+							<a class="block-item link clearfix icon-order" href="<%=path %>/view/shop/pay_order_list.jsp?orderType=F&busId=${param.busId}" target="_blank"><p class="title-info c-black font-size-14">全部订单</p></a>
 						</div>
 						<div class="block block-list list-vertical">
-							<a class="block-item link clearfix icon-gift" href="<%=path %>/view/shop/pay_order_list.jsp?orderType=A" target="_blank"><p class="title-info c-black font-size-14">待付款</p></a>
-							<a class="block-item link clearfix icon-coupon"	href="<%=path %>/view/shop/pay_order_list.jsp?orderType=R" target="_blank"><p class="title-info c-black font-size-14">待发货</p></a>
-							<a class="block-item link clearfix icon-promocode" href="<%=path %>/view/shop/pay_order_list.jsp?orderType=H" target="_blank"><p class="title-info c-black font-size-14">已发货</p></a>
-							<a class="block-item link clearfix icon-present" href="<%=path %>/view/shop/pay_order_list.jsp?orderType=O" target="_blank"><p class="title-info c-black font-size-14">已完成</p></a>
+							<a class="block-item link clearfix icon-gift" href="<%=path %>/view/shop/pay_order_list.jsp?orderType=A&busId=${param.busId}" target="_blank"><p class="title-info c-black font-size-14">待付款</p></a>
+							<a class="block-item link clearfix icon-coupon"	href="<%=path %>/view/shop/pay_order_list.jsp?orderType=R&busId=${param.busId}" target="_blank"><p class="title-info c-black font-size-14">待发货</p></a>
+							<a class="block-item link clearfix icon-promocode" href="<%=path %>/view/shop/pay_order_list.jsp?orderType=H&busId=${param.busId}" target="_blank"><p class="title-info c-black font-size-14">已发货</p></a>
+							<a class="block-item link clearfix icon-present" href="<%=path %>/view/shop/pay_order_list.jsp?orderType=O&busId=${param.busId}" target="_blank"><p class="title-info c-black font-size-14">已完成</p></a>
 						</div>
 					</div>
 				</div>
@@ -42,10 +42,10 @@
 							<a href="/micro/shop.jsp" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FgoMDhfG936BFs3_HI83rWv7YgPb.jpg); background-size: 50px 50px"></a>
 						</li>
 						<li>
-							<a href="/micro/view/shop/user_center.jsp" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FloXBZIB_ZdrgWQ9RbL9_KII7vRp.jpg); background-size: 50px 50px"></a>
+							<a href="/micro/view/shop/user_center.jsp?busId=${param.busId}" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FloXBZIB_ZdrgWQ9RbL9_KII7vRp.jpg); background-size: 50px 50px"></a>
 						</li>
 						<li>
-							<a href="/micro/view/shop/user_center.jsp" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/29/FipGucD7DSfIDx8A-5MZhNShqCj6.jpg); background-size: 50px 50px"></a>
+							<a href="/micro/view/shop/user_center.jsp?busId=${param.busId}" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/29/FipGucD7DSfIDx8A-5MZhNShqCj6.jpg); background-size: 50px 50px"></a>
 						</li>
 						<li>
 							<a href="tel://4007366517" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FvYYLvzwv0CJGxbWSM-jdF2NcgxB.jpg); background-size: 50px 50px"></a>

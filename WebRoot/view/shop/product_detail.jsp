@@ -40,14 +40,14 @@
 	</head>
 	<body class=" body-fixed-bottom">
 		<div class="container wap-goods internal-purchase">
-			<div class="header">
+			<div class="header" style="display:none;">
 				<div class="js-mp-info share-mp-info ">
-					<a class="page-mp-info" href="http://wap.koudaitong.com/v2/showcase/homepage?kdt_id=1836140">
+					<a class="page-mp-info" href="#">
 						<img class="mp-image" width="24" height="24" src="/pub/img/shop2.png">
-						<i class="mp-nickname"> XXXXX</i> </a>
+						<i class="mp-nickname">XXXXX</i> </a>
 					<div class="links">
 						<span class="js-search mp-search search-icon"></span>
-						<a class="mp-homepage" href="http://wap.koudaitong.com/v2/showcase/usercenter?kdt_id=1836140">我的记录</a>
+						<a class="mp-homepage" href="#">我的记录</a>
 					</div>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 						<div class="sku-detail-inner adv-opts-inner">
 				            <dl>
 								<dt style="margin-top:10px">
-									数量：<%=openId %>
+									数量：
 								</dt>
 								<dd>
 									<div class="num_wrap">
@@ -120,9 +120,9 @@
 					<div class="js-store-info">
 						<div class="block block-list goods-store">
 							<div class="custom-store block-item ">
-								<a class="custom-store-link clearfix" href="/view/shop/main.html">
+								<a class="custom-store-link clearfix" href="<%=path %>/shop.jsp">
 									<div class="custom-store-img"></div>
-									<div class="custom-store-name">XXXXX</div>
+									<div class="custom-store-name">华莱士</div>
 									<span class="custom-store-enter">进入店铺</span>
 								</a>
 							</div>
@@ -219,11 +219,11 @@
 				<div class="footer">
 					<div class="copyright">
 						<div class="ft-links">
-							<a href="#" target="_blank">店铺主页</a>
-							<a href="#" target="_blank">会员中心</a>
+							<a href="/micro/shop.jsp" target="_blank">店铺主页</a>
+							<a href="/micro/view/shop/user_center.jsp?busId=100" target="_blank">会员中心</a>
 						</div>
 						<div class="ft-copyright" style="background-image:url()">
-							<a href="#" target="_blank">华莱士提供技术支持</a>
+							<a href="/micro/shop.jsp" target="_blank">华莱士提供技术支持</a>
 						</div>
 					</div>
 				</div>
@@ -261,9 +261,10 @@
 				<a class="tag tag-clear c-gray-darker hide" href="javascript:;">清除历史搜索</a>
 			</div>
 		</div>
-		<div id="right-icon" class="js-right-icon hide">
-			<div class="js-right-icon-container right-icon-container clearfix">
-				<a id="global-cart" href="/micro/cart.do?method=gotoShopCart&openid=${param.openId}&busId=${param.busId}" class="icon">
+		<div id="right-icon" class="js-right-icon no-text <c:if test="${cartFlag == 'N'}">hide</c:if>">
+			<div class="js-right-icon-container right-icon-container clearfix" style="width: 50px;">
+				<a id="global-cart" href="/micro/cart.do?method=gotoShopCart&openid=${param.openId}&busId=${param.busId}" 
+          class="icon" style="background-image: url(http://kdt-static.qiniucdn.com//v2/image/setting/shopping-cart/2x/s2.png);">
 					<p class="icon-img"></p>
 					<p class="icon-txt">
 						购物车

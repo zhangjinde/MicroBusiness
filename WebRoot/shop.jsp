@@ -20,17 +20,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/micro/pub/css/base.css">
     <link rel="stylesheet" href="/micro/pub/css/showcase.css">
-    <script type="text/javascript" src="/micro/pub/js/jquery-1.11.3.min.js">
-    </script>
-    <script type="text/javascript" src="/micro/pub/js/jquery.cookie.js">
-    </script>
-    <script type="text/javascript" src="/micro/pub/js/jquery.json.min.js">
-    </script>
-    <script type="text/javascript" src="/micro/js/global.js">
-   
-    </script>
+    <script type="text/javascript" src="/micro/pub/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/micro/pub/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/micro/pub/js/jquery.json.min.js"></script>
+    <script type="text/javascript" src="/micro/js/global.js"></script>
   <script type="text/javascript">
-  
   init();
   function init()
   {
@@ -59,7 +53,7 @@
 		  encodeURL(url); 
 	  }else
 	  {
-		  window.location.href="/micro/view/shop/shopCart.jsp?openid="+openid;
+		  window.location.href="/micro/view/shop/user_center.jsp?busId=100";
 	  }
   }
   
@@ -840,10 +834,10 @@
               <a href="/micro/shop.jsp" title="店铺首页" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FgoMDhfG936BFs3_HI83rWv7YgPb.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="/micro/view/shop/user_center.jsp" title="查询订单" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FloXBZIB_ZdrgWQ9RbL9_KII7vRp.jpg);background-size: 50px 50px"></a>
+              <a href="/micro/view/shop/user_center.jsp?busId=100" title="查询订单" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FloXBZIB_ZdrgWQ9RbL9_KII7vRp.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="/micro/view/shop/user_center.jsp" title="会员中心" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/29/FipGucD7DSfIDx8A-5MZhNShqCj6.jpg);background-size: 50px 50px"></a>
+              <a href="/micro/view/shop/user_center.jsp?busId=100" title="会员中心" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/29/FipGucD7DSfIDx8A-5MZhNShqCj6.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
               <a href="tel://4007366517" title="呼叫客服" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FvYYLvzwv0CJGxbWSM-jdF2NcgxB.jpg);background-size: 50px 50px"></a>
@@ -893,14 +887,6 @@
             </p>
             <p class="icon-txt">
               购物车
-            </p>
-          </a>
-          <a id="global-wish" href="http://trade.koudaitong.com/wxpay/wish?kdt_id=803178"
-          class="icon">
-            <p class="icon-img">
-            </p>
-            <p class="icon-txt">
-              心愿单
             </p>
           </a>
           <a class="js-show-more-btn icon show-more-btn hide">

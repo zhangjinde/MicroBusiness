@@ -24,9 +24,9 @@
                 <div class="content" style="min-height: 667px;">
                     
 <div class="tabber  tabber-n3 tabber-double-11 clearfix">
-	<a class="" href="/view/shop/gwc.html">购物车</a>
+	<a class="" href="/micro/view/shop/shopCart.jsp?openid=${param.openid}">购物车</a>
     <a class="active" href="/micro/cart.do?method=getOrder&phone=18907181259">购物记录</a>
-    <a class="" href="">我的返现</a>
+    <a class="" href="/micro/view/shop/returnNowPage.jsp">我的返现</a>
 </div>
                         <p style="height:10px;">&nbsp;</p>
                 <div id="order-list-container">
@@ -72,7 +72,7 @@
           	<div class="footer">
 	    <div class="copyright">
 	    <div class="ft-copyright">
-    <a href="http://youzan.com/" target="_blank">有赞微商城提供技术支持</a>
+    <a href="/micro/shop.jsp" target="_blank">有赞微商城提供技术支持</a>
 </div>
 	    </div>
 	</div>
