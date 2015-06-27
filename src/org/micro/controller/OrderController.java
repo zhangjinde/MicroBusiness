@@ -47,7 +47,27 @@ public class OrderController
 		try{
 			response.setCharacterEncoding("utf-8");
 			out = response.getWriter();
-			String retVal = null;
+			String retVal = orderService.cancelOrder(orderId);
+			out.write(retVal);
+		}catch(Exception err){
+			err.printStackTrace();
+		}
+		finally{
+			if(out != null)
+			{
+				out.close();
+			}
+		}
+	}
+	
+	@RequestMapping(params = "method=payOrder")
+	public void payOrder(HttpServletResponse response , String orderId , String busDetailId)
+	{
+		PrintWriter out = null;
+		try{
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+			String retVal = orderService.payOrder(orderId, busDetailId);
 			out.write(retVal);
 		}catch(Exception err){
 			err.printStackTrace();

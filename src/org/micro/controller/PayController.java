@@ -68,6 +68,30 @@ public class PayController
 		}
 	}
 	
+	@RequestMapping(params = "method=getNewBusDistance")
+	public void getNewBusDistance(HttpServletResponse response , String xPos , String yPos , String busDetailId)
+	{
+		PrintWriter out = null;
+		try
+		{
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+			String retVal = payService.getNewBusDistance(busDetailId, xPos, yPos);
+			out.write(retVal);
+		}
+		catch(Exception err)
+		{
+			err.printStackTrace();
+		}
+		finally
+		{
+			if(out != null)
+			{
+				out.close();
+			}
+		}
+	}
+	
 	@RequestMapping(params = "method=getBusinessAxis")
 	public void getBusinessAxis(HttpServletResponse response , String xPos , String yPos , String busId)
 	{

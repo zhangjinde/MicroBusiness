@@ -3,7 +3,29 @@ var curCustDetId = null;
 $(document).ready(function(){
 	var custAddr = $("#custAddr").html();
 	getPlaceAxisByAddr(custAddr,"setAxis");
-
+	$("#busInfo").change(function(){
+		var busDetailId = $(this).val();
+		var xPos = $("#xPos").val();
+		var yPos = $("#yPos").val();
+		$.ajax({
+			url:"/micro/pay.do?method=getNewBusDistance",
+			type:"POST",
+			data:"busDetailId="+busDetailId+"&xPos="+xPos+"&yPos="+yPos,
+			async:false,
+			success:function(data){
+				var dataObj = null;
+				try{
+					dataObj = eval("("+data+")");
+				}catch(e){
+					alert(data);
+				}
+				if(dataObj != null)
+				{
+					$("#busInstance").val(dataObj.busInstance);
+				}
+			}
+		});
+	});
 });
 
 function setAxis()
@@ -234,6 +256,35 @@ $(".addrInfo").on('touchstart',function(){
 		src:"#receiveAddrForm"
 	  }
 	}, 0);
+});
+
+$("#payOrderBtn").on('touchstart',function(){
+	var busInstance = $("#busInstance").val();
+	if(parseFloat(busInstance)<=10000)
+	{
+		var orderId = $("#orderId").val();
+		var busInfo = $("#busInfo").val();
+		$.ajax({
+			url:"/micro/order.do?method=payOrder",
+			type:"POST",
+			data:"orderId="+orderId+"&busDetailId="+busInfo,
+			success:function(data){
+				if(data == "success")
+				{
+					alert("订单已提交成功");
+					window.location.href = "/micro/view/shop/user_center.jsp?busId=100";
+				}
+				else
+				{
+					alert("订单提交失败");
+				}
+			}
+		})
+	}
+	else
+	{
+		alert("订单提交失败:您收货的地址离我们的门店太远啦")
+	}
 });
 
 $(".addrUpdateInfo").on('touchstart',function(){

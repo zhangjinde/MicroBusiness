@@ -19,4 +19,12 @@ public class BussinessDao extends BaseDao
 		return qryCenter.executeSqlByMapListWithTrans(sql, paramList);
 	}
 	
+	public List<Map<String,String>> getBusDetailInfo(String busDetailId) throws QryException
+	{
+		String sql = "select * from business_detail_t where bus_detail_id = ? and sts = 'A'";
+		ArrayList paramList = new ArrayList();
+		paramList.add(busDetailId);
+		return qryCenter.executeSqlByMapListWithTrans(sql, paramList);
+	}
+	
 }

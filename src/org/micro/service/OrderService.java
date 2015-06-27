@@ -72,7 +72,12 @@ public class OrderService
 	
 	public String cancelOrder(String orderId)
 	{
-		return "";
+		return payDao.cancelOrder(orderId);
+	}
+	
+	public String payOrder(String orderId , String busDetailId)
+	{
+		return payDao.payOrder(orderId , busDetailId);
 	}
 	
 }

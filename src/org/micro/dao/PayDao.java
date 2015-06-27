@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -239,6 +241,32 @@ public class PayDao extends BaseDao
 		}
 		List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sb.toString(), paramList);
 		return StringUtil.getMapKeyVal(list.get(0), "total");
+	}
+	
+	public String cancelOrder(String orderId)
+	{
+		String sql = "update order_t set sts = 'P',state_date = sysdate where order_id = ?";
+		if(jdbcTemplate.update(sql,new Object[]{orderId}) > 0)
+		{
+			return "success";
+		}
+		else
+		{
+			return "failure";
+		}
+	}
+	
+	public String payOrder(String orderId , String busDetailId)
+	{
+		String sql = "update order_t set sts = 'R',state_date = sysdate,bus_detail_id = ? where order_id = ?";
+		if(jdbcTemplate.update(sql,new Object[]{busDetailId,orderId}) > 0)
+		{
+			return "success";
+		}
+		else
+		{
+			return "failure";
+		}
 	}
 	
 }

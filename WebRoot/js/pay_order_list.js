@@ -39,7 +39,7 @@ load_content = function(refresh, next_page) {
 					arr.push("<li class='block block-order animated row'>");
 					arr.push("<div class='header'>");
 					arr.push("<span class='font-size-12'>订单号："+json.data[i].orderId+"</span>");
-					if(json.data[i].sts != 'O')
+					if(json.data[i].sts != 'O' && json.data[i].sts != 'P')
 					{
 						arr.push("<a class='js-cancel-order pull-right font-size-12 c-blue' href='javascript:;' onclick=cancelOrderFunc('"+json.data[i].orderId+"')>取消</a>");
 					}
@@ -86,6 +86,10 @@ load_content = function(refresh, next_page) {
 						else if(json.data[i].sts == 'O')
 						{
 							textCont = "已完成";
+						}
+						else if(json.data[i].sts == 'P')
+						{
+							textCont = "已取消";
 						}
 						arr.push("<span style=''>"+textCont+"</span>");
 					}			
@@ -200,7 +204,22 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, fal
 
 function cancelOrderFunc(orderId)
 {
-	
+	$.ajax({
+		url:"/micro/order.do?method=cancelOrder",
+		type:"POST",
+		data:"orderId="+orderId,
+		success:function(data){
+			if(data == "success")
+			{
+				alert("订单已取消");
+				window.location.reload();
+			}
+			else
+			{
+				alert("订单取消失败");
+			}
+		}
+	})
 }
 
 function getProds(productId)

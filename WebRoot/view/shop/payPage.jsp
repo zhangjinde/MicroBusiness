@@ -115,7 +115,7 @@
                          <div class="bottom">总价<span class="c-orange pull-right">￥${orderInfo.orderPrice}</span></div>
                      </div>
                         <div class="js-step-topay">
-                            <div class="js-used-coupon block" style="">
+                            <div class="js-used-coupon block" style="display:none">
                             	<div class="block-item order-coupon relative">
 	                                <h4 class="block-item-title">优惠</h4>
 	                                <div class="coupon-info-container">
@@ -156,7 +156,7 @@
 		                            需付：￥${orderInfo.orderPrice}
 		                        </strong></div>
 		                    </div>
-		                    <div class="action-container" id="confirm-pay-way-opts"><div style="margin-bottom: 10px;"><button type="button" data-pay-type="umpay" class="btn-pay btn btn-block btn-large btn-umpay  btn-green">货到付款</button></div><div style="margin-bottom: 10px;display:none"><button type="button" data-pay-type="other" class="btn-pay btn btn-block btn-large btn-other  btn-white">其他支付方式</button></div></div>
+		                    <div class="action-container" id="confirm-pay-way-opts"><div style="margin-bottom: 10px;"><button type="button" id="payOrderBtn" data-pay-type="umpay" class="btn-pay btn btn-block btn-large btn-umpay  btn-green">货到付款</button></div><div style="margin-bottom: 10px;display:none"><button type="button" data-pay-type="other" class="btn-pay btn btn-block btn-large btn-other  btn-white">其他支付方式</button></div></div>
 		                    <div class="action-container hide" id="get-present-btn"></div>
                     		<div class="center action-tip js-pay-tip">支付完成后，如需退换货请及时联系卖家</div>
                          </div>

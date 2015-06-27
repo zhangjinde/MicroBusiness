@@ -158,6 +158,33 @@ public class PayService
 		}
 	}
 	
+	public String getNewBusDistance(String busDetailId , String xPos , String yPos) throws QryException
+	{
+		if(ObjectCensor.isStrRegular(busDetailId , xPos , yPos) && StringUtil.checkStringIsNum(xPos) && StringUtil.checkStringIsNum(yPos))
+		{
+			List<Map<String,String>> list = businessDao.getBusDetailInfo(busDetailId);
+			if(ObjectCensor.checkListIsNull(list))
+			{
+				Map<String,String> map = list.get(0);
+				double newLong = Double.parseDouble(StringUtil.getMapKeyVal(map, "busLongitude"));
+				double newLat = Double.parseDouble(StringUtil.getMapKeyVal(map, "busLatitude"));
+				double xPosFloat = Double.parseDouble(yPos);
+				double yPosFloat = Double.parseDouble(xPos);
+				double dist = Math.abs(Rad.GetDistance(newLong, newLat, xPosFloat, yPosFloat));
+				map.put("busInstance", String.valueOf(dist));
+				return JSONObject.fromObject(map).toString();
+			}
+			else
+			{
+				return "商户信息有误";
+			}
+		}
+		else
+		{
+			return "参数有误:请核实后重新尝试";
+		}
+	}
+	
 	public String setOrderAddr(String customerId , String customerDetailId , String orderId) throws QryException
 	{
 		if(ObjectCensor.isStrRegular(customerId , customerDetailId , orderId) && StringUtil.checkStringIsNum(customerId) && StringUtil.checkStringIsNum(customerDetailId) && StringUtil.checkStringIsNum(orderId))
