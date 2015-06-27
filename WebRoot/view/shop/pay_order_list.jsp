@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
-	String openId =(String) request.getAttribute("openid");
+	String openId =(String) request.getParameter("openId");
 %>
 <html class="no-js " lang="zh-CN">
 	<head>
@@ -29,63 +29,96 @@
 	    		<title>已完成</title>
 	    	</c:when>
 	    </c:choose>
-	    <script type="text/javascript" src="<%=path %>/pub/js/jquery-1.11.3.min.js">
+	    <script type="text/javascript" src="<%=path %>/pub/js/jquery-1.11.3.min.js"></script>
 	    <script type="text/javascript" src="<%=path %>/js/global.js"></script>
+	    <script type="text/javascript" src="<%=path %>/pub/js/iscroll-probe.js"></script>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	    <link rel="stylesheet" href="<%=path %>/pub/css/base_2ced031129.css" />
 		<link rel="stylesheet" href="<%=path %>/pub/css/order_list_50b8447040.css" />
+		<style type="text/css">
+			#wrapper {
+				position: absolute;
+				z-index: 1;
+				top: 0px;
+				bottom: 0px;
+				left:9999px; 
+				width: 100%;
+				overflow: hidden;
+			}
+			#scroller {
+				position: absolute;
+				z-index: 1;
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
+				width: 100%;
+				-webkit-transform: translateZ(0);
+				-moz-transform: translateZ(0);
+				-ms-transform: translateZ(0);
+				-o-transform: translateZ(0);
+				transform: translateZ(0);
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				-webkit-text-size-adjust: none;
+				-moz-text-size-adjust: none;
+				-ms-text-size-adjust: none;
+				-o-text-size-adjust: none;
+				text-size-adjust: none;
+			}
+			#scroller ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				text-align: left;
+			}
+			#scroller li {
+				padding: 0 10px;
+				border-bottom: 1px solid #ccc;
+				border-top: 1px solid #fff;
+				background-color: #fafafa;
+				font-size: 14px;
+			}
+			.pullUpLabel {color:#999}
+			.pullUp {background:#fff;height:40px;line-height:40px;font-weight:bold;font-size:0.8em;color:#888}
+			.pullUp .pullUpIcon {display:block;float:left;opacity:0.4;width:40px;height:40px;background:url(<%=path %>/pub/img/pull_to_refresh.png) 0 0 no-repeat;-webkit-background-size:40px 80px;-ms-background-size:40px 80px; background-size:40px 80px;-webkit-transition-property:-webkit-transform;-ms-transition-property:-webkit-transform;-webkit-transition-duration:250ms;-ms-transition-duration:250ms}
+			.pullUp .pullUpIcon  {-webkit-transform:rotate(-180deg) translateZ(0);-ms-transform:rotate(-180deg) translateZ(0)}
+			.pullUp.flip .pullUpIcon {-webkit-transform:rotate(0deg) translateZ(0);-ms-transform:rotate(0deg) translateZ(0)}
+			.pullUp.loading .pullUpIcon {background-position:0 100%;-webkit-transform:rotate(0deg) translateZ(0);-ms-transform:rotate(0deg) translateZ(0);-webkit-transition-duration:0ms;-ms-transition-duration:0ms;-webkit-animation-name:loading;-ms-animation-name:loading;-webkit-animation-duration:1s;-ms-animation-duration:1s;-webkit-animation-iteration-count:infinite;-ms-animation-iteration-count:infinite;-webkit-animation-timing-function:linear;-ms-animation-timing-function:linear}
+			@-webkit-keyframes loading {
+				from {-webkit-transform:rotate(0deg) translateZ(0)}
+				to {-webkit-transform:rotate(360deg) translateZ(0)}
+			}
+			@-ms-keyframes loading {
+				from {-ms-transform:rotate(0deg) translateZ(0)}
+				to {-ms-transform:rotate(360deg) translateZ(0)}
+			}
+		</style>
 	</head>
-	<body class=" ">
+	<body class=" " onload="loaded()">
 		<input type="hidden" id="orderType" value="${param.orderType}" />
-		<input type="hidden" id="openId" value="" />
-		<div class="container ">
-	        <div class="content" style="min-height: 308px;">
+		<input type="hidden" id="openId" value="${param.openId}" />
+		<div class="container" style="height:100%;width:100%">
+	        <div class="content">
 	        	<div id="order-list-container">
-					<div class="js-list b-list">
-						<li class="block block-order animated">
-							<div class="header">
-    							<span class="font-size-12">订单号：E20150624164843067399623</span>
-    							<a class="js-cancel-order pull-right font-size-12 c-blue" href="javascript:;">取消</a>
+	        		<div id="wrapper" style="min-height:308px;">
+						<div id="scroller">
+							<ul></ul>
+							<div class="pullUp" style="text-align:center;position:relative;"></div>
+							<div class="js-footer" style="padding:0 0;margin:0 auto;height:80px">
+								<div class="footer">
+									<div class="copyright">
+										<div class="ft-copyright">
+											华莱士提供技术支持
+										</div>
+									</div>
+								</div>
 							</div>
-							<hr class="margin-0 left-10">
-							<div class="block block-list block-border-top-none block-border-bottom-none">
-    							<div class="block-item name-card name-card-3col clearfix">
-							        <a href="http://trade.koudaitong.com/wxpay/pay?order_no=E20150624164843067399623&amp;kdt_id=803178" class="thumb">
-							            <img src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FtvEyKV5PcFXijpcr29VW6n5OvIz.jpg!100x100.jpg">
-							        </a>
-							        <div class="detail">
-							            <a href="http://trade.koudaitong.com/wxpay/pay?order_no=E20150624164843067399623&amp;kdt_id=803178"><h3>鳕鱼堡+上校鸡块（5块）+香辣鸡翅（2块）</h3></a>
-							        </div>
-							        <div class="right-col">
-							            <div class="price">￥<span>18.00</span></div>
-							            <div class="num">
-							                ×<span class="num-txt">1</span>
-							            </div>
-							        </div>
-							    </div>
-							</div>
-							<hr class="margin-0 left-10">
-							<div class="bottom">
-							    总价：<span class="c-orange">￥18.00</span>
-							    <div class="opt-btn">
-							        <a class="btn btn-orange btn-in-order-list" href="http://trade.koudaitong.com/wxpay/pay?order_no=E20150624164843067399623&amp;kdt_id=803178">付款</a>
-							    </div>
-							</div>
-						</li>
+						</div>
 					</div>
 				</div>
     		</div>
-            <div class="footer">
-            	<div class="copyright">
-                	<div class="ft-links">
-                        <a href="/micro/shop.jsp" target="_blank">店铺主页</a>
-                        <a href="/micro/view/shop/user_center.jsp" target="_blank">会员中心</a>
-                    </div>
-                    <div class="ft-copyright">
-    					<a href="http://m.youzan.com" target="_blank">华莱士提供技术支持</a>
-					</div>
-            	</div>
-        	</div>
     	</div>
     	<script language="javascript">
     		$(document).ready(function(){

@@ -54,8 +54,8 @@ public class OrderService
 					jsonArr.add(obj);
 				}
 				json.put("data", jsonArr);
-				String count = payDao.qryOrderListCnt(orderType, openId);
-				json.put("count", count);
+//				String count = payDao.qryOrderListCnt(orderType, openId);
+//				json.put("count", count);
 			}
 			else
 			{
