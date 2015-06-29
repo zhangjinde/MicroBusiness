@@ -25,6 +25,7 @@
 	   	<script src="<%=path %>/js/location.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="<%=path %>/pub/css/magnific-popup.css" />
 		<script src="<%=path %>/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
+	   	<script src="<%=path %>/pub/js/util.js" type="text/javascript"></script>
 	  	<link rel="stylesheet" href="<%=path %>/pub/css/base_2ced031129.css" />
 	    <link rel="stylesheet" href="<%=path %>/pub/css/order_list_50b8447040.css" />
 	    <link rel="stylesheet" href="<%=path %>/pub/css/trade_626cf27050.css" />

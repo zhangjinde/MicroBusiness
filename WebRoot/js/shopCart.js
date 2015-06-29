@@ -1,4 +1,4 @@
-getLocation();
+﻿getLocation();
 
 var ProductObj = function(productId , productNum , productPrice){
 	this.productId = productId;
@@ -27,31 +27,38 @@ var prodsArray;
 
 function addOrder()
 {
-	var addr = $("#address").val();
-	if(addr != "")
+	if(isWorkRange())
 	{
-		var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
-		$.ajax({
-			type: "GET", 
-			dataType: "jsonp", 
-			url: url, 
-			async:false,
-			success: function (json) { 
-				if (json == null || typeof (json) == "undefined") { 
-					return; 
-				} 
-				if (json.status != "0") { 
-					return; 
-				} 
-				setPlaceAxis(json.result.location);
-				payFunc(addr);
-			}
-		}); 
+		var addr = $("#address").val();
+		if(addr != "")
+		{
+			var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
+			$.ajax({
+				type: "GET", 
+				dataType: "jsonp", 
+				url: url, 
+				async:false,
+				success: function (json) { 
+					if (json == null || typeof (json) == "undefined") { 
+						return; 
+					} 
+					if (json.status != "0") { 
+						return; 
+					} 
+					setPlaceAxis(json.result.location);
+					payFunc(addr);
+				}
+			}); 
+		}
+		else
+		{
+			var addrName = $("#addrName").html();
+			payFunc(addrName);
+		}
 	}
 	else
 	{
-		var addrName = $("#addrName").html();
-		payFunc(addrName);
+		alert("当前时间不在订餐时段内(11:00:00~18:00:00)!");
 	}
 }
 

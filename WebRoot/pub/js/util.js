@@ -35,3 +35,18 @@ function areaChange(obj,flag,win)
 		}
 	});
 }
+
+function isWorkRange()
+{
+	var startDate = 11;
+  	var endDate = 18;
+  	var nowDate = new Date();
+  	if(nowDate.getHours() >= startDate && nowDate.getHours() <= endDate)
+  	{
+  		return true;
+  	}
+  	else
+  	{
+  		return false;
+  	}
+}
