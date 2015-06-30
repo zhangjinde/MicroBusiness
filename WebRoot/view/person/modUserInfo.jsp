@@ -19,7 +19,7 @@
 					$("#admin_public_editinfo_form_realname").formValidator({onShow:"请输入真实姓名",onFocus:"真实姓名应该为2-20位之间"}).inputValidator({min:2,max:20,empty:{leftEmpty:false,rightEmpty:false,emptyError:"姓名两边不能有空格"},onError:"真实姓名应该为2-20位之间"});
 				})
 				function adminPublicEditinfoFormSubmit(){
-					$.post('/login.do?method=updateUserInfo', $("#admin_public_editinfo_form").serialize(), function(res){
+					$.post('/micro/login.do?method=updateUserInfo', $("#admin_public_editinfo_form").serialize(), function(res){
 						var obj = eval("("+res+")");
 						if(!obj.status){
 							$.messager.alert('提示信息', obj.info, 'error');
@@ -40,7 +40,7 @@
 					</tr>
 					<tr>
 						<td>最后登录时间</td> 
-						<td>${sessionScope.UserInfo.lastDate}</td>
+						<td>${sessionScope.UserInfo.stateDate}</td>
 						<td></td>
 					</tr>
 					<tr>

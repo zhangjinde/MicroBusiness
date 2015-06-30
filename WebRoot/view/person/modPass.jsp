@@ -21,7 +21,7 @@
 					$("#admin_public_editpwd_form_new_pwdconfirm").formValidator({onShow:"不修改密码请留空",onFocus:"请输入确认密码"}).compareValidator({desID:"admin_public_editpwd_form_new_password",operateor:"=",onError:"输入两次密码不一致"});
 				})
 				function adminPublicEditpwdFormSubmit(){
-					$.post('/login.do?method=updateUserInfo', $("#admin_public_editpwd_form").serialize(), function(res){
+					$.post('/micro/login.do?method=updateUserInfo', $("#admin_public_editpwd_form").serialize(), function(res){
 						var obj = eval("("+res+")");
 						if(!obj.status){
 							$.messager.alert('提示信息', obj.info, 'error');

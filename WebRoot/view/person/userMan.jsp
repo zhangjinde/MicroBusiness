@@ -35,7 +35,7 @@
 			function newUser(){
 				$('#dlg').dialog('open').dialog('setTitle','新增用户');
 				$('#fm').form('clear');
-				url = '/user.do?method=newUser';
+				url = '/micro/user.do?method=newUser';
 			}
 			function editUser(){
 				var row = $('#dg').datagrid('getSelected');
@@ -50,7 +50,7 @@
 					}
 					$('#dlg').dialog('open').dialog('setTitle','修改用户');
 					$('#fm').form('load',row);
-					url = '/user.do?method=updateUser&userId='+row.userId;
+					url = '/micro/user.do?method=updateUser&userId='+row.userId;
 				}
 			}
 			function saveUser(){
@@ -78,7 +78,7 @@
 				if (row){
 					$.messager.confirm('提示','您确定要移除当前选中用户吗?',function(r){
 						if (r){
-							$.post('/user.do?method=delUser',{userId:row.userId},function(result){
+							$.post('/micro/user.do?method=delUser',{userId:row.userId},function(result){
 								if (result.success){
 									$('#dg').datagrid('reload');	
 								} else {
@@ -114,13 +114,13 @@
 		</script>
 	</head>
 	<body>
-		<table id="dg" title="人员管理" class="easyui-datagrid" width="100%" style="height:570px" url="/user.do?method=qryUserList" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+		<table id="dg" title="人员管理" class="easyui-datagrid" width="100%" style="height:570px" url="/micro/user.do?method=qryUserList" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
 			<thead>
 				<tr>
 					<th field="userName" width="25%">账户名称</th>
 					<th field="realName" width="25%">用户姓名</th>
-					<th field="startDate" width="25%">账户生效时间</th>
-					<th field="endDate" width="25%">账户失效时间</th>
+					<th field="createDate" width="25%">账户创建时间</th>
+					<th field="stateDate" width="25%">账户状态时间</th>
 				</tr>
 			</thead>
 		</table>
@@ -129,7 +129,7 @@
 			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改用户</a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除用户</a>
 		</div>
-		<div id="dlg" class="easyui-dialog" style="width:380px;height:220px;padding:10px 20px" modal="true" closed="true" buttons="#dlg-buttons">
+		<div id="dlg" class="easyui-dialog" style="width:380px;height:170px;padding:10px 20px" modal="true" closed="true" buttons="#dlg-buttons">
 			<form id="fm" method="post" novalidate>
 				<div class="fitem">
 					<label style="text-align:right">账户名称:</label>
@@ -138,14 +138,6 @@
 				<div class="fitem">
 					<label style="text-align:right">用户姓名:</label>
 					<input name="realName" style="width:147px" class="easyui-validatebox" required="true">
-				</div>
-				<div class="fitem">
-					<label style="text-align:right">生效时间:</label>
-					<input class="easyui-datebox" name="startDate" id="startDate" data-options="formatter:myformatter,parser:myparser" />
-				</div>
-				<div class="fitem">
-					<label style="text-align:right">失效时间:</label>
-					<input class="easyui-datebox" name="endDate" id="endDate" data-options="formatter:myformatter,parser:myparser" />
 				</div>
 			</form>
 		</div>
