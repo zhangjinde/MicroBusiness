@@ -320,7 +320,7 @@ function selectAll()
 		for(var i=0;i<prodsArray.length;i++)
 		{
 			var price=Number(prodsArray[i].productPrice);
-			var num = parseInt(prodsArray[i].num);
+			var num = parseInt($("#tradeNum"+prodsArray[i].productId).html());
 			total=price*num+total;
 			$("#div"+prodsArray[i].productId).addClass("checked");
 		}
