@@ -149,6 +149,16 @@
 	                                </div>
 	                            </div>
                      		</div>
+                     		<div class="js-used-coupon block" style="">
+                            	<div class="block-item order-coupon relative">
+	                                <h4 class="block-item-title">店家距离</h4>
+	                                <div class="coupon-info-container">
+	                                 <div class="js-normal-coupon coupon-info c-gray-dark">
+	                                 	<p id="busInstShow"></p>
+	                                 </div>
+	                                </div>
+	                            </div>
+                     		</div>
 		                     <div class="block">
 		                        <div class="js-order-total block-item order-total"><p style="display:none">￥0.01 + ￥0.00运费
 		                        </p>

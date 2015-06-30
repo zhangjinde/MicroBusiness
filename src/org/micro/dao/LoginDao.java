@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
-import org.micro.util.QryCenter;
 import org.micro.util.QryException;
 import org.micro.util.StringUtil;
 import org.springframework.stereotype.Repository;
@@ -19,7 +16,7 @@ public class LoginDao extends BaseDao{
 	
 	public List<Map<String , String>> qryUserInfo(String userName) throws QryException
 	{
-		String query = "select t.user_id,t.user_name,t.user_pass,t.user_priv,t.real_name,t.user_ip,to_char(t.last_date,'yyyy-mm-dd hh24:mi:ss') last_date,to_char(t.start_date,'yyyy-mm-dd') start_date,to_char(t.end_date,'yyyy-mm-dd') end_date,case when (sysdate>=start_date and sysdate<=end_date) then '1' else '0' end as user_valid from vclass_user t where user_name = ? and user_state = '00A'";
+		String query = "select t.user_id,t.user_name,t.user_pass,t.user_priv,t.real_name,t.user_ip,to_char(t.create_date,'yyyy-mm-dd') create_date,to_char(t.state_date,'yyyy-mm-dd') state_date from micro_user t where user_name = ? and user_state = '00A'";
 		ArrayList paramList = new ArrayList();
 		paramList.add(userName);
 		return qryCenter.executeSqlByMapListWithTrans(query, paramList);
@@ -37,11 +34,9 @@ public class LoginDao extends BaseDao{
 			String userPriv = StringUtil.getMapKeyVal(userMap, "userPriv");
 			String realName = StringUtil.getMapKeyVal(userMap, "realName");
 			String userIp = StringUtil.getMapKeyVal(userMap, "userIp");
-			String startDate = StringUtil.getMapKeyVal(userMap, "startDate");
-			String endDate = StringUtil.getMapKeyVal(userMap, "endDate");
 			conn = qryCenter.getDataSource().getConnection();
 			stat = conn.createStatement();
-			String sql = "update vclass_user set user_name='"+userName+"',user_pass='"+userPass+"',user_priv='"+userPriv+"',real_name='"+realName+"',user_ip='"+userIp+"',last_date=sysdate,start_date=to_date('"+startDate+"','yyyy-mm-dd'),end_date=to_date('"+endDate+"','yyyy-mm-dd') where user_id='"+userId+"'";
+			String sql = "update micro_user set user_name='"+userName+"',user_pass='"+userPass+"',user_priv='"+userPriv+"',real_name='"+realName+"',user_ip='"+userIp+"',state_date=sysdate where user_id='"+userId+"'";
 			return stat.executeUpdate(sql);
 		}catch(Exception err)
 		{

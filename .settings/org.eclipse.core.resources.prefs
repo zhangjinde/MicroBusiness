@@ -1,7 +1,8 @@
-#Wed Jun 24 16:58:49 CST 2015
+#Tue Jun 30 11:30:57 CST 2015
 eclipse.preferences.version=1
-encoding//WebRoot/MyHtml.html=UTF-8
 encoding//WebRoot/js/location.js=UTF-8
 encoding//WebRoot/js/payPage.js=UTF-8
-encoding//WebRoot/js/prodDetail.js=utf-8
+encoding//WebRoot/js/pay_order_list.js=UTF-8
+encoding//WebRoot/js/prodDetail.js=UTF-8
 encoding//WebRoot/js/shopCart.js=UTF-8
+encoding//WebRoot/pub/js/util.js=UTF-8

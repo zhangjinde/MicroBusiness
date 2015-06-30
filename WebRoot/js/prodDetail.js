@@ -13,6 +13,7 @@ function addCart()
 		data:"cart="+JSON.stringify(cart),
 		success:function(data){
 			$("#right-icon").removeClass("hide");
+			alert("已加入购物车!")
 		}
 	});
 	

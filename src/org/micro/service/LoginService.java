@@ -13,7 +13,6 @@ import net.sf.json.JSONObject;
 
 import org.micro.dao.LoginDao;
 import org.micro.dao.MenuDao;
-import org.micro.pub.base.SysDate;
 import org.micro.util.MD5Util;
 import org.micro.util.ObjectCensor;
 import org.micro.util.QryException;
@@ -51,21 +50,10 @@ public class LoginService
 				String userPass = StringUtil.getMapKeyVal(map, "userPass");
 				if(MD5Util.validPassword(password, userPass))
 				{
-					String userValid = StringUtil.getMapKeyVal(map, "userValid");
-					String userPriv = StringUtil.getMapKeyVal(map, "userPriv");
-					if("#".equals(userPriv) || "1".equals(userValid))
-					{
-						json.put("status", 1);
-						json.put("info", "登录成功");
-						json.put("url", "/login.do?method=showIndex");
-						session.setAttribute("UserInfo", map);
-					}
-					else
-					{
-						json.put("status", 0);
-						json.put("info", "账户已过期，请联系管理员");
-						json.put("url", "");
-					}
+					json.put("status", 1);
+					json.put("info", "登录成功");
+					json.put("url", "/micro/login.do?method=showIndex");
+					session.setAttribute("UserInfo", map);
 				}
 				else
 				{
@@ -142,9 +130,7 @@ public class LoginService
 	public void logoutUpdate(Map<String,String> map , HttpServletRequest request)
 	{
 		String ip = request.getRemoteAddr();
-		String currentDate = SysDate.getDate();
 		map.put("userIp", ip);
-		map.put("lastDate", currentDate);
 		loginDao.updateUserInfo(map);
 	}
 }

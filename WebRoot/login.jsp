@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>系统名称 - 用户登录</title>
-<%@ include file="/common/head.jsp" %>
+<%@ include file="common/head.jsp" %>
 <style type="text/css">
 form{width:280px;height:120px;margin:30px auto 0;}
 form div label{float:left;display:block;width:65px;font-size:16px;padding-top:6px;}
@@ -32,7 +32,7 @@ form div.input img{cursor:pointer}
 		<div class="input">
 			<label for="code">验证码:</label>  
 	        <input type="text" name="code" id="code" size="4" />
-	        <span style="margin-left:10px"><img id="code_img" align="top" width="100" height="28" onclick="changeCode()" src="/login.do?method=getSecurityImage" title="点击切换验证码"></span> 
+	        <span style="margin-left:10px"><img id="code_img" align="top" width="100" height="28" onclick="changeCode()" src="<%=path %>/login.do?method=getSecurityImage" title="点击切换验证码"></span> 
 		</div>
 	</form> 
 </div>
@@ -64,7 +64,7 @@ var login = function(){
 		$.messager.alert('提示信息', '请填写验证码', 'error');
 		return false;
 	}
-	$.post('/login.do?method=login', $("form").serialize(), function(data){
+	$.post('<%=path %>/login.do?method=login', $("form").serialize(), function(data){
 		if(!data.status){
 			$.messager.alert('提示信息', data.info, 'error');
 			changeCode();

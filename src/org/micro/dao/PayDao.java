@@ -256,6 +256,19 @@ public class PayDao extends BaseDao
 		}
 	}
 	
+	public String orderFunc(String orderId , String sts)
+	{
+		String sql = "update order_t set sts = ?,state_date = sysdate where order_id = ?";
+		if(jdbcTemplate.update(sql,new Object[]{sts,orderId}) > 0)
+		{
+			return "success";
+		}
+		else
+		{
+			return "failure";
+		}
+	}
+	
 	public String payOrder(String orderId , String busDetailId)
 	{
 		String sql = "update order_t set sts = 'R',state_date = sysdate,bus_detail_id = ? where order_id = ?";
@@ -267,6 +280,53 @@ public class PayDao extends BaseDao
 		{
 			return "failure";
 		}
+	}
+	
+	public List<Map<String,String>> getOrderList(String orderType , int pageNum , int pageSize) throws QryException
+	{
+		StringBuffer sb = new StringBuffer("SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select a.order_id,a.customer_name,a.telephone,a.customer_address,a.order_price,a.sts,case a.sts when 'A' then '待付款' when 'R' then '待发货' when 'H' then '已发货' when 'O' then '已完成' when 'P' then '已取消' end sts_name,to_char(a.create_date,'yyyy-mm-dd hh24:mi:ss') create_date,to_char(a.state_date,'yyyy-mm-dd hh24:mi:ss') state_date,b.bus_detail_name,b.bus_addr from order_t a,business_detail_t b where a.bus_detail_id = b.bus_detail_id ");
+		ArrayList paramList = new ArrayList();
+		if(ObjectCensor.isStrRegular(orderType))
+		{
+			sb.append(" and a.sts = ? ");
+			paramList.add(orderType);
+		}
+		sb.append(" order by a.state_date desc) A WHERE ROWNUM <= ?) WHERE RN >= ?");
+    	paramList.add(pageNum * pageSize);
+    	paramList.add((pageNum - 1) * pageSize + 1);
+    	return qryCenter.executeSqlByMapListWithTrans(sb.toString(), paramList);
+	}
+	
+	public String getOrderListCnt(String orderType) throws QryException
+	{
+		StringBuffer sb = new StringBuffer("select count(*) total from order_t a where 1=1 ");
+		ArrayList paramList = new ArrayList();
+		if(ObjectCensor.isStrRegular(orderType))
+		{
+			sb.append(" and a.sts = ? ");
+			paramList.add(orderType);
+		}
+		List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sb.toString(), paramList);
+		return StringUtil.getMapKeyVal(list.get(0), "total");
+	}
+	
+	public List<Map<String,String>> getOrderDetailInfo(String orderId , int pageNum , int pageSize) throws QryException
+	{
+		String sql = "SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select b.product_name,b.product_price,a.product_num from order_detail_t a,product_t b where a.product_id = b.product_id and a.order_id=?) A WHERE ROWNUM <= ?) WHERE RN >= ?";
+		ArrayList paramList = new ArrayList();
+		paramList.add(orderId);
+    	paramList.add(pageNum * pageSize);
+    	paramList.add((pageNum - 1) * pageSize + 1);
+		return qryCenter.executeSqlByMapListWithTrans(sql, paramList);
+	}
+	
+	public String getOrderDetailInfoCnt(String orderId) throws QryException
+	{
+		String sql = "select count(*) total from order_detail_t a where a.order_id=?";
+		ArrayList paramList = new ArrayList();
+		paramList.add(orderId);
+		List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sql, paramList);
+		return StringUtil.getMapKeyVal(list.get(0), "total");
 	}
 	
 }

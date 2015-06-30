@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.micro.dao.PayDao;
 import org.micro.util.ObjectCensor;
+import org.micro.util.QryException;
 import org.micro.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,7 +63,7 @@ public class OrderService
 			else
 			{
 				json.put("data", "[]");
-				json.put("count", "0");
+//				json.put("count", "0");
 			}
 			return json.toString();
 		}
@@ -75,9 +78,64 @@ public class OrderService
 		return payDao.cancelOrder(orderId);
 	}
 	
+	public String orderFunc(String orderId , String sts)
+	{
+		return payDao.orderFunc(orderId, sts);
+	}
+	
 	public String payOrder(String orderId , String busDetailId)
 	{
 		return payDao.payOrder(orderId , busDetailId);
+	}
+	
+	public String getOrderList(String orderType , String pageNum , String pageSize) throws QryException 
+	{
+		if(ObjectCensor.isStrRegular(pageNum , pageSize) && StringUtil.checkStringIsNum(pageNum) && StringUtil.checkStringIsNum(pageSize))
+		{
+			List<Map<String,String>> orderList = payDao.getOrderList(orderType, Integer.parseInt(pageNum), Integer.parseInt(pageSize));
+			JSONObject json = new JSONObject();
+			if(ObjectCensor.checkListIsNull(orderList))
+			{
+				json.put("rows", JSONArray.fromObject(orderList).toString());
+				String count = payDao.getOrderListCnt(orderType);
+				json.put("total", count);
+			}
+			else
+			{
+				json.put("rows", "[]");
+				json.put("total", "0");
+			}
+			return json.toString();
+		}
+		else
+		{
+			return "参数有误:请核实后重新尝试";
+		}
+	}
+	
+	public String getOrderDetailInfo(String orderId , String pageNum , String pageSize) throws QryException 
+	{
+		if(ObjectCensor.isStrRegular(orderId , pageNum , pageSize) && StringUtil.checkStringIsNum(pageNum) && StringUtil.checkStringIsNum(pageSize))
+		{
+			List<Map<String,String>> orderList = payDao.getOrderDetailInfo(orderId, Integer.parseInt(pageNum), Integer.parseInt(pageSize));
+			JSONObject json = new JSONObject();
+			if(ObjectCensor.checkListIsNull(orderList))
+			{
+				json.put("rows", JSONArray.fromObject(orderList).toString());
+				String count = payDao.getOrderDetailInfoCnt(orderId);
+				json.put("total", count);
+			}
+			else
+			{
+				json.put("rows", "[]");
+				json.put("total", "0");
+			}
+			return json.toString();
+		}
+		else
+		{
+			return "参数有误:请核实后重新尝试";
+		}
 	}
 	
 }

@@ -22,6 +22,7 @@ $(document).ready(function(){
 				if(dataObj != null)
 				{
 					$("#busInstance").val(dataObj.busInstance);
+					$("#busInstShow").html(parseFloat(dataObj.busInstance/1000).toFixed(2)+"km")
 				}
 			}
 		});
@@ -48,6 +49,7 @@ function setAxis()
 			{
 				$("#busInfo").val(dataObj.busDetailId);
 				$("#busInstance").val(dataObj.busInstance);
+				$("#busInstShow").html(parseFloat(dataObj.busInstance/1000).toFixed(2)+"km")
 			}
 		}
 	});

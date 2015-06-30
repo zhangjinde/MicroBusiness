@@ -80,4 +80,64 @@ public class OrderController
 		}
 	}
 	
+	@RequestMapping(params = "method=orderFunc")
+	public void orderFunc(HttpServletResponse response , String orderId , String sts)
+	{
+		PrintWriter out = null;
+		try{
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+			String retVal = orderService.orderFunc(orderId, sts);
+			out.write(retVal);
+		}catch(Exception err){
+			err.printStackTrace();
+		}
+		finally{
+			if(out != null)
+			{
+				out.close();
+			}
+		}
+	}
+	
+	@RequestMapping(params = "method=getOrderList")
+	public void getOrderList(HttpServletResponse response , String orderType , String page , String rows)
+	{
+		PrintWriter out = null;
+		try{
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+			String retVal = orderService.getOrderList(orderType, page, rows);
+			out.write(retVal);
+		}catch(Exception err){
+			err.printStackTrace();
+		}
+		finally{
+			if(out != null)
+			{
+				out.close();
+			}
+		}
+	}
+	
+	@RequestMapping(params = "method=getOrderDetailInfo")
+	public void getOrderDetailInfo(HttpServletResponse response , String orderId , String page , String rows)
+	{
+		PrintWriter out = null;
+		try{
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+			String retVal = orderService.getOrderDetailInfo(orderId, page, rows);
+			out.write(retVal);
+		}catch(Exception err){
+			err.printStackTrace();
+		}
+		finally{
+			if(out != null)
+			{
+				out.close();
+			}
+		}
+	}
+	
 }

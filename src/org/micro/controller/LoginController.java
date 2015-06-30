@@ -65,7 +65,7 @@ public class LoginController
 	@RequestMapping(params = "method=showIndex")
 	public ModelAndView showIndex()
 	{
-		ModelAndView model = new ModelAndView("index");
+		ModelAndView model = new ModelAndView("admin");
 		try 
 		{
 			List<Map<String, String>> list = loginService.showIndex();

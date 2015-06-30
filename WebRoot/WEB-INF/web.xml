@@ -29,6 +29,6 @@
 	</filter-mapping>
 
 	<welcome-file-list>
-		<welcome-file>/micro/view/shop/main.html</welcome-file>
+		<welcome-file>/micro/shop.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
