@@ -86,7 +86,7 @@ function payFunc(addr)
 		var prodJson = [];
 		for(var i = 0,n = arr.length;i < n;i++)
 		{
-			var obj = new ProductObj(arr[i].productId,arr[i].num,arr[i].productPrice);
+			var obj = new ProductObj(arr[i].productId,$("#tradeNum"+arr[i].productId).html(),arr[i].productPrice);
 			prodJson.push(obj);
 		}
 		var productInfo = JSON.stringify(prodJson);

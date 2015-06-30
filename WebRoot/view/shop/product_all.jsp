@@ -188,7 +188,7 @@
         </a>
       </div>
     </div>
-    <div id="right-icon" class="js-right-icon no-text">
+    <div id="right-icon" class="js-right-icon no-text" style="display:none">
       <div class="js-right-icon-container right-icon-container clearfix" style="width: 50px;">
         <a id="global-cart" href="http://wap.koudaitong.com/v2/trade/cart?kdt_id=803178"
         class="icon hide" style="background-image: url(http://kdt-static.qiniucdn.com//v2/image/setting/shopping-cart/2x/s2.png);">
