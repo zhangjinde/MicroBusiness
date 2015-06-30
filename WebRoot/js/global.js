@@ -4,13 +4,13 @@ var exp = new Date();
 exp.setTime(exp.getTime() + Days*24*60*60*1000);
 document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
 }
-//¶ÁÈ¡cookies
+//ï¿½ï¿½È¡cookies
 function getCookie(name){
 var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
 if(arr=document.cookie.match(reg)) return unescape(arr[2]);
 else return null;
 }
-//É¾³ýcookies
+//É¾ï¿½ï¿½cookies
 function delCookie(name){
 var exp = new Date();
 exp.setTime(exp.getTime() - 1);

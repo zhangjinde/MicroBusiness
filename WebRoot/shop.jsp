@@ -32,20 +32,22 @@
   	 var url="http://www.hbcnhls.com/micro/oauth.do?method=getCode&page=shop";
   	 var openid=getCookie("openid");
   	 var id='<%=openId%>';
-  	 if(openid=='' || openid==null)
+  	 if((openid=='' || openid==null || openid=='null') && (id=='' || id==null || id=='null'))
   	 {
   		  encodeURL(url); 
-  	 }else if(id!='' && id!=null && id!='null')
-  	 {
-  		 setCookie("openid",'<%=openId%>'); 
-  		 alert(getCookie("openid"));
   	 }
+  	 if(id!='' && id!=null && id!='null')
+  	 {
+  		 setCookie("openid",id); 
+  	 }
+  	 
   }
+
 
   
   function toMyCart()
   {
-	  var url= "http://www.hbcnhls.com/micro/oauth.do?method=getCode&page=shopCart";
+	  var url= "http://www.hbcnhls.cn/micro/oauth.do?method=getCode&page=shopCart";
 	  var openid=getCookie("openid");
 	  if(openid=='' || openid==null)
 	  {
