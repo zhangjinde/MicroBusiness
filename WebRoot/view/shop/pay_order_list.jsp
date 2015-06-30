@@ -123,7 +123,7 @@
     	</div>
     	<script language="javascript">
     		$(document).ready(function(){
-			  	 var url="https://www.hbywzc.cn/micro/oauth.do?method=getCode&page=pay_order_list";
+			  	 var url="http://www.hbcnhls.com/micro/oauth.do?method=getCode&page=pay_order_list";
 			  	 var openid=getCookie("openid");
 			  	 var id='<%=openId%>';
 			  	 if(openid=='' || openid==null)
