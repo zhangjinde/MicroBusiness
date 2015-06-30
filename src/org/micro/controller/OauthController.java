@@ -44,13 +44,4 @@ public class OauthController
 		return view;
 	}
 	
-	public static void main(String[] args) throws UnsupportedEncodingException {
-		String url= "https://www.hbywzc.cn/micro/oauth.do?method=getCode&productId=10001&page=product_detail";
-		String ss = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9de1544a58642739&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect&redirect_uri=";
-		
-		url=java.net.URLEncoder.encode(url,   "utf-8");      
-	
-		System.out.println(ss+url.toLowerCase());
-	}
-	
 }

@@ -28,9 +28,8 @@
   init();
   function init()
   {
-	 setCookie("openid","oLsjhsuYDJZMpNK0jt09X8Wtt5DY"); 
-	  
-  	 var url="https://www.hbywzc.cn/micro/oauth.do?method=getCode&page=shop";
+	// setCookie("openid","oLsjhsuYDJZMpNK0jt09X8Wtt5DY"); 
+  	 var url="http://www.hbcnhls.com/micro/oauth.do?method=getCode&page=shop";
   	 var openid=getCookie("openid");
   	 var id='<%=openId%>';
   	 if(openid=='' || openid==null)
@@ -39,13 +38,14 @@
   	 }else if(id!='' && id!=null && id!='null')
   	 {
   		 setCookie("openid",'<%=openId%>'); 
+  		 alert(getCookie("openid"));
   	 }
   }
 
   
   function toMyCart()
   {
-	  var url= "https://www.hbywzc.cn/micro/oauth.do?method=getCode&page=shopCart";
+	  var url= "http://www.hbcnhls.com/micro/oauth.do?method=getCode&page=shopCart";
 	  var openid=getCookie("openid");
 	  if(openid=='' || openid==null)
 	  {
