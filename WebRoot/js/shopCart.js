@@ -159,8 +159,9 @@ function edit()
 	}
 }
  
-function chooseProd(id,price,num)
+function chooseProd(id,price)
 {
+	var num = $("#tradeNum"+id).html();
 	var oldTotal=Number($("#totalPrice").html());
 	var choose= $("#div"+id).attr("choose");
 	var priceNum=Number(price)*parseInt(num);
@@ -235,7 +236,7 @@ function qryCartProds(id, telephone)
 	    $.each(data.prods, function(i, obj) {
 	    	content+="<li id='li"+obj.productId+"' class='block-item block-item-cart relative clearfix'>";
 	    	content+="<div class='check-container'>"; 
-	    	content+="<span id='div"+obj.productId+"' choose='false'  onclick=chooseProd("+obj.productId+","+obj.productPrice+","+obj.num+") class='check'>"; 
+	    	content+="<span id='div"+obj.productId+"' choose='false'  onclick=chooseProd("+obj.productId+","+obj.productPrice+") class='check'>"; 
 	    	content+="</span>"; 
 	    	content+="</div>"; 
 	    	content+="<div class='name-card name-card-3col clearfix'>"; 

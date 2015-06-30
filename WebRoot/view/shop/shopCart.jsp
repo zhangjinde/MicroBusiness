@@ -69,7 +69,7 @@
 				<div class="footer">
 				    <div class="copyright">
 					    <div class="ft-copyright">
-						    <a href="http://m.youzan.com/" target="_blank">华莱士提供技术支持</a>
+						    <a href="/micro/shop.jsp" target="_blank">华莱士提供技术支持</a>
 						</div>
 				    </div>
 				</div>
