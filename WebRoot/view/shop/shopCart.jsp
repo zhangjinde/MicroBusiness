@@ -35,7 +35,7 @@
 	    <div class="container ">
 	    	<div class="content clearfix">
 				<div class="tabber  tabber-n3 tabber-double-11 clearfix">
-					<a class="active" href="<%=path %>/view/shop/shopCart.jsp?openid=${param.openid}">购物车</a>
+					<a class="active" href="<%=path %>/view/shop/shopCart.jsp?openid=${param.openid}&busId=100">购物车</a>
 				    <a class="" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100">购物记录</a>
 				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp">我的返现</a>
 				</div>

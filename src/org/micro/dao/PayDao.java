@@ -185,10 +185,10 @@ public class PayDao extends BaseDao
 		return "success";
 	}
 	
-	public String saveNewUserOrder(String orderId , String customerPhone , String addr , String customerId)
+	public String saveNewUserOrder(String orderId , String customerPhone , String addr , String customerName , String customerId)
 	{
-		String sql = "update order_t set telephone = ?,customer_address = ?,customer_id = ? where order_id = ?";
-		if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,customerId,orderId}) > 0)
+		String sql = "update order_t set telephone = ?,customer_address = ?,customer_id = ?,customer_name = ? where order_id = ?";
+		if(jdbcTemplate.update(sql,new Object[]{customerPhone,addr,customerId,customerName,orderId}) > 0)
 		{
 			return "success";
 		}

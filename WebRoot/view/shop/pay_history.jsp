@@ -23,9 +23,9 @@
 			#wrapper {
 				position: absolute;
 				z-index: 1;
-				top: 0px;
+				top: 40px;
 				bottom: 0px;
-				left:9999px; 
+				left:9999px;
 				width: 100%;
 				overflow: hidden;
 			}
@@ -87,8 +87,8 @@
     	<div class="container" style="height:100%;width:100%">
 	        <div class="content">
 	        	<div class="tabber  tabber-n3 tabber-double-11 clearfix">
-					<a class="active" href="<%=path %>/view/shop/shopCart.jsp?openid=${param.openid}">购物车</a>
-				    <a class="" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100">购物记录</a>
+					<a class="" href="<%=path %>/view/shop/shopCart.jsp?openid=${param.openid}busId=100">购物车</a>
+				    <a class="active" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100">购物记录</a>
 				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp">我的返现</a>
 				</div>
 	        	<div id="order-list-container">

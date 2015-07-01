@@ -59,6 +59,8 @@ public class PayService
 					Map<String,String> customerMap = customerList.get(0);
 					contactNum = StringUtil.getMapKeyVal(customerMap, "customerTelephone");
 					customerId = StringUtil.getMapKeyVal(customerMap, "customerId");
+					name = StringUtil.getMapKeyVal(customerMap, "customerName");
+					addr = StringUtil.getMapKeyVal(customerMap, "customerAddr");
 				}
 				else
 				{
@@ -104,6 +106,8 @@ public class PayService
 					Map<String,String> customerMap = customerList.get(0);
 					contactNum = StringUtil.getMapKeyVal(customerMap, "customerTelephone");
 					customerId = StringUtil.getMapKeyVal(customerMap, "customerId");
+					name = StringUtil.getMapKeyVal(customerMap, "customerName");
+					addr = StringUtil.getMapKeyVal(customerMap, "customerAddr");
 				}
 				else
 				{
@@ -187,7 +191,7 @@ public class PayService
 	
 	public String setOrderAddr(String customerId , String customerDetailId , String orderId) throws QryException
 	{
-		if(ObjectCensor.isStrRegular(customerId , customerDetailId , orderId) && StringUtil.checkStringIsNum(customerId) && StringUtil.checkStringIsNum(customerDetailId) && StringUtil.checkStringIsNum(orderId))
+		if(ObjectCensor.isStrRegular(customerId , customerDetailId , orderId) && StringUtil.checkStringIsNum(customerId) && StringUtil.checkStringIsNum(customerDetailId))
 		{
 			return payDao.setOrderAddr(customerId, customerDetailId, orderId);
 		}

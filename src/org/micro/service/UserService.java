@@ -123,7 +123,7 @@ public class UserService
 		{
 			customerId = customerDao.addCustomerDetail(busId, openId, customerName, customerPhone, addr, postCode, provId, cityId, districtId);
 			addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
-			return payDao.saveNewUserOrder(orderId, customerPhone, addr, customerId);
+			return payDao.saveNewUserOrder(orderId, customerPhone, addr, customerName, customerId);
 		}
 	}
 	

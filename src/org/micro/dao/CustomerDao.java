@@ -23,7 +23,7 @@ public class CustomerDao extends BaseDao
 	
 	public List<Map<String,String>> getCustomerInfo(String phoneNum , String busId) throws QryException
 	{
-		String sql = "select * from customer_t a,customer_address_t b where a.customer_id = b.customer_id and bus_id = ? and customer_open_id = ? and a.sts = 'A' and b.sts = 'A' and is_primary = 'A'";
+		String sql = "select a.customer_telephone,a.customer_id,a.customer_name,c.province_name||d.city_name||e.district_name||b.customer_addr customer_addr from customer_t a,customer_address_t b,province_t c,city_t d,district_t e where a.customer_id = b.customer_id and b.prov_id = c.province_id and d.city_id = b.city_id and e.district_id = b.district_id and bus_id = ? and customer_open_id = ? and a.sts = 'A' and b.sts = 'A' and is_primary = 'A'";
 		ArrayList paramList = new ArrayList();
 		paramList.add(busId);
 		paramList.add(phoneNum);
