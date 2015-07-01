@@ -202,7 +202,13 @@ function removeLeft(stop){
 
 function openUrl(url, title){
 	if($('#pagetabs').tabs('exists', title)){
-		$('#pagetabs').tabs('select', title);
+		var current_tab = $('#pagetabs').tabs('getSelected');
+		$('#pagetabs').tabs('update', {
+			tab:current_tab,
+			options : {
+				content : '<iframe name="'+title+' "src="'+url+'" width="100%" height="100%" frameborder="0" scrolling="auto" ></iframe>'
+			}
+		});
 	}else{
 		$('#pagetabs').tabs('add',{
 			title: title,

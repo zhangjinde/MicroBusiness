@@ -58,6 +58,14 @@
 					});
 				}
 			}
+			$(document).ready(function(){
+				$("#dg").datagrid({
+					onDblClickRow:function(rowIndex, rowData){
+						$("#showOrder").dialog('open').dialog('setTitle','订单详情');
+						$('#fm').form('load',rowData);
+					}
+				})
+			});
 			function myformatter(date) {
 				var y = date.getFullYear();
 				var m = date.getMonth() + 1;
@@ -113,6 +121,55 @@
 		</div>
 		<div id="dlg-buttons">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="javascript:$('#dlg').dialog('close')">确定</a>
+		</div>
+		<div id="showOrder" class="easyui-dialog" style="width:450px;height:325px;padding:0 0" modal="true" closed="true" buttons="#showOrder-buttons">
+			<form id="fm" method="post" novalidate>
+				<div style="height:100%;width:100%">
+					<div class="fitem">
+						<label style="text-align:right">订&nbsp;&nbsp;单&nbsp;&nbsp;号:</label>
+						<input name="orderId" id="orderId" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+					<div class="fitem">
+						<label style="text-align:right">客户名称:</label>
+						<input name="customerName" id="customerName" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+					<div class="fitem">
+						<label style="text-align:right">客户电话:</label>
+						<input name="telephone" id="telephone" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+					<div class="fitem">
+						<label style="text-align:right">客户地址:</label>
+						<input name="customerAddress" id="customerAddress" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+					<div class="fitem">
+						<label style="text-align:right">订单价格:</label>
+						<input name="orderPrice" id="orderPrice" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+					<div class="fitem">
+						<label style="text-align:right">订单状态:</label>
+						<input name="stsName" id="stsName" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+					<div class="fitem">
+						<label style="text-align:right">店铺名称:</label>
+						<input name="busDetailName" id="busDetailName" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+					<div class="fitem">
+						<label style="text-align:right">店铺地址:</label>
+						<input name="busAddr" id="busAddr" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+					<div class="fitem">
+						<label style="text-align:right">下单时间:</label>
+						<input name="createDate" id="createDate" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+					<div class="fitem">
+						<label style="text-align:right">订单状态时间:</label>
+						<input name="stateDate" id="stateDate" type="text" style="width:250px" readonly="readonly"/>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div id="showOrder-buttons">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="javascript:$('#showOrder').dialog('close')">确定</a>
 		</div>
 	</body>
 </html>
