@@ -202,6 +202,7 @@ function removeLeft(stop){
 
 function openUrl(url, title){
 	if($('#pagetabs').tabs('exists', title)){
+		$('#pagetabs').tabs('select', title);
 		var current_tab = $('#pagetabs').tabs('getSelected');
 		$('#pagetabs').tabs('update', {
 			tab:current_tab,

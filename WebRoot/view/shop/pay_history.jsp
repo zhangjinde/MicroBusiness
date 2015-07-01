@@ -1,80 +1,133 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
-<html class="no-js " lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta name="keywords" content="有赞,移动电商服务平台">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="format-detection" content="telephone=no">
-    <meta http-equiv="cleartype" content="on">
-    <link rel="dns-prefetch" href="http://tj.koudaitong.com/">
-    <link rel="dns-prefetch" href="http://imgqn.koudaitong.com/">
-    <link rel="dns-prefetch" href="http://kdt-static.qiniudn.com/">
-    <link rel="shortcut icon" href="http://kdt-static.qiniucdn.com/v2/image/yz_fc.ico">
-    <title>购物记录</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="http://kdt-static.qiniucdn.com/v2/build_css/stylesheets/wap/base_2ced031129.css" onerror="_cdnFallback(this)">    <link rel="stylesheet" href="http://kdt-static.qiniucdn.com/v2/build_css/stylesheets/wap/projects/uc/order_list_50b8447040.css" onerror="_cdnFallback(this)">        </head>
-
-<body class=" ">
-
-    
+<%
+	String path = request.getContextPath();
+	String openId =(String) request.getParameter("openId");
+%>
+<html class="no-js " lang="zh-CN">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="keywords" content="移动电商服务平台">
+	    <meta name="HandheldFriendly" content="True">
+	    <meta name="MobileOptimized" content="320">
+	    <meta name="format-detection" content="telephone=no">
+	    <meta http-equiv="cleartype" content="on">
+	    <title>购物记录</title>
+	    <script type="text/javascript" src="<%=path %>/pub/js/jquery-1.11.3.min.js"></script>
+	    <script type="text/javascript" src="<%=path %>/js/global.js"></script>
+	    <script type="text/javascript" src="<%=path %>/pub/js/iscroll-probe.js"></script>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <link rel="stylesheet" href="<%=path %>/pub/css/base_2ced031129.css" />
+		<link rel="stylesheet" href="<%=path %>/pub/css/order_list_50b8447040.css" />
+		<style type="text/css">
+			#wrapper {
+				position: absolute;
+				z-index: 1;
+				top: 0px;
+				bottom: 0px;
+				left:9999px; 
+				width: 100%;
+				overflow: hidden;
+			}
+			#scroller {
+				position: absolute;
+				z-index: 1;
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
+				width: 100%;
+				-webkit-transform: translateZ(0);
+				-moz-transform: translateZ(0);
+				-ms-transform: translateZ(0);
+				-o-transform: translateZ(0);
+				transform: translateZ(0);
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				-webkit-text-size-adjust: none;
+				-moz-text-size-adjust: none;
+				-ms-text-size-adjust: none;
+				-o-text-size-adjust: none;
+				text-size-adjust: none;
+			}
+			#scroller ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				text-align: left;
+			}
+			#scroller li {
+				padding: 0 10px;
+				border-bottom: 1px solid #ccc;
+				border-top: 1px solid #fff;
+				background-color: #fafafa;
+				font-size: 14px;
+			}
+			.pullUpLabel {color:#999}
+			.pullUp {background:#fff;height:40px;line-height:40px;font-weight:bold;font-size:0.8em;color:#888}
+			.pullUp .pullUpIcon {display:block;float:left;opacity:0.4;width:40px;height:40px;background:url(<%=path %>/pub/img/pull_to_refresh.png) 0 0 no-repeat;-webkit-background-size:40px 80px;-ms-background-size:40px 80px; background-size:40px 80px;-webkit-transition-property:-webkit-transform;-ms-transition-property:-webkit-transform;-webkit-transition-duration:250ms;-ms-transition-duration:250ms}
+			.pullUp .pullUpIcon  {-webkit-transform:rotate(-180deg) translateZ(0);-ms-transform:rotate(-180deg) translateZ(0)}
+			.pullUp.flip .pullUpIcon {-webkit-transform:rotate(0deg) translateZ(0);-ms-transform:rotate(0deg) translateZ(0)}
+			.pullUp.loading .pullUpIcon {background-position:0 100%;-webkit-transform:rotate(0deg) translateZ(0);-ms-transform:rotate(0deg) translateZ(0);-webkit-transition-duration:0ms;-ms-transition-duration:0ms;-webkit-animation-name:loading;-ms-animation-name:loading;-webkit-animation-duration:1s;-ms-animation-duration:1s;-webkit-animation-iteration-count:infinite;-ms-animation-iteration-count:infinite;-webkit-animation-timing-function:linear;-ms-animation-timing-function:linear}
+			@-webkit-keyframes loading {
+				from {-webkit-transform:rotate(0deg) translateZ(0)}
+				to {-webkit-transform:rotate(360deg) translateZ(0)}
+			}
+			@-ms-keyframes loading {
+				from {-ms-transform:rotate(0deg) translateZ(0)}
+				to {-ms-transform:rotate(360deg) translateZ(0)}
+			}
+		</style>
+	</head>
+	<body class=" " onload="loaded()">
+		<input type="hidden" id="orderType" value="${param.orderType}" />
+		<input type="hidden" id="openId" value="${param.openId}" />
+		<input type="hidden" id="busId" value="${param.busId}" />
+    	<div class="container" style="height:100%;width:100%">
+	        <div class="content">
+	        	<div class="tabber  tabber-n3 tabber-double-11 clearfix">
+					<a class="active" href="<%=path %>/view/shop/shopCart.jsp?openid=${param.openid}">购物车</a>
+				    <a class="" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100">购物记录</a>
+				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp">我的返现</a>
+				</div>
+	        	<div id="order-list-container">
+	        		<div id="wrapper" style="min-height:308px;">
+						<div id="scroller">
+							<ul></ul>
+							<div class="pullUp" style="text-align:center;position:relative;"></div>
+							<div class="js-footer" style="padding:0 0;margin:0 auto;height:80px">
+								<div class="footer">
+									<div class="copyright">
+										<div class="ft-copyright">
+											华莱士提供技术支持
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+    		</div>
+    	</div>
     <div class="container ">
-                <div class="content" style="min-height: 667px;">
-                    
-<div class="tabber  tabber-n3 tabber-double-11 clearfix">
-	<a class="" href="/micro/view/shop/shopCart.jsp?openid=${param.openid}">购物车</a>
-    <a class="active" href="/micro/cart.do?method=getOrder&phone=18907181259">购物记录</a>
-    <a class="" href="/micro/view/shop/returnNowPage.jsp">我的返现</a>
-</div>
-                        <p style="height:10px;">&nbsp;</p>
-                <div id="order-list-container">
-
-        <div class="js-list b-list">
-        <c:forEach items="${list }" var="order">
-					
-		
-        <li class="block block-order animated"><div class="header">
-    <span class="font-size-12">订单号：${order.orderId}</span>
-    
-</div>
-<hr class="margin-0 left-10">
-<div class="block block-list block-border-top-none block-border-bottom-none">
-    <div class="block-item name-card name-card-3col clearfix">
-        <a href="http://trade.koudaitong.com/wxpay/pay?order_no=E20150605162006026143904&showwxpaytitle=1&kdt_id=803178" class="thumb">
-            <img src="${order.imgUrl}">
-        </a>
-        <div class="detail">
-            <a href="http://trade.koudaitong.com/wxpay/pay?order_no=E20150605162006026143904&showwxpaytitle=1&kdt_id=803178"><h3>${order.productName}</h3></a>
-            
-        </div>
-        <div class="right-col">
-            <div class="price">￥<span>${order.productPrice}</span></div>
-            <div class="num">
-                ×<span class="num-txt">1</span>
-            </div>
-        </div>
-    </div>
-    
-</div>
-<hr class="margin-0 left-10">
-<div class="bottom">
-    总价：<span class="c-orange">￥${order.orderPrice}</span>
-    <div class="opt-btn">
-        <a class="btn btn-in-order-list" href="http://trade.koudaitong.com/wxpay/pay?order_no=E20150605162006026143904&showwxpaytitle=1&kdt_id=803178">详情</a>
-    </div>
-</div>
-</li>
-</c:forEach>
-</div></div>
-    </div>        <div class="footer">
-          	<div class="footer">
-	    <div class="copyright">
-	    <div class="ft-copyright">
-    <a href="/micro/shop.jsp" target="_blank">有赞微商城提供技术支持</a>
-</div>
-	    </div>
-	</div>
-</div>    </div>
-</body></html>
+     <script language="javascript">
+    		$(document).ready(function(){
+			  	 var url="http://www.hbcnhls.com/micro/oauth.do?method=getCode&page=pay_order_list";
+			  	 var openid=getCookie("openid");
+			  	 var id='<%=openId%>';
+			  	 if(openid=='' || openid==null)
+			  	 {
+			  		  encodeURL(url); 
+			  	 }
+			  	 else if(id!='' && id!=null && id!='null')
+			  	 {
+			  		 setCookie("openid",'<%=openId%>');
+			  		 openid=getCookie("openid");
+			  	 }
+				 $("#openId").val(openid);
+			});
+    	</script>
+		<script type="text/javascript" src="<%=path %>/js/pay_order_list.js"></script>
+	</body>
+</html>

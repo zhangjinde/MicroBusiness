@@ -21,9 +21,9 @@
 		<div class="container ">
 			<div class="content" style="min-height: 581px;">
 				<div class="tabber  tabber-n3 tabber-double-11 clearfix">
-					<a class="" href="/micro/view/shop/shopCart.jsp?openid=${param.openid}">购物车</a>
-				    <a class="" onclick="toOrderPage()" href="javascript:;">购物记录</a>
-				    <a class="active" href="/micro/view/shop/returnNowPage.jsp">我的返现</a>
+					<a class="active" href="<%=path %>/view/shop/shopCart.jsp?openid=${param.openid}">购物车</a>
+				    <a class="" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100">购物记录</a>
+				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp">我的返现</a>
 				</div>
 				<div id="backs-list-container" class="block" style="margin-top: 20px;">
 					<div class="empty-list" style="margin-top: 30px;">
@@ -51,16 +51,5 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript">
-			function toOrderPage()
-			{
-				var url="/micro/cart.do?method=getOrder";
-				var openid=getCookie("openid");
-				if(openid=='' || openid==null)
-				{
-					encodeURL(url); 
-				}
-			}
-		</script>
 	</body>
 </html>
