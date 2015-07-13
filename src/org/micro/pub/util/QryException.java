@@ -1,4 +1,4 @@
-package org.micro.util;
+package org.micro.pub.util;
 
 public class QryException extends Exception {
     private String sql;

@@ -34,7 +34,7 @@
 	
 	<context:component-scan base-package="org.micro.pub" />
 	
-	<bean name="beanFactory" class="org.micro.util.BeanFactoryHelper"/>
+	<bean name="beanFactory" class="org.micro.pub.util.BeanFactoryHelper"/>
 			
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="defaultErrorView" value="error"/>

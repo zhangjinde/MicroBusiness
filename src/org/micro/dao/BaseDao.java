@@ -2,7 +2,7 @@ package org.micro.dao;
 
 import javax.annotation.Resource;
 
-import org.micro.util.QryCenter;
+import org.micro.pub.util.QryCenter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

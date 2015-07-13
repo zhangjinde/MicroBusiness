@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.micro.util.QryException;
+import org.micro.pub.util.QryException;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -4,7 +4,7 @@
 	String openId =(String) request.getAttribute("openid");
 %>
 <!DOCTYPE html>
-<html class="no-js admin responsive-320" lang="zh-CN">
+<html class="no-js admin" lang="zh-CN">
   
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

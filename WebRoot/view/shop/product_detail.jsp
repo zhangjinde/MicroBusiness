@@ -7,7 +7,7 @@
 	String openId =(String) request.getAttribute("openid");
 %>
 <!DOCTYPE HTML>
-<html class="no-js admin responsive-320" lang="zh-CN">
+<html class="no-js admin" lang="zh-CN">
 	<head>
 		<meta charset="utf-8">
 		<meta name="keywords" content=",移动电商服务平台">
@@ -27,6 +27,7 @@
 		<script src="/micro/pub/js/util.js" type="text/javascript"></script>
 		<script src="/micro/pub/js/zepto.min.js" type="text/javascript"></script>
 		<script src="/micro/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/micro/js/global.js"></script>
 		<style type="text/css">
 			.custom-richtext td{
 				border:none;
@@ -54,7 +55,7 @@
 			<div class="content " style="min-height: 548px;">
 				<div class="content-body">
 					<div class="custom-image-swiper custom-goods-swiper js-swp swp">
-						<div class="swiper-wrapper js-swp-wrap" style="height: 320px;">
+						<div class="swiper-wrapper js-swp-wrap">
 							<div class="swp-page">
 								<img src="${product.imgUrl}">
 							</div>

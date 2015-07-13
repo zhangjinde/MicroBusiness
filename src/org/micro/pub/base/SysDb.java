@@ -5,7 +5,7 @@ import java.util.Date;
 
 import javax.sql.DataSource;
 
-import org.micro.util.BeanFactoryHelper;
+import org.micro.pub.util.BeanFactoryHelper;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 

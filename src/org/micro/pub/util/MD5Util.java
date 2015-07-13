@@ -1,4 +1,4 @@
-package org.micro.util;
+package org.micro.pub.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

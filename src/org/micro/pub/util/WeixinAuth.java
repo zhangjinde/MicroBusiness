@@ -1,4 +1,4 @@
-package org.micro.util;
+package org.micro.pub.util;
 
 import net.sf.json.JSONObject;
 

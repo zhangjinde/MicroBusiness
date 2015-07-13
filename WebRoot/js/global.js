@@ -1,3 +1,26 @@
+var scrWidth = $(".admin").width();
+if(scrWidth != ""||scrWidth != null)
+{
+	if(scrWidth<=320)
+	{
+	 	scrWidth=320;
+	}
+	else if(scrWidth>320&&scrWidth<=400)
+	{
+	  	scrWidth=360;
+	}
+	else if(scrWidth>400&&scrWidth<=540)
+	{
+	  	scrWidth=540;
+	}
+	else if(scrWidth>540)
+	{
+	  	scrWidth=800;
+	}
+	$(".admin").addClass("responsive-"+scrWidth);
+}
+
+
 function setCookie(name,value){
 var Days = 30;
 var exp = new Date(); 

@@ -4,7 +4,7 @@
 	String path = request.getContextPath();
 %>
 <!DOCTYPE html>
-<html class="no-js admin responsive-320" lang="zh-CN">
+<html class="no-js admin" lang="zh-CN">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
@@ -16,6 +16,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="/micro/pub/css/base.css">
 		<link rel="stylesheet" href="/micro/pub/css/showcase.css">
+		<script type="text/javascript" src="/micro/pub/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/micro/js/global.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".js-lazy").css("width",$(".admin").width());
+			});
+		</script>
 	</head>
 	<body class=" " style="padding-bottom: 50px;">
 		<div class="container">

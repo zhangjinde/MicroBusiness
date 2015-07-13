@@ -16,7 +16,7 @@
 		</property> 
 	</bean>
 	
-	<bean id="qryCenter" class="org.micro.util.QryCenter">
+	<bean id="qryCenter" class="org.micro.pub.util.QryCenter">
         <property name="dataSource">
         	<ref bean="dataSource"/>
        	</property>

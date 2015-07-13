@@ -1,4 +1,4 @@
-package org.micro.util;
+package org.micro.pub.util;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
