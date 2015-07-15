@@ -52,3 +52,8 @@ function encodeURL(url)
  
 	window.location.href = urls;
 }
+
+function weixinPayFunc()
+{
+	
+}
