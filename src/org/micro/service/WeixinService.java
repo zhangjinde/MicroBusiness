@@ -31,6 +31,7 @@ public class WeixinService
 		String timeExpire = sdf.format(date);
 		int totalFee = Integer.parseInt(total_fee);
 		ScanPayReqData scanPayReqData = new ScanPayReqData(body, detail, out_trade_no, totalFee, timeStart, timeExpire, openid);
+		scanPayService = getScanPayService();
 		String responseString = scanPayService.request(scanPayReqData);
 	}
 }

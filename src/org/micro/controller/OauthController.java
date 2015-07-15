@@ -3,6 +3,10 @@ package org.micro.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONObject;
+
+import org.micro.pub.util.HttpsUtil;
+import org.micro.pub.util.JsonUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,11 +31,11 @@ public class OauthController
 		url.append("code="+codeId);
 		url.append("&grant_type=authorization_code");
 		System.out.println("url:"+url);
-//		String rtn = HttpsUtil.http(url.toString(), null, "", "");
-//		JSONObject object = JsonUtils.fromObject(rtn);
-//		String openId=object.getString("openid");
-//		System.out.println("rtn:"+rtn);
-//		System.out.println("openId--------------------------------:"+openId);
+		String rtn = HttpsUtil.http(url.toString(), null, "", "");
+		JSONObject object = JsonUtils.fromObject(rtn);
+		String openId=object.getString("openid");
+		System.out.println("rtn:"+rtn);
+		System.out.println("openId--------------------------------:"+openId);
 		ModelAndView view = new ModelAndView(page);
 		view.addObject("openid","openId");
 		return view;
