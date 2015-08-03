@@ -49,7 +49,7 @@ function encodeURL(url)
 	var str=encodeURIComponent(url);
  
 	var urls= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9de1544a58642739&redirect_uri="+str+"&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
- 
+	alert(urls);
 	window.location.href = urls;
 }
 
