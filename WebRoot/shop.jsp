@@ -28,6 +28,7 @@
   init();
   function init()
   {
+	 //setCookie("openid","oLsjhsuYDJZMpNK0jt09X8Wtt5DY");
   	 var url="http://www.hbcnhls.com/micro/oauth.do?method=getCode&page=shop";
   	 var openid=getCookie("openid");
   	 var id='<%=openId%>';
