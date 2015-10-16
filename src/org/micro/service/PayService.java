@@ -42,12 +42,19 @@ public class PayService
 				return "商家详细信息有误，请核实后重新尝试";
 			}
 			String customerId = null;
-			if(ObjectCensor.isStrRegular(name , contactNum , addr , provId , cityId , districtId))
+			if(ObjectCensor.isStrRegular(name , contactNum , addr))
 			{
-				customerId = customerDao.addCustomerDetail(busId, openId, name, contactNum, addr, postCode, provId , cityId , districtId);
-				if(!StringUtil.checkStringIsNum(customerId))
+				if(validPhone(contactNum))
 				{
-					return "人员信息有误，请核实后重新尝试";
+					customerId = customerDao.addCustomerDetail(busId, openId, name, contactNum, addr, postCode, provId , cityId , districtId);
+					if(!StringUtil.checkStringIsNum(customerId))
+					{
+						return "收货人信息有误，请核实后重新尝试";
+					}
+				}
+				else
+				{
+					return "联系电话有误，请核实后重新尝试";
 				}
 			}
 			else
@@ -63,7 +70,7 @@ public class PayService
 				}
 				else
 				{
-					customerId = "";
+					return "收货人信息有误，请核实后重新尝试";
 				}
 			}
 			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productId, productNum, productPrice, openId, name);
@@ -89,12 +96,19 @@ public class PayService
 				return "商家详细信息有误，请核实后重新尝试";
 			}
 			String customerId = null;
-			if(ObjectCensor.isStrRegular(name , contactNum , addr , provId , cityId , districtId))
+			if(ObjectCensor.isStrRegular(name , contactNum , addr))
 			{
-				customerId = customerDao.addCustomerDetail(busId, openId, name, contactNum, addr, postCode, provId , cityId , districtId);
-				if(!StringUtil.checkStringIsNum(customerId))
+				if(validPhone(contactNum))
 				{
-					return "人员信息有误，请核实后重新尝试";
+					customerId = customerDao.addCustomerDetail(busId, openId, name, contactNum, addr, postCode, provId , cityId , districtId);
+					if(!StringUtil.checkStringIsNum(customerId))
+					{
+						return "收货人信息有误，请核实后重新尝试";
+					}
+				}
+				else
+				{
+					return "联系电话有误，请核实后重新尝试";
 				}
 			}
 			else
@@ -110,7 +124,7 @@ public class PayService
 				}
 				else
 				{
-					customerId = "";
+					return "收货人信息有误，请核实后重新尝试";
 				}
 			}
 			return payDao.addOrder(busDetailId, customerId, contactNum, addr, productInfo, totalPrice, openId, name);
@@ -118,6 +132,18 @@ public class PayService
 		else
 		{
 			return "入参有误,请核实后重新尝试";
+		}
+	}
+	
+	private boolean validPhone(String contactNum)
+	{
+		if(contactNum.length() == 8 || contactNum.length() == 11)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 	

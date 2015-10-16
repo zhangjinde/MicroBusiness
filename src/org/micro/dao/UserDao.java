@@ -147,7 +147,7 @@ public class UserDao extends BaseDao
 			sql = "insert into customer_address_t(customer_detail_id,customer_id,customer_addr,customer_postcode,is_primary,prov_id,city_id,district_id,customer_name,customer_telephone,create_date,state_date,sts) values(MICRO_CUSM_DET_SEQ.nextval,?,?,?,?,?,?,?,?,?,sysdate,sysdate,'A')";
 			if(jdbcTemplate.update(sql, new Object[]{customerId,addr,postCode,"A",provId,cityId,districtId,customerName,customerPhone}) > 0)
 			{
-				addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
+//				addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
 				sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
 				if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)
 				{
@@ -178,7 +178,7 @@ public class UserDao extends BaseDao
 			List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sql, paramList);
 			if(ObjectCensor.checkListIsNull(list))
 			{
-				addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
+//				addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
 				Map<String,String> map = list.get(0);
 				sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
 				if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)

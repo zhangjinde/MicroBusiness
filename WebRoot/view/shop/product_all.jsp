@@ -12,7 +12,7 @@
 		<meta name="format-detection" content="telephone=no">
 		<meta http-equiv="cleartype" content="on">
 		<link rel="shortcut icon" href="*.ico">
-		<title>回锅肉</title>
+		<title>全部商品</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="/micro/pub/css/base.css" >
 		<link rel="stylesheet" href="/micro/pub/css/showcase_admin.css" >
@@ -91,7 +91,7 @@
             </div>
           </div>
         </div>
-        <div class="content-sidebar">
+        <div class="content-sidebar" style="display:none;">
           <a href="/micro/shop.jsp"
           class="link">
             <div class="sidebar-section shop-card">
@@ -113,35 +113,35 @@
           <ul class="clearfix">
             <li>
               <a href="/micro/shop.jsp" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FgoMDhfG936BFs3_HI83rWv7YgPb.jpg);
+              background-image: url(/micro/pub/img/pic/homePic.jpg);
               background-size: 50px 50px
               ">
               </a>
             </li>
             <li>
               <a href="/micro/view/shop/user_center.jsp?busId=100" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FloXBZIB_ZdrgWQ9RbL9_KII7vRp.jpg);
+              background-image: url(/micro/pub/img/pic/qryOrder.jpg);
               background-size: 50px 50px
               ">
               </a>
             </li>
             <li>
               <a href="/micro/view/shop/user_center.jsp?busId=100" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/29/FipGucD7DSfIDx8A-5MZhNShqCj6.jpg);
+              background-image: url(/micro/pub/img/pic/userCenter.jpg);
               background-size: 50px 50px
               ">
               </a>
             </li>
             <li>
               <a href="tel://4007366517" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FvYYLvzwv0CJGxbWSM-jdF2NcgxB.jpg);
+              background-image: url(/micro/pub/img/pic/callCustomer.jpg);
               background-size: 50px 50px
               ">
               </a>
             </li>
             <li>
               <a href="http://wap.koudaitong.com/v2/feature/oma5aeh1" style="
-              background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/28/Fmy18MTGsvgvsYbxrRvl47g6Vbzg.jpg);
+              background-image: url(/micro/pub/img/pic/navigator.jpg);
               background-size: 50px 50px
               ">
               </a>
@@ -166,44 +166,14 @@
         </div>
       </div>
     </div>
-    <div class="search-container hide">
-      <form class="search-form" action="http://wap.koudaitong.com/v2/search"
-      method="GET">
-        <input type="search" class="search-input" placeholder="搜索本店所有商品" name="q"
-        value="">
-        <input type="hidden" name="kdt_id" value="803178">
-        <a class="js-search-cancel search-cancel" href="javascript:;">
-          取消
-        </a>
-        <span class="search-icon">
-        </span>
-        <span class="close-icon hide">
-        </span>
-      </form>
-      <div class="history-wrap center">
-        <ul class="history-list">
-        </ul>
-        <a class="tag tag-clear c-gray-darker hide" href="javascript:;">
-          清除历史搜索
-        </a>
-      </div>
-    </div>
     <div id="right-icon" class="js-right-icon no-text" style="display:none">
       <div class="js-right-icon-container right-icon-container clearfix" style="width: 50px;">
-        <a id="global-cart" href="http://wap.koudaitong.com/v2/trade/cart?kdt_id=803178"
-        class="icon hide" style="background-image: url(http://kdt-static.qiniucdn.com//v2/image/setting/shopping-cart/2x/s2.png);">
+        <a id="global-cart" href="/micro/cart.do?method=gotoShopCart&openid=${param.openId}&busId=${param.busId}"
+        class="icon hide" style="background-image: url(/micro/pub/img/pic/s2.png);">
           <p class="icon-img">
           </p>
           <p class="icon-txt">
             购物车
-          </p>
-        </a>
-        <a id="global-wish" href="http://trade.koudaitong.com/wxpay/wish?kdt_id=803178"
-        class="icon">
-          <p class="icon-img">
-          </p>
-          <p class="icon-txt">
-            心愿单
           </p>
         </a>
         <a class="js-show-more-btn icon show-more-btn hide">
@@ -246,16 +216,18 @@
 	   			$.each(data.prods, function(i, obj)
 	   		    {
    					content+="<li class='js-goods-card goods-card goods-list normal'>";                                                
-   					content+="<a href='javascript:void(0)' onclick=getProds("+obj.productId+") class='js-goods link clearfix' target='_blank' data-goods-id='9937870' title='"+obj.productName+"'>";  
-   					content+="<div class='photo-block' style='background-color: rgb(255, 255, 255);'>";                             
+   					//content+="<a href='javascript:void(0)' class='js-goods link clearfix' target='_blank' data-goods-id='9937870' title='"+obj.productName+"'>";  
+   					content+="<div class='photo-block' style='background-color: rgb(255, 255, 255);' onclick=getProds("+obj.productId+")>";                             
    					content+="<img class='goods-photo js-goods-lazy' data-src=''src='"+obj.imgUrl+"' style='display: block;'>";                   
    					content+="</div>";                                                                                              
-   					content+="<div class='info'>";                                                                                    
+   					content+="<div class='info'>";                                                                          
    					content+="<p class='goods-title'>"+obj.productName+"</p>";                                                                         
-   					content+="<p class='goods-price'><em>￥10.00</em></p>";                                                                               
-   					content+="<div class='goods-buy btn1'></div>"; 
+   					content+="<p class='goods-price'><em style='font-style:normal;color:#ff6600'>￥"+obj.productPrice+"</em></p>";                                                             
+   					content+="<div class='goods-buy btn1' >";
+					content+="</div>";
+					content+="<div class='js-goods-buy buy-response' onclick=addCart("+obj.productId+")></div>";
    					content+="</div>"; 
-   					content+="</a>"; 
+   					//content+="</a>"; 
    					content+="</li>"; 
 	   			});
 	   			
@@ -271,6 +243,20 @@
 	   		}
    		});
    }
+   
+   function addCart(productId)
+   {
+		var cart={"weixinId":"${param.openId}","productId":productId,"num":1};
+		$.ajax({
+			url:"/micro/cart.do?method=addCart",
+			type:"POST",
+			data:"cart="+JSON.stringify(cart),
+			success:function(data){
+				$("#right-icon").removeClass("hide");
+				alert("已加入购物车!")
+			}
+		});
+  }
    
    function getProds(productId)
    {

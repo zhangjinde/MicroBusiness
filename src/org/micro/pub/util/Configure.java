@@ -68,7 +68,7 @@ public class Configure {
 		Configure.useThreadToDoReport = useThreadToDoReport;
 	}
 
-	public static String HttpsRequestClassName = "com.tencent.common.HttpsRequest";
+	public static String HttpsRequestClassName = "org.micro.pub.util.HttpsRequest";
 
 	public static void setKey(String key) {
 		Configure.key = key;

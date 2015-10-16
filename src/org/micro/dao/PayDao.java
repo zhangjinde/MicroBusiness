@@ -79,7 +79,7 @@ public class PayDao extends BaseDao
 	
 	public List getOrderById(String wenxinId,String phone) throws QryException
 	{
-		StringBuffer sql= new StringBuffer("select distinct(t.order_id), t.*,a.product_id,b.img_url,b.product_price,b.product_name from order_t t ,order_detail_t a,product_t b where t.order_id=a.order_id and a.product_id=b.product_id and t.sts='A' ");
+		StringBuffer sql= new StringBuffer("select distinct(t.order_id), t.*,a.product_id,b.img_url,b.product_price,b.product_name from order_t t ,order_detail_t a,product_t b where t.order_id=a.order_id and a.product_id=b.product_id and t.sts='A' and b.sts = 'A' and a.sts = 'A' ");
 		ArrayList arrayList = new ArrayList();
 		if(!ObjectCensor.checkObjectIsNull(wenxinId))
 		{
@@ -96,7 +96,7 @@ public class PayDao extends BaseDao
 	
 	public List<Map<String,String>> getOrderInfo(String orderId) throws QryException
 	{
-		String sql = "select m.order_id,m.bus_id,m.bus_detail_id,m.bus_name,m.customer_id,n.customer_detail_id,m.customer_name,m.telephone,m.customer_address,m.order_price,m.bus_detail_name,m.bus_addr,m.bus_telephone from (select a.order_id,b.bus_id,a.bus_detail_id,c.bus_name,a.customer_id,a.customer_name,a.telephone,a.customer_address,a.order_price,b.bus_detail_name,b.bus_addr,b.bus_telephone from order_t a,business_detail_t b,business_t c where a.bus_detail_id = b.bus_detail_id and b.bus_id = c.bus_id and a.order_id = ?) m,(select d.customer_id,e.customer_detail_id,d.customer_name from customer_t d,customer_address_t e where d.customer_id = e.customer_id and is_primary='A') n where m.customer_id = n.customer_id(+)";
+		String sql = "select m.order_id,m.bus_id,m.bus_detail_id,m.bus_name,m.customer_id,n.customer_detail_id,m.customer_name,m.telephone,m.customer_address,m.order_price,m.bus_detail_name,m.bus_addr,m.bus_telephone from (select a.order_id,b.bus_id,a.bus_detail_id,c.bus_name,a.customer_id,a.customer_name,a.telephone,a.customer_address,a.order_price,b.bus_detail_name,b.bus_addr,b.bus_telephone from order_t a,business_detail_t b,business_t c where b.sts = 'A' and c.sts = 'A' and a.bus_detail_id = b.bus_detail_id and b.bus_id = c.bus_id and a.order_id = ?) m,(select d.customer_id,e.customer_detail_id,d.customer_name from customer_t d,customer_address_t e where d.sts = 'A' and e.sts = 'A' and d.customer_id = e.customer_id and is_primary='A') n where m.customer_id = n.customer_id(+)";
 		ArrayList arrayList = new ArrayList();
 		arrayList.add(orderId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
@@ -112,7 +112,7 @@ public class PayDao extends BaseDao
 	
 	public List<Map<String,String>> getOrderDetailList(String orderId) throws QryException
 	{
-		String sql = "select a.order_detail_id,a.product_id,b.product_name,b.product_price,a.product_num,b.img_url,b.product_desc from order_detail_t a,product_t b where a.product_id = b.product_id and a.order_id = ?";
+		String sql = "select a.order_detail_id,a.product_id,b.product_name,b.product_price,a.product_num,b.img_url,b.product_desc from order_detail_t a,product_t b where a.product_id = b.product_id and a.order_id = ? and a.sts = 'A' and b.sts = 'A' ";
 		ArrayList arrayList = new ArrayList();
 		arrayList.add(orderId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
@@ -120,7 +120,7 @@ public class PayDao extends BaseDao
 	
 	public List<Map<String,String>> getBusDetailList(String busId) throws QryException
 	{
-		String sql = "select * from business_detail_t where bus_id = ?";
+		String sql = "select * from business_detail_t where bus_id = ? and sts = 'A'";
 		ArrayList arrayList = new ArrayList();
 		arrayList.add(busId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
@@ -133,7 +133,7 @@ public class PayDao extends BaseDao
 		jdbcTemplate.update(sql, new Object[]{customerId});
 		sql = "update customer_address_t set is_primary='A',state_date=sysdate where customer_detail_id = ?";
 		jdbcTemplate.update(sql, new Object[]{customerDetailId});
-		sql = "select * from customer_address_t a,province_t b,city_t c,district_t d where b.province_id = a.prov_id and c.city_id = a.city_id and d.district_id = a.district_id and customer_detail_id = ?";
+		sql = "select * from customer_address_t where customer_detail_id = ? and sts = 'A'";
 		ArrayList arrayList = new ArrayList();
 		arrayList.add(customerDetailId);
 		List list = qryCenter.executeSqlByMapListWithTrans(sql, arrayList);
@@ -146,7 +146,7 @@ public class PayDao extends BaseDao
 			String customerName = StringUtil.getMapKeyVal(map, "customerName");
 			String customerPhone = StringUtil.getMapKeyVal(map, "customerTelephone");
 			String addr = StringUtil.getMapKeyVal(map, "customerAddr");
-			addr = new StringBuffer().append(provName).append(cityName).append(districtName).append(addr).toString();
+//			addr = new StringBuffer().append(provName).append(cityName).append(districtName).append(addr).toString();
 			sql = "update customer_t set customer_name = ?,customer_telephone = ? where customer_id = ?";
 			if(jdbcTemplate.update(sql,new Object[]{customerName,customerPhone,customerId}) > 0)
 			{
@@ -216,7 +216,7 @@ public class PayDao extends BaseDao
 	{
 		if(ObjectCensor.isStrRegular(orderIds))
 		{
-			StringBuffer sb = new StringBuffer("select a.order_id,c.product_id,c.product_name,c.product_price,b.product_num,c.img_url from order_t a,order_detail_t b,product_t c where a.order_id = b.order_id and b.product_id = c.product_id and a.order_id in (");
+			StringBuffer sb = new StringBuffer("select a.order_id,c.product_id,c.product_name,c.product_price,b.product_num,c.img_url from order_t a,order_detail_t b,product_t c where a.sts='A' and b.sts='A' and c.sts='A' and a.order_id = b.order_id and b.product_id = c.product_id and a.order_id in (");
 			sb.append(orderIds);
 			sb.append(")");
 			return qryCenter.executeSqlByMapListWithTrans(sb.toString() , new ArrayList());
@@ -269,7 +269,7 @@ public class PayDao extends BaseDao
 	
 	public String payOrder(String orderId , String busDetailId)
 	{
-		String sql = "update order_t set sts = 'R',state_date = sysdate,bus_detail_id = ? where order_id = ?";
+		String sql = "update order_t set sts = 'R',state_date = sysdate,bus_detail_id = ?,is_new = 'Y' where order_id = ?";
 		if(jdbcTemplate.update(sql,new Object[]{busDetailId,orderId}) > 0)
 		{
 			return "success";
@@ -282,7 +282,7 @@ public class PayDao extends BaseDao
 	
 	public List<Map<String,String>> getOrderList(String orderType , int pageNum , int pageSize) throws QryException
 	{
-		StringBuffer sb = new StringBuffer("SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select a.order_id,a.customer_name,a.telephone,a.customer_address,a.order_price,a.sts,case a.sts when 'A' then '待付款' when 'R' then '待发货' when 'H' then '已发货' when 'O' then '已完成' when 'P' then '已取消' end sts_name,to_char(a.create_date,'yyyy-mm-dd hh24:mi:ss') create_date,to_char(a.state_date,'yyyy-mm-dd hh24:mi:ss') state_date,b.bus_detail_name,b.bus_addr from order_t a,business_detail_t b where a.bus_detail_id = b.bus_detail_id ");
+		StringBuffer sb = new StringBuffer("SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select a.order_id,a.customer_name,a.telephone,a.customer_address,a.order_price,a.sts,case a.sts when 'A' then '待付款' when 'R' then '待发货' when 'H' then '已发货' when 'O' then '已完成' when 'P' then '已取消' end sts_name,to_char(a.create_date,'yyyy-mm-dd hh24:mi:ss') create_date,to_char(a.state_date,'yyyy-mm-dd hh24:mi:ss') state_date,b.bus_detail_name,b.bus_addr from order_t a,business_detail_t b where a.bus_detail_id = b.bus_detail_id and b.sts = 'A' ");
 		ArrayList paramList = new ArrayList();
 		if(ObjectCensor.isStrRegular(orderType))
 		{
@@ -310,7 +310,7 @@ public class PayDao extends BaseDao
 	
 	public List<Map<String,String>> getOrderDetailInfo(String orderId , int pageNum , int pageSize) throws QryException
 	{
-		String sql = "SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select b.product_name,b.product_price,a.product_num from order_detail_t a,product_t b where a.product_id = b.product_id and a.order_id=?) A WHERE ROWNUM <= ?) WHERE RN >= ?";
+		String sql = "SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select b.product_name,b.product_price,a.product_num from order_detail_t a,product_t b where a.product_id = b.product_id and a.sts='A' and b.sts='A' and a.order_id=?) A WHERE ROWNUM <= ?) WHERE RN >= ?";
 		ArrayList paramList = new ArrayList();
 		paramList.add(orderId);
     	paramList.add(pageNum * pageSize);
@@ -325,6 +325,66 @@ public class PayDao extends BaseDao
 		paramList.add(orderId);
 		List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sql, paramList);
 		return StringUtil.getMapKeyVal(list.get(0), "total");
+	}
+	
+	public List<Map<String,Object>> getBusDetailList(String busDetailId , String state , int pageNum , int pageSize) throws QryException
+	{
+		StringBuffer sql = new StringBuffer("SELECT * FROM (SELECT A.*, ROWNUM RN FROM (select order_id,bus_detail_id,customer_id,telephone,customer_address,order_price,to_char(create_date,'yyyy-mm-dd hh24:mi:ss') create_date,to_char(expire_date,'yyyy-mm-dd hh24:mi:ss') expire_date,to_char(state_date,'yyyy-mm-dd hh24:mi:ss') state_date,sts,case sts when 'R' then '待发货' when 'H' then '已发货' when 'O' then '已完成' when 'P' then '已取消' end sts_name,customer_name,is_new,case is_new when 'Y' then '新订单' when 'N' then '老订单' end is_new_name from order_t where sts in (");
+		sql.append(state);
+		sql.append(") and bus_detail_id = ? order by state_date desc) A WHERE ROWNUM <= ?) WHERE RN >= ?");
+		ArrayList paramList = new ArrayList();
+		paramList.add(busDetailId);
+    	paramList.add(pageNum * pageSize);
+    	paramList.add((pageNum - 1) * pageSize + 1);
+		return qryCenter.executeSqlByMapListWithTrans(sql.toString(), paramList);
+	}
+	
+	public List<Map<String,String>> getOrderDetail(String orderId) throws QryException
+	{
+		String sql = "select b.product_name,b.product_price,a.product_num from order_detail_t a,product_t b where a.product_id = b.product_id and a.sts='A' and b.sts='A' and a.order_id=?";
+		ArrayList paramList = new ArrayList();
+		paramList.add(orderId);
+		return qryCenter.executeSqlByMapListWithTrans(sql, paramList);
+	}
+	
+	public String getBusDetailListCnt(String busDetailId , String state) throws QryException
+	{
+		StringBuffer sql = new StringBuffer("select count(*) total from order_t where sts in (");
+		sql.append(state);
+		sql.append(") and bus_detail_id = ?");
+		ArrayList paramList = new ArrayList();
+		paramList.add(busDetailId);
+		List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sql.toString(), paramList);
+		return StringUtil.getMapKeyVal(list.get(0), "total");
+	}
+	
+	public String hasNewBusOrder(String busDetailId) throws QryException
+	{
+		String sql = "select * from order_t where is_new = 'Y' and bus_detail_id = ?";
+		ArrayList paramList = new ArrayList();
+		paramList.add(busDetailId);
+		List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sql.toString(), paramList);
+		if(ObjectCensor.checkListIsNull(list))
+		{
+			return "true";
+		}
+		else
+		{
+			return "false";
+		}
+	}
+	
+	public String operNewBusOrder(String busDetailId , String orderIds)
+	{
+		StringBuffer sql = new StringBuffer("update order_t set is_new = 'N' where is_new = 'Y' and bus_detail_id = ? ");
+		if(ObjectCensor.isStrRegular(orderIds))
+		{
+			sql.append(" and order_id in (");
+			sql.append(orderIds);
+			sql.append(")");
+		}
+		jdbcTemplate.update(sql.toString(),new Object[]{busDetailId});
+		return "success";
 	}
 	
 }

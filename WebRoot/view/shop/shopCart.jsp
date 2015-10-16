@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 	String openId =(String) request.getAttribute("openid");
+	String rand = String.valueOf(Math.random());
 	if("".equals(openId) || openId==null)
 	{
 		openId = request.getParameter("openid");
@@ -25,7 +26,7 @@
 	   	<script src="<%=path %>/js/location.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="<%=path %>/pub/css/magnific-popup.css" />
 		<script src="<%=path %>/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
-	   	<script src="<%=path %>/pub/js/util.js" type="text/javascript"></script>
+	   	<script src="<%=path %>/pub/js/util.js?<%=rand %>" type="text/javascript"></script>
 	  	<link rel="stylesheet" href="<%=path %>/pub/css/base_2ced031129.css" />
 	    <link rel="stylesheet" href="<%=path %>/pub/css/order_list_50b8447040.css" />
 	    <link rel="stylesheet" href="<%=path %>/pub/css/trade_626cf27050.css" />
@@ -35,8 +36,8 @@
 	    <div class="container ">
 	    	<div class="content clearfix">
 				<div class="tabber  tabber-n3 tabber-double-11 clearfix">
-					<a class="active" href="<%=path %>/view/shop/shopCart.jsp?openid=${param.openid}&busId=100">购物车</a>
-				    <a class="" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100">购物记录</a>
+					<a class="active" href="<%=path %>/view/shop/shopCart.jsp?openid=<%=openId %>&busId=100">购物车</a>
+				    <a class="" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100&openid=<%=openId %>">购物记录</a>
 				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp">我的返现</a>
 				</div>
 				<div id="cart-container" class="block block-order">
@@ -52,7 +53,7 @@
 							<div class="select-all checked"><span onclick="selectAll()" id="allselect" class="check"></span>全选</div>
 							<div class="total-price">合计：<span id="totalPrice" class="js-total-price">0</span>元</div>
 							<button id='pay' href="#receiveAddrForm" class="js-go-pay btn btn-orange-dark font-size-14">结算</button>
-							<button id='deleteProd' onclick="deleteProd() " href="javascript:;" class="j-delete-goods btn font-size-14 btn-red hide" disabled="true">删除</button>
+							<button id='deleteProd' onclick="deleteProd()" class="j-delete-goods btn font-size-14 btn-red hide">删除</button>
 						</div>
 					</div>
 				</div>
@@ -89,7 +90,7 @@
 						<td style="padding-left:10px;color:#000">详细地址</td>
 						<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent;width:100%" required></td>
 					</tr>
-					<tr>
+					<tr style="display:none">
 						<td style="padding-left:10px;color:#000">邮政编码</td>
 						<td><input id="postCode" name="postCode	" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent;width:100%" /></td>
 					</tr>
@@ -105,7 +106,7 @@
 			<span id="addrName" style="display:none"></span>
 		</div>
 	</body>
-	<script type="text/javascript" language="JavaScript" src="/micro/js/shopCart.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/micro/js/shopCart.js?<%=rand %>"></script>
 	<script type="text/javascript">
 		<c:choose>
 			<c:when test="${newUser=='Y'}">
@@ -127,6 +128,12 @@
 		              } else {
 		                this.st.focus = '#name';
 		              }
+		              var totalPrice = $("#totalPrice").html();
+					  if(Number(totalPrice) < gDisFeeLimit)
+					  {
+					  	 alert("消费必须"+gDisFeeLimit+"元才与配送哦~");
+					  	 this.st.close();
+					  }
 		            },
 		            open:function(){
 		            	var addrName = $("#addrName").html();

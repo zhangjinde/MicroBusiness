@@ -1,3 +1,8 @@
+var gDisFeeLimit = 30;
+var gStartHour = 11;
+var gEndHour = 18;
+var gFarDistance = 1000;
+
 function areaChange(obj,flag,win)
 {
 	var selObj = null;
@@ -38,8 +43,8 @@ function areaChange(obj,flag,win)
 
 function isWorkRange()
 {
-	var startDate = 11;
-  	var endDate = 24;
+	var startDate = gStartHour;
+  	var endDate = gEndHour;
   	var nowDate = new Date();
   	if(nowDate.getHours() >= startDate && nowDate.getHours() <= endDate)
   	{

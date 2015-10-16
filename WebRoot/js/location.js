@@ -22,8 +22,8 @@ function showPosition(position)
 	document.getElementById("xPos").value = x;
 	var y = position.coords.longitude; 
 	document.getElementById("yPos").value = y;
-	//配置Baidu Geocoding API 
-	var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&callback=renderReverse&location=" + x + "," + y + 
+	//配置Baidu Geocoding API  
+	var url = "http://api.map.baidu.com/geocoder/v2/?ak=unSDcbidA3MhTBtBqUOy5rqg&callback=renderReverse&location=" + x + "," + y + 
 	"&output=json&pois=0&coordtype=wgs84ll"; 
 	$.ajax({
 		type: "GET", 
@@ -96,7 +96,7 @@ function Rad(d){
  
  function getPlaceAxisByAddr(addr,funcName)
  {
-	var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
+	var url = "http://api.map.baidu.com/geocoder/v2/?ak=unSDcbidA3MhTBtBqUOy5rqg&address="+encodeURI(addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
 	$.ajax({
 		type: "GET", 
 		dataType: "jsonp", 

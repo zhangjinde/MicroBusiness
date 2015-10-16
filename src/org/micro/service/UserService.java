@@ -115,21 +115,61 @@ public class UserService
 	
 	public String saveCustomer(String busId , String openId , String orderId , String customerId , String customerName , String customerPhone , String provId , String cityId , String districtId  , String provName , String cityName , String distName , String addr , String postCode) throws QryException
 	{
-		if(ObjectCensor.isStrRegular(customerId))
+		if(ObjectCensor.isStrRegular(customerName , customerPhone , addr))
 		{
-			return userDao.saveCustomer(orderId, customerId, customerName, customerPhone, provId, cityId, districtId, provName, cityName, distName, addr, postCode);
+			if(validPhone(customerPhone))
+			{
+				if(ObjectCensor.isStrRegular(customerId))
+				{
+					return userDao.saveCustomer(orderId, customerId, customerName, customerPhone, provId, cityId, districtId, provName, cityName, distName, addr, postCode);
+				}
+				else
+				{
+					customerId = customerDao.addCustomerDetail(busId, openId, customerName, customerPhone, addr, postCode, provId, cityId, districtId);
+//				addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
+					return payDao.saveNewUserOrder(orderId, customerPhone, addr, customerName, customerId);
+				}
+			}
+			else
+			{
+				return "新增收货人联系电话不正确";
+			}
 		}
 		else
 		{
-			customerId = customerDao.addCustomerDetail(busId, openId, customerName, customerPhone, addr, postCode, provId, cityId, districtId);
-			addr = new StringBuffer().append(provName).append(cityName).append(distName).append(addr).toString();
-			return payDao.saveNewUserOrder(orderId, customerPhone, addr, customerName, customerId);
+			return "新增收货人信息有误，请核实后重新尝试";
 		}
 	}
 	
 	public String updateCustomer(String orderId , String customerId , String customerDetailId , String customerName , String customerPhone , String provId , String cityId , String districtId , String provName , String cityName , String distName , String addr , String postCode) throws QryException
 	{
-		return userDao.updateCustomer(orderId, customerId, customerDetailId, customerName, customerPhone, provId, cityId, districtId, provName, cityName, distName, addr, postCode);
+		if(ObjectCensor.isStrRegular(customerName , customerPhone , addr))
+		{
+			if(validPhone(customerPhone))
+			{
+				return userDao.updateCustomer(orderId, customerId, customerDetailId, customerName, customerPhone, provId, cityId, districtId, provName, cityName, distName, addr, postCode);
+			}
+			else
+			{
+				return "修改联系电话不正确";
+			}
+		}
+		else
+		{
+			return "修改联系电话有误，请核实后重新尝试";
+		}
+	}
+	
+	private boolean validPhone(String contactNum)
+	{
+		if(contactNum.length() == 8 || contactNum.length() == 11)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public String delCustomer(String customerId , String customerDetailId) throws QryException

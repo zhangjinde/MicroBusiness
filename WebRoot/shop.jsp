@@ -28,8 +28,7 @@
   init();
   function init()
   {
-	 //setCookie("openid","oLsjhsuYDJZMpNK0jt09X8Wtt5DY"); 
-  	 var url="/micro/oauth.do?method=getCode&page=shop";
+  	 var url="http://www.hbcnhls.com/micro/oauth.do?method=getCode&page=shop";
   	 var openid=getCookie("openid");
   	 var id='<%=openId%>';
   	 if((openid=='' || openid==null || openid=='null') && (id=='' || id==null || id=='null'))
@@ -42,16 +41,13 @@
   	 }
   	 
   }
-
-
   
   function toMyCart()
   {
-	  var url= "http://www.hbcnhls.cn/micro/oauth.do?method=getCode&page=shopCart";
+	  var url= "http://www.hbcnhls.com/micro/oauth.do?method=getCode&page=shopCart";
 	  var openid=getCookie("openid");
 	  if(openid=='' || openid==null)
 	  {
-		  var url="";
 		  encodeURL(url); 
 	  }else
 	  {
@@ -87,9 +83,9 @@
             <div class="tpl-shop-content">
               <ul class="clearfix">
                 <li class="js-all-goods">
-                  <a href="/micro/view/shop/product_all.jsp">
+                  <a href="javascript:void(0)" onclick="showProductAll()">
                     <span class="count">
-                      21
+                      20
                     </span>
                     <span class="text">
                       全部商品
@@ -234,7 +230,7 @@
                     <a class="js-goods link clearfix prods"
                     target="_blank" data-goods-id="10003" title="田园鲜蔬汉堡+上校鸡块+可乐">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-                        <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FjcIDaLN6QLbY0VrJWp_XYzc82dT.jpg!140x140+2x.jpg"
+                        <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/countrysideSetMeal.jpg"
                         src="/micro/pub/img/13.jpg" style="display: block;">
                       </div>
                       <div class="info clearfix info-title info-price btn3">
@@ -264,7 +260,7 @@
                     <a class="js-goods link clearfix prods"
                     target="_blank" data-goods-id="10004" title="双层培根红肠堡+香辣鸡翅一对+可乐">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-                        <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FkA6p3Qz50aQigc1-2D3c3DJkp0O.jpg!140x140+2x.jpg"
+                        <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/doubleWust.jpg"
                          src="/micro/pub/img/14.jpg" style="display: block;">
                       </div>
                       <div class="info clearfix info-title info-price btn3">
@@ -294,7 +290,7 @@
                     <a class="js-goods link clearfix prods"
                     target="_blank" data-goods-id="10005" title="BBQ烤鸡+紫薯豌豆派+可乐">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-                        <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FmVCP4H7wLEts1rK6YqoF1ZcNLFa.jpg!140x140+2x.jpg"
+                        <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/allChicken.jpg"
                          src="/micro/pub/img/15.jpg" style="display: block;">
                       </div>
                       <div class="info clearfix info-title info-price btn3">
@@ -324,7 +320,7 @@
                     <a class="js-goods link clearfix prods"
                     target="_blank" data-goods-id="10006" title="香辣鸡腿汉堡+墨西哥鸡肉卷+可乐">
                       <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-                        <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FsYO8iqxk0gQGlQ8f3enjA3KUr9Z.jpg!140x140+2x.jpg"
+                        <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/popcornChicken.jpg"
                         src="/micro/pub/img/16.jpg" style="display: block;">
                       </div>
                       <div class="info clearfix info-title info-price btn3">
@@ -581,7 +577,7 @@
         <a class="js-goods link clearfix prods"
         target="_blank" data-goods-id="10014" title="香辣鸡翅">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-            <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FnfUcgNlTNgKjaaOPCAbC2jRYujZ.jpg!140x140+2x.jpg"
+            <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/chickenWing.jpg"
            src="/micro/pub/img/31.jpg" style="display: block;">
           </div>
           <div class="info clearfix info-title info-price btn3">
@@ -610,7 +606,7 @@
         <a class="js-goods link clearfix prods"
         target="_blank" data-goods-id="10015" title="脆皮炸鸡">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-            <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FuhVo0p36Nw4_JFLAdZdwwnSzg90.jpg!140x140+2x.jpg"
+            <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/friedchicken.jpg"
             src="/micro/pub/img/32.jpg" style="display: block;">
           </div>
           <div class="info clearfix info-title info-price btn3">
@@ -639,7 +635,7 @@
         <a class="js-goods link clearfix prods"
         target="_blank" data-goods-id="10016" title="香辣骨肉串">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-            <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FiqdsdPmCRaeQJUMm2fwFzr6aRhJ.jpg!140x140+2x.jpg"
+            <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/meatString.jpg"
            src="/micro/pub/img/33.jpg" style="display: block;">
           </div>
           <div class="info clearfix info-title info-price btn3">
@@ -669,7 +665,7 @@
         <a class="js-goods link clearfix prods"
         target="_blank" data-goods-id="10017" title="鸡米花">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-            <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FutSbHGmYc0xoAr2BC99MTByX423.jpg!140x140+2x.jpg"
+            <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/riceFlower.jpg"
           src="/micro/pub/img/34.jpg" style="display: block;">
           </div>
           <div class="info clearfix info-title info-price btn3">
@@ -698,7 +694,7 @@
         <a class="js-goods link clearfix prods"
         target="_blank" data-goods-id="10018" title="辣子鸡块">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-            <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FlruAxbusd0tADg-OvnQ6FRAOnUx.jpg!140x140+2x.jpg"
+            <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/spicyChicken.jpg"
             src="/micro/pub/img/35.jpg" style="display: block;">
           </div>
           <div class="info clearfix info-title info-price btn3">
@@ -727,7 +723,7 @@
         <a class="js-goods link clearfix prods"
         target="_blank" data-goods-id="10019" title="上校鸡块">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-            <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FiIb6eFAuMp7XzEXMAg2JPLvX3iu.jpg!140x140+2x.jpg"
+            <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/chickenColonel.jpg"
            src="/micro/pub/img/36.jpg" style="display: block;">
           </div>
           <div class="info clearfix info-title info-price btn3">
@@ -756,7 +752,7 @@
         <a class="js-goods link clearfix prods"
         target="_blank" data-goods-id="10020" title="紫薯豌豆派">
           <div class="photo-block" data-width="640" data-height="640" style="background-color: rgb(255, 255, 255);">
-            <img class="goods-photo js-goods-lazy" data-src="http://imgqn.koudaitong.com/upload_files/2015/03/13/FlWLqqlLBJo39jIrP7AG_EmYLaJ0.jpg!140x140+2x.jpg"
+            <img class="goods-photo js-goods-lazy" data-src="/micro/pub/img/pic/purpleSweetPotato.jpg"
             src="/micro/pub/img/37.jpg" style="display: block;">
           </div>
           <div class="info clearfix info-title info-price btn3">
@@ -833,19 +829,19 @@
         style="background-color: #02813e;">
           <ul class="clearfix">
             <li>
-              <a href="/micro/shop.jsp" title="店铺首页" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FgoMDhfG936BFs3_HI83rWv7YgPb.jpg);background-size: 50px 50px"></a>
+              <a href="/micro/shop.jsp" title="店铺首页" style="background-image: url(/micro/pub/img/pic/homeIndex.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="/micro/view/shop/user_center.jsp?busId=100" title="查询订单" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FloXBZIB_ZdrgWQ9RbL9_KII7vRp.jpg);background-size: 50px 50px"></a>
+              <a href="/micro/view/shop/user_center.jsp?busId=100" title="查询订单" style="background-image: url(/micro/pub/img/pic/qryOrder.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="/micro/view/shop/user_center.jsp?busId=100" title="会员中心" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/29/FipGucD7DSfIDx8A-5MZhNShqCj6.jpg);background-size: 50px 50px"></a>
+              <a href="/micro/view/shop/user_center.jsp?busId=100" title="会员中心" style="background-image: url(/micro/pub/img/pic/userIndex.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="tel://4007366517" title="呼叫客服" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/27/FvYYLvzwv0CJGxbWSM-jdF2NcgxB.jpg);background-size: 50px 50px"></a>
+              <a href="tel://4007366517" title="呼叫客服" style="background-image: url(/micro/pub/img/pic/callIndex.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="http://wap.koudaitong.com/v2/feature/oma5aeh1" title="门店导航" style="background-image: url(http://imgqn.koudaitong.com/upload_files/2015/01/28/Fmy18MTGsvgvsYbxrRvl47g6Vbzg.jpg);background-size: 50px 50px"></a>
+              <a href="http://wap.koudaitong.com/v2/feature/oma5aeh1" title="门店导航" style="background-image: url(/micro/pub/img/pic/navigatorIndex.jpg);background-size: 50px 50px"></a>
             </li>
           </ul>
         </div>
@@ -883,8 +879,8 @@
       </div>
       <div id="right-icon" class="js-right-icon no-text">
         <div class="js-right-icon-container right-icon-container clearfix" style="width: 50px;">
-          <a id="global-cart" href="http://wap.koudaitong.com/v2/trade/cart?kdt_id=803178"
-          class="icon hide" style="background-image: url(http://kdt-static.qiniucdn.com//v2/image/setting/shopping-cart/2x/s2.png);">
+          <a id="global-cart" href="javascript:void(0)" onclick="gotoShopCart()"
+          class="icon hide" style="background-image: url(/micro/pub/img/pic/s2.png);">
             <p class="icon-img">
             </p>
             <p class="icon-txt">
@@ -905,6 +901,17 @@ $(document).ready(function(){
 		getProds($(this).attr("data-goods-id"));
 	});
 });
+function showProductAll()
+{
+	var openId = "<%=openId %>";
+	window.location.href = "/micro/view/shop/product_all.jsp?openId="+openId+"&busId=100";
+}
+function gotoShopCart()
+{
+	var openId = "<%=openId %>";
+	window.location.href = "/micro/cart.do?method=gotoShopCart&openid="+openId+"&busId=100";
+}
+
 function getProds(productId)
 {
 	 var url="/micro/product.do?method=getProduct&productId="+productId+"&busId=100";

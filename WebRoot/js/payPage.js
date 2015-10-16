@@ -76,21 +76,21 @@ $('#selectAddr').magnificPopup({
           }
           var win = $.magnificPopup.instance.content;
           var detailId = curCustDetId;
-          var provId = $("#provId"+detailId).val();
-          $("#uprovince",win).val(provId);
-          if(provId != "")
-    	  {
-	          $("#uprovince",win).change(function(){
-	          	areaChange(this,'ucity',win);
-	          });
-	          $("#uprovince",win).change();
-	          $("#ucity",win).val($("#cityId"+detailId).val());
-	          $("#ucity",win).change(function(){
-	          	areaChange(this,'udistrict',win);
-	          });
-	          $("#ucity",win).change();
-	          $("#udistrict",win).val($("#districtId"+detailId).val());
-    	  }
+//          var provId = $("#provId"+detailId).val();
+//          $("#uprovince",win).val(provId);
+//          if(provId != "")
+//    	  {
+//	          $("#uprovince",win).change(function(){
+//	          	areaChange(this,'ucity',win);
+//	          });
+//	          $("#uprovince",win).change();
+//	          $("#ucity",win).val($("#cityId"+detailId).val());
+//	          $("#ucity",win).change(function(){
+//	          	areaChange(this,'udistrict',win);
+//	          });
+//	          $("#ucity",win).change();
+//	          $("#udistrict",win).val($("#districtId"+detailId).val());
+//    	  }
           $("#uname",win).val($("#customerName"+detailId).val());
           $("#uphonenum",win).val($("#customerTelephone"+detailId).val());
           $("#uaddress",win).val($("#customerAddress"+detailId).val());
@@ -103,18 +103,18 @@ $('#selectAddr').magnificPopup({
 $("#saveBtn").on('touchstart',function(){
 	var name = $("#name").val();
 	var phonenum = $("#phonenum").val();
-	var province = $("#province").val();
-	var city = $("#city").val();
-	var district = $("#district").val();
+	var province = "";//$("#province").val();
+	var city = "";//$("#city").val();
+	var district = "";//$("#district").val();
 	var address = $("#address").val();
 	var postCode = $("#postCode").val();
 	var customerId = $(".customerId").val();
 	var openId = $("#openId").val();
 	var busId = $("#busId").val();
 	var orderId = $("#orderId").val();
-	var provName = $("#province").get(0).options[$("#province").get(0).selectedIndex].innerHTML;
-	var cityName = $("#city").get(0).options[$("#city").get(0).selectedIndex].innerHTML;
-	var distName = $("#district").get(0).options[$("#district").get(0).selectedIndex].innerHTML;
+	var provName = "";//$("#province").get(0).options[$("#province").get(0).selectedIndex].innerHTML;
+	var cityName = "";//$("#city").get(0).options[$("#city").get(0).selectedIndex].innerHTML;
+	var distName = "";//$("#district").get(0).options[$("#district").get(0).selectedIndex].innerHTML;
 	if(customerId == null)
 	{
 		customerId = "";
@@ -127,6 +127,11 @@ $("#saveBtn").on('touchstart',function(){
 	else if(phonenum == "")
 	{
 		alert("联系电话不能为空");
+		$("#phonenum").focus();
+	}
+	else if(phonenum.length != 8 && phonenum.length != 11)
+	{
+		alert("联系电话输入有误");
 		$("#phonenum").focus();
 	}
 	else if(address == "")
@@ -148,7 +153,14 @@ $("#saveBtn").on('touchstart',function(){
 				}
 				else
 				{
-					alert("新增收货信息失败");
+					if(data != "failure")
+					{
+						alert(data);
+					}
+					else
+					{
+						alert("新增收货信息失败");
+					}
 				}
 			}
 		});
@@ -159,15 +171,15 @@ $("#usaveBtn").on('touchstart',function(){
 	var customerId = $(".customerId").val();
 	var customerName = $("#uname").val();
 	var customerTelephone = $("#uphonenum").val();
-	var provId = $("#uprovince").val();
-	var cityId = $("#ucity").val();
-	var districtId = $("#udistrict").val();
+	var provId = "";//$("#uprovince").val();
+	var cityId = "";//$("#ucity").val();
+	var districtId = "";//$("#udistrict").val();
 	var customerAddress = $("#uaddress").val();
 	var customerPostcode = $("#upostCode").val();
 	var orderId = $("#orderId").val();
-	var provName = $("#uprovince").get(0).options[$("#uprovince").get(0).selectedIndex].innerHTML;
-	var cityName = $("#ucity").get(0).options[$("#ucity").get(0).selectedIndex].innerHTML;
-	var distName = $("#udistrict").get(0).options[$("#udistrict").get(0).selectedIndex].innerHTML;
+	var provName = "";//$("#uprovince").get(0).options[$("#uprovince").get(0).selectedIndex].innerHTML;
+	var cityName = "";//$("#ucity").get(0).options[$("#ucity").get(0).selectedIndex].innerHTML;
+	var distName = "";//$("#udistrict").get(0).options[$("#udistrict").get(0).selectedIndex].innerHTML;
 	$.ajax({
 		url:"/micro/user.do?method=updateCustomer",
 		type:"POST",
@@ -180,7 +192,14 @@ $("#usaveBtn").on('touchstart',function(){
 			}
 			else
 			{
-				alert("修改收货信息失败");
+				if(data != "failure")
+				{
+					alert(data);
+				}
+				else
+				{
+					alert("修改收货信息失败");
+				}
 			}
 		}
 	});
@@ -262,7 +281,7 @@ $(".addrInfo").on('touchstart',function(){
 
 $("#payOrderBtn").on('touchstart',function(){
 	var busInstance = $("#busInstance").val();
-	if(parseFloat(busInstance)<=10000)
+	if(parseFloat(busInstance) <= gFarDistance)
 	{
 		var orderId = $("#orderId").val();
 		var busInfo = $("#busInfo").val();

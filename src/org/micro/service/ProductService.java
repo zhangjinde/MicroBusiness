@@ -116,4 +116,15 @@ public class ProductService
 	{
 		return productDao.getCartProdById(id, telephone);
 	}
+	
+	public List<Map<String,String>> getProductList(String busId , int pageNum , int pageSize) throws QryException
+	{
+		return productDao.getProductList(busId, pageNum, pageSize);
+	}
+	
+	public int getProductListCount(String busId) throws QryException
+	{
+		String count = productDao.getProductListCount(busId);
+		return Integer.parseInt(count);
+	}
 }

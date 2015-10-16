@@ -37,7 +37,7 @@ public class OauthController
 		System.out.println("rtn:"+rtn);
 		System.out.println("openId--------------------------------:"+openId);
 		ModelAndView view = new ModelAndView(page);
-		view.addObject("openid","openId");
+		view.addObject("openid",openId);
 		return view;
 	}
 	

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
-	String openId =(String) request.getParameter("openId");
+	String openId =(String) request.getParameter("openid");
 %>
 <html class="no-js " lang="zh-CN">
 	<head>
@@ -87,8 +87,8 @@
     	<div class="container" style="height:100%;width:100%">
 	        <div class="content">
 	        	<div class="tabber  tabber-n3 tabber-double-11 clearfix">
-					<a class="" href="<%=path %>/view/shop/shopCart.jsp?openid=${param.openid}busId=100">购物车</a>
-				    <a class="active" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100">购物记录</a>
+					<a class="" href="<%=path %>/view/shop/shopCart.jsp?openid=<%=openId %>&busId=100">购物车</a>
+				    <a class="active" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100&openid=<%=openId %>">购物记录</a>
 				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp">我的返现</a>
 				</div>
 	        	<div id="order-list-container">

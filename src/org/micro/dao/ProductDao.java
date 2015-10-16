@@ -27,7 +27,7 @@ public class ProductDao extends BaseDao
 	
 	public String getProductListCount(String busId) throws QryException
 	{
-		String sql = "select count(*) total from product_t where bus_id = ?";
+		String sql = "select count(*) total from product_t where sts = 'A' and bus_id = ?";
 		ArrayList paramList = new ArrayList();
 		paramList.add(busId);
 		List<Map<String,String>> list = qryCenter.executeSqlByMapListWithTrans(sql, paramList);
@@ -60,7 +60,7 @@ public class ProductDao extends BaseDao
 	public List<Map<String,String>> getCartProdById(String id,String telephone) throws QryException
 	{
 		ArrayList paramList = new ArrayList();
-		StringBuffer sql = new StringBuffer("select t.*,A.* from cart_t t,product_t a  where t.product_id=a.product_id ");
+		StringBuffer sql = new StringBuffer("select t.*,A.* from cart_t t,product_t a  where t.product_id=a.product_id and t.state='A' and a.sts='A' ");
 		if(!ObjectCensor.checkObjectIsNull(id))
 		{
 		    sql.append("  and t.weixin_id=? ");	

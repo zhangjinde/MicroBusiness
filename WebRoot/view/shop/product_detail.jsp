@@ -5,6 +5,7 @@
 <%
 	String path = request.getContextPath();
 	String openId =(String) request.getAttribute("openid");
+	String rand = String.valueOf(Math.random());
 %>
 <!DOCTYPE HTML>
 <html class="no-js admin" lang="zh-CN">
@@ -24,7 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="/micro/pub/css/detail.s.min.css" >
 		<link rel="stylesheet" type="text/css" href="/micro/pub/css/magnific-popup.css" >
 		<script src="/micro/js/location.js" type="text/javascript"></script>
-		<script src="/micro/pub/js/util.js" type="text/javascript"></script>
+		<script src="/micro/pub/js/util.js?<%=rand %>" type="text/javascript"></script>
 		<script src="/micro/pub/js/zepto.min.js" type="text/javascript"></script>
 		<script src="/micro/pub/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="/micro/js/global.js"></script>
@@ -100,7 +101,7 @@
 							        </div>
 								</dd>
 							</dl>
-							<dl>
+							<dl style="display:none;">
 								<dt>
 									剩余：
 								</dt>
@@ -232,7 +233,7 @@
 		</div>
 		<script id="tmpl-sku" type="text/template">
 			<div class="layout-title sku-box-shadow name-card sku-name-card">
-                <div class="thumb"><img src="http://imgqn.koudaitong.com/upload_files/2015/01/18/Fj_qDo90aKhgN6p3wz8gWmd2bw0S.png!100x100.jpg" alt=""></div>
+                <div class="thumb"><img src="/micro/pub/img/pic/doublePork.jpg" alt=""></div>
                         <div class="detail goods-base-info clearfix">
                 <p class="title c-black ellipsis">回锅肉</p>
                 <div class="goods-price clearfix">
@@ -251,21 +252,10 @@
     		</div>
 		</script>
 		<script src="/js/u_b.js"></script>
-		<div class="search-container hide">
-			<form class="search-form" action="/v2/search" method="GET">
-				<input type="search" class="search-input" placeholder="搜索本店所有商品" name="q" value="">
-				<input type="hidden" name="kdt_id" value="1836140">
-				<a class="js-search-cancel search-cancel" href="javascript:;">取消</a><span class="search-icon"></span><span class="close-icon hide"></span>
-			</form>
-			<div class="history-wrap center">
-				<ul class="history-list"></ul>
-				<a class="tag tag-clear c-gray-darker hide" href="javascript:;">清除历史搜索</a>
-			</div>
-		</div>
 		<div id="right-icon" class="js-right-icon no-text <c:if test="${cartFlag == 'N'}">hide</c:if>">
 			<div class="js-right-icon-container right-icon-container clearfix" style="width: 50px;">
 				<a id="global-cart" href="/micro/cart.do?method=gotoShopCart&openid=${param.openId}&busId=${param.busId}" 
-          class="icon" style="background-image: url(http://kdt-static.qiniucdn.com//v2/image/setting/shopping-cart/2x/s2.png);">
+          class="icon" style="background-image: url(/micro/pub/img/pic/s2.png);">
 					<p class="icon-img"></p>
 					<p class="icon-txt">
 						购物车
@@ -289,7 +279,7 @@
 					<td style="padding-left:10px;color:#000">详细地址</td>
 					<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent;width:100%" required></td>
 				</tr>
-				<tr>
+				<tr style="display:none;">
 					<td style="padding-left:10px;color:#000">邮政编码</td>
 					<td><input id="postCode" name="postCode	" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent;width:100%" /></td>
 				</tr>
@@ -303,7 +293,7 @@
 		<input id="busId" type="hidden" value="${param.busId}" />
 		<input id="openId" type="hidden" value="${param.openId}" />
 		<input id="productId" type="hidden" value="${param.productId}" />
-		<script type="text/javascript" language="javascript" src="/micro/js/prodDetail.js"></script>
+		<script type="text/javascript" language="javascript" src="/micro/js/prodDetail.js?<%=rand %>"></script>
 		<script type="text/javascript">
 			<c:choose>
 				<c:when test="${newUser=='Y'}">
@@ -325,6 +315,14 @@
 			              } else {
 			                this.st.focus = '#name';
 			              }
+			              var productPrice = $("#productPrice").html();
+			              var buyNum = parseInt($("#buyNum").val());
+						  if(Number(productPrice)*buyNum < gDisFeeLimit)
+						  {
+							alert("消费必须"+gDisFeeLimit+"元才与配送哦~");
+							addCart();
+						  	this.st.close();
+						  }
 			            },
 			            open:function(){
 			            	var addrName = $("#addrName").html();

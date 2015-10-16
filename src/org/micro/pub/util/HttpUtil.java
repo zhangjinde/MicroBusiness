@@ -16,8 +16,7 @@ public class HttpUtil
 {
 	public static Log log = LogFactory.getLog(HttpUtil.class);
 
-	public static String http(String url, Map<String, String> params,
-			String logStr, String flag, String encoding) throws Exception 
+	public static String http(String url, Map<String, String> params, String logStr, String flag, String encoding) throws Exception 
 	{
 		URL u = null;
 		HttpURLConnection con = null;
@@ -43,11 +42,12 @@ public class HttpUtil
 		{
 			u = new URL(url);
 			con = (HttpURLConnection) u.openConnection();
-			con.setRequestMethod("POST");
+			con.setRequestMethod("GET");
 			con.setDoOutput(true);
 			con.setDoInput(true);
 			con.setUseCaches(false);
-			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+			con.setRequestProperty("Content-Type", "application/octet-stream");
+			con.setRequestProperty("Content-Type", "application/json");
 			OutputStreamWriter osw = new OutputStreamWriter(con.getOutputStream(), "GBK");
 			osw.write(sb.toString());
 			osw.flush();
@@ -102,17 +102,15 @@ public class HttpUtil
 	public static void main(String[] args) 
 	{
 		
-		String url = "http://api.app2e.com/smsBigSend.api.php";
+		String url = "http://op.yg84.com:7000/universe/car/lineName?";
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("username", "haixing");
-		params.put("pwd", "cb6fbeee3deb608f000a8f132531b738");
-		params.put("p", "18907181658");
-		params.put("isUrlEncode", "no");
-		params.put("msg", "msg");
+		params.put("LsName", "\\U706b\\U8f66\\U7ad9");
+		params.put("cityId", "004");
+		params.put("type", "0");
 		// params.put("msg", "【海星通技术】尊敬的用户，您注册验证码是123456。健康管家愿成为您健康的好帮手！");
 		try
 		{
-			String retVal = HttpUtil.http(url, params, "", "", "");
+			String retVal = HttpUtil.http(url, params, "", "", "UTF-8");
 			System.err.println(retVal);
 		} 
 		catch (Exception e) 
@@ -120,6 +118,7 @@ public class HttpUtil
 			e.printStackTrace();
 		}
 	}
+	
 	public static String http(String address, String param)
 	{
 		log.error("send_data:" + param);

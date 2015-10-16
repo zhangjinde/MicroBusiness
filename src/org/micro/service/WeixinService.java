@@ -33,5 +33,6 @@ public class WeixinService
 		ScanPayReqData scanPayReqData = new ScanPayReqData(body, detail, out_trade_no, totalFee, timeStart, timeExpire, openid);
 		scanPayService = getScanPayService();
 		String responseString = scanPayService.request(scanPayReqData);
+		System.out.println(responseString);
 	}
 }

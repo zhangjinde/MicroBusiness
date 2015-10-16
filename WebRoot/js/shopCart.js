@@ -21,44 +21,50 @@ function toOrderPage()
 	}
 }
 
-var prodsNum=0;
-var prodsCount=0;
 var prodsArray;
 
 function addOrder()
 {
 	if(isWorkRange())
 	{
-		var addr = $("#address").val();
-		if(addr != "")
+		var totalPrice = $("#totalPrice").html();
+		if(Number(totalPrice) >= gDisFeeLimit)
 		{
-			var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
-			$.ajax({
-				type: "GET", 
-				dataType: "jsonp", 
-				url: url, 
-				async:false,
-				success: function (json) { 
-					if (json == null || typeof (json) == "undefined") { 
-						return; 
-					} 
-					if (json.status != "0") { 
-						return; 
-					} 
-					setPlaceAxis(json.result.location);
-					payFunc(addr);
-				}
-			}); 
+			var addr = $("#address").val();
+			if(addr != "")
+			{
+				var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&address="+encodeURI(addr)+"&output=json&pois=0&coordtype=wgs84ll"; 
+				$.ajax({
+					type: "GET", 
+					dataType: "jsonp", 
+					url: url, 
+					async:false,
+					success: function (json) { 
+						if (json == null || typeof (json) == "undefined") { 
+							return; 
+						} 
+						if (json.status != "0") { 
+							return;
+						} 
+						setPlaceAxis(json.result.location);
+						payFunc(addr);
+					}
+				}); 
+			}
+			else
+			{
+				var addrName = $("#addrName").html();
+				payFunc(addrName);
+			}
 		}
 		else
 		{
-			var addrName = $("#addrName").html();
-			payFunc(addrName);
+			alert("消费必须"+gDisFeeLimit+"元才与配送哦~");
 		}
 	}
 	else
 	{
-		alert("当前时间不在订餐时段内(11:00:00~18:00:00)!");
+		alert("当前时间不在订餐时段内("+gStartHour+":00:00~"+gEndHour+":00:00)!");
 	}
 }
 
@@ -75,6 +81,7 @@ function payFunc(addr)
 	}
 	if(arr.length != 0)
 	{
+		var totalPrice = $("#totalPrice").html();
 		var xPos = $("#xPos").val();
 		var yPos = $("#yPos").val();
 		var busId = $("#busId").val();
@@ -82,7 +89,6 @@ function payFunc(addr)
 		var name = $("#name").val();
 		var contactNum = $("#phonenum").val();
 		var postCode = $("#postCode").val();
-		var totalPrice = $("#totalPrice").html();
 		var prodJson = [];
 		for(var i = 0,n = arr.length;i < n;i++)
 		{
@@ -104,7 +110,7 @@ function payFunc(addr)
 				}
 				else
 				{
-					alert(data);
+					alert(orderId);
 				}
 			}
 		});
@@ -117,14 +123,20 @@ function payFunc(addr)
 
 function deleteProd()
 {
+	var totalPrice = parseInt($("#totalPrice").html());
+	var total = 0;
  	for(var i=0;i<prodsArray.length;i++)
     {
 		var id= prodsArray[i].productId;
 	 	if($("#div"+id).attr("choose")=='true')
 	 	{
+	 		var price=Number(prodsArray[i].productPrice);
+			var prodNum = parseInt($("#prodNum"+id).val());
+			total=price*prodNum+total;
  			$("#li"+id).addClass("hide");
 	 	}
     }
+	$("#totalPrice").html(totalPrice - total); 
 }
  
 function edit()
@@ -138,7 +150,6 @@ function edit()
 			$("#editNum"+prodId).removeClass("hide");
 			var num=$("#tradeNum"+prodId).html();
 			$("#prodNum"+prodId).val(num);
-			 
 		}
 		$("#deleteProd").removeClass("hide");
 		$("#pay").addClass("hide");
@@ -161,25 +172,33 @@ function edit()
  
 function chooseProd(id,price)
 {
-	var num = $("#tradeNum"+id).html();
+	var num = parseInt($("#tradeNum"+id).html());
+	var prodNum = parseInt($("#prodNum"+id).val());
 	var oldTotal=Number($("#totalPrice").html());
 	var choose= $("#div"+id).attr("choose");
-	var priceNum=Number(price)*parseInt(num);
+	var priceNum=Number(price)*($("#edit").html()=="编辑"?num:prodNum);
 	if(choose=='true')
 	{
 		$("#totalPrice").html(oldTotal-priceNum); 
 		$("#div"+id).attr("choose",'false');
 		$("#div"+id).removeClass("checked");
-		prodsCount--;
 	}
 	else
 	{
 		$("#totalPrice").html(oldTotal+priceNum);  
 		$("#div"+id).attr("choose",'true');
 		$("#div"+id).addClass("checked");
-		prodsCount++;
 	}
-	if(prodsCount==prodsNum)
+	var flag = true;
+	for(var i=0;i<prodsArray.length;i++)
+    {
+		var id= prodsArray[i].productId;
+	 	if($("#div"+id).attr("choose")!='true')
+	 	{
+	 		flag = false;
+	 	}
+ 	}	
+	if(flag)
 	{
 		$("#allselect").addClass("checked");
 	}
@@ -189,23 +208,41 @@ function chooseProd(id,price)
 	}
 }
   
-function addNum(id)
+function addNum(id,price)
 {
-	var num=$("#prodNum"+id).val();
-	var numInt=Number(num);
-	$("#prodNum"+id).val(++numInt);
+	if($("#edit").html()=="完成")
+	{
+		var num=$("#prodNum"+id).val();
+		var numInt=Number(num);
+		$("#prodNum"+id).val(++numInt);
+		var choose= $("#div"+id).attr("choose");
+		if(choose=='true')
+		{
+			var oldTotal=Number($("#totalPrice").html());
+			$("#totalPrice").html(oldTotal+Number(price)); 
+		}
+	}
 }
   
-function deleteNum(id)
+function deleteNum(id,price)
 {
-	var num=$("#prodNum"+id).val();
-	var numInt=Number(num);
-	var n=--numInt;
-	if(n==0)
+	if($("#edit").html()=="完成")
 	{
-		return;
+		var num=$("#prodNum"+id).val();
+		var numInt=Number(num);
+		var n=--numInt;
+		var choose= $("#div"+id).attr("choose");
+		if(n<=0)
+		{
+			return;
+		}
+		if(choose=='true')
+		{
+			var oldTotal=Number($("#totalPrice").html());
+			$("#totalPrice").html(oldTotal-Number(price)); 
+		}
+		$("#prodNum"+id).val(numInt);
 	}
-	$("#prodNum"+id).val(numInt);
 }
   
 function qryCartProds(id, telephone)
@@ -230,13 +267,12 @@ function qryCartProds(id, telephone)
 	 	}
 	    var content = "";
 	    count = data.size;
-	    prodsNum=data.size;
 	    prodsArray=data.prods;
 	    var openId = $("#openId").val();
 	    $.each(data.prods, function(i, obj) {
 	    	content+="<li id='li"+obj.productId+"' class='block-item block-item-cart relative clearfix'>";
-	    	content+="<div class='check-container'>"; 
-	    	content+="<span id='div"+obj.productId+"' choose='false'  onclick=chooseProd("+obj.productId+","+obj.productPrice+") class='check'>"; 
+	    	content+="<div class='check-container' onclick=chooseProd("+obj.productId+","+obj.productPrice+")>"; 
+	    	content+="<span id='div"+obj.productId+"' choose='false' class='check'>"; 
 	    	content+="</span>"; 
 	    	content+="</div>"; 
 	    	content+="<div class='name-card name-card-3col clearfix'>"; 
@@ -274,9 +310,9 @@ function qryCartProds(id, telephone)
 	    	content+="<input id='prodNum"+obj.productId+"' type='text' class='txt' value='1'>";
 	    	content+="<button class='plus' type='button'>";
 	    	content+="</button>";
-	    	content+="<div id='deleteNum"+obj.productId+"' onclick=deleteNum("+obj.productId+") class='response-area response-area-minus'>";
+	    	content+="<div id='deleteNum"+obj.productId+"' onclick=deleteNum("+obj.productId+","+obj.productPrice+") class='response-area response-area-minus'>";
 	    	content+="</div>";
-	    	content+="<div id='addNum"+obj.productId+"' onclick=addNum("+obj.productId+") class='response-area response-area-plus'>";
+	    	content+="<div id='addNum"+obj.productId+"' onclick=addNum("+obj.productId+","+obj.productPrice+") class='response-area response-area-plus'>";
 	    	content+="</div>";
 	    	content+="<div class='txtCover'>";
 	    	content+="</div>";
@@ -320,9 +356,18 @@ function selectAll()
 		for(var i=0;i<prodsArray.length;i++)
 		{
 			var price=Number(prodsArray[i].productPrice);
-			var num = parseInt($("#tradeNum"+prodsArray[i].productId).html());
-			total=price*num+total;
+			if($("#edit").html()=="编辑")
+			{
+				var num = parseInt($("#tradeNum"+prodsArray[i].productId).html());
+				total=price*num+total;
+			}
+			else
+			{
+				var prodNum = parseInt($("#prodNum"+prodsArray[i].productId).val());
+				total=price*prodNum+total;
+			}
 			$("#div"+prodsArray[i].productId).addClass("checked");
+			$("#div"+prodsArray[i].productId).attr("choose",'true');
 		}
 		$("#totalPrice").html(total); 
 		$("#allselect").addClass("checked");
@@ -332,6 +377,7 @@ function selectAll()
 		for(var i=0;i<prodsArray.length;i++)
 	    {
 			$("#div"+prodsArray[i].productId).removeClass("checked");
+			$("#div"+prodsArray[i].productId).attr("choose",'false');
 	    } 
 	  	$("#totalPrice").html(0); 
 	  	$("#allselect").removeClass("checked");

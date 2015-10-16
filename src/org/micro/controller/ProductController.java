@@ -88,23 +88,23 @@ public class ProductController
 		try 
 		{
 			out = response.getWriter();
-			list =	cacheManager.getProdsByPage(page);
-			size = cacheManager.getPageSize();
-			} 
-			catch (QryException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			JSONObject object = new JSONObject();
-			JSONArray prods= JSONArray.fromObject(list);
-			
-			object.put("prods", prods);
-			object.put("size", size);
-			out.println(object);
+			list =	productService.getProductList("100", page, 10);
+			size = productService.getProductListCount("100");
+		} 
+		catch (QryException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JSONObject object = new JSONObject();
+		JSONArray prods= JSONArray.fromObject(list);
+		
+		object.put("prods", prods);
+		object.put("size", size);
+		out.println(object);
 	}
 	
 	

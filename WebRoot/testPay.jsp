@@ -19,25 +19,28 @@
     <script type="text/javascript" src="/micro/pub/js/jquery.json.min.js"></script>
     <script type="text/javascript" src="/micro/js/global.js"></script>
     <script type="text/javascript">
-	  init();
 	  function init()
 	  {
 		 //setCookie("openid","oLsjhsuYDJZMpNK0jt09X8Wtt5DY"); 
 	  	 var url="/micro/oauth.do?method=getCode&page=testPay";
 	  	 var openid=getCookie("openid");
 	  	 var id='<%=openId%>';
-	  	 if((openid=='' || openid==null || openid=='null') && (id=='' || id==null || id=='null'))
+	  	 if((openid=='' || openid==null || openid=='null') && (id == '' || id == null || id == 'null'))
 	  	 {
-	  		  encodeURL(url); 
+	  		encodeURL(url); 
 	  	 }
 	  	 if(id!='' && id!=null && id!='null')
 	  	 {
-	  		 setCookie("openid",id); 
+	  		 setCookie("openid",id);
+	  		 openid=id;
 	  	 }
+	  	 $("#openid").val(openid);
+	  	 alert($("#openid").val());
 	  }
 	  $(document).ready(function(){
 	  	 var out_trade_no = document.getElementById("out_trade_no");
 	  	 out_trade_no.value = "test"+new Date().getTime();
+	  	 init();
 	  })
 	</script>
   </head>

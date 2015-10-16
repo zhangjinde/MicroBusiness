@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String path = request.getContextPath();
+	String rand = String.valueOf(Math.random());
 %>
 <!DOCTYPE HTML>
 <html class="no-js " lang="zh-CN" style="overflow: visible; height: auto; position: static;">
@@ -18,7 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="<%=path %>/pub/css/base_2ced031129.css" />
 		<link rel="stylesheet" href="<%=path %>/pub/css/trade_626cf27050.css">
-		<script src="<%=path %>/pub/js/util.js" type="text/javascript"></script>
+		<script src="<%=path %>/pub/js/util.js?<%=rand %>" type="text/javascript"></script>
 		<script type="text/javascript" src="<%=path %>/js/location.js"></script>
 		<script src="<%=path %>/pub/js/zepto.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="<%=path %>/pub/css/magnific-popup.css">
@@ -255,7 +256,7 @@
 							<td style="padding-left:10px;color:#000">联系电话</td>
 							<td><input id="uphonenum" name="uphonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent" required></td>
 						</tr>
-						<tr>
+						<tr style="display:none;">
 							<td valign="middle" style="padding-left:10px;color:#000">选择地区</td>
 							<td valign="middle" style="padding-left:8px">
 								<select id="uprovince" style="border:none;background-color:transparent">
@@ -276,7 +277,7 @@
 							<td style="padding-left:10px;color:#000">详细地址</td>
 							<td><input id="uaddress" name="uaddress" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent;width:100%" required></td>
 						</tr>
-						<tr>
+						<tr style="display:none;">
 							<td style="padding-left:10px;color:#000">邮政编码</td>
 							<td style="padding-left:8px"><input id="upostCode" name="upostCode" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent;width:100%" /></td>
 						</tr>
@@ -299,7 +300,7 @@
 							<td style="padding-left:10px;color:#000">联系电话</td>
 							<td><input id="phonenum" name="phonenum" type="tel" placeholder="手机或固话" style="border:none;background-color:transparent" required></td>
 						</tr>
-						<tr>
+						<tr style="display:none;">
 							<td valign="middle" style="padding-left:10px;color:#000">选择地区</td>
 							<td valign="middle" style="padding-left:8px">
 								<select id="province" style="border:none;background-color:transparent" onchange="areaChange(this,'city')">
@@ -320,7 +321,7 @@
 							<td style="padding-left:10px;color:#000">详细地址</td>
 							<td><input id="address" name="address" type="text" placeholder="街道门牌信息" style="border:none;background-color:transparent;width:100%" required></td>
 						</tr>
-						<tr>
+						<tr style="display:none;">
 							<td style="padding-left:10px;color:#000">邮政编码</td>
 							<td style="padding-left:8px"><input id="postCode" name="postCode" type="tel" placeholder="邮政编码(选填)" style="border:none;background-color:transparent;width:100%" /></td>
 						</tr>
@@ -329,6 +330,6 @@
 						</tr>
 					</table>
 				</form>
-				<script type="text/javascript" src="<%=path %>/js/payPage.js"></script>
+				<script type="text/javascript" src="<%=path %>/js/payPage.js?<%=rand %>"></script>
            </body>
        </html>
