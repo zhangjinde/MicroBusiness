@@ -24,7 +24,8 @@ function addOrder()
   	if(isWorkRange())
   	{
   		var productPrice = $("#productPrice").html();
-		if(Number(productPrice) >= gDisFeeLimit)
+        var buyNum = parseInt($("#buyNum").val());
+		if(Number(productPrice)*buyNum >= gDisFeeLimit)
 		{
 			var addr = $("#address").val();
 			if(addr != "")

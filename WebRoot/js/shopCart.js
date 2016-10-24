@@ -134,6 +134,8 @@ function deleteProd()
 			var prodNum = parseInt($("#prodNum"+id).val());
 			total=price*prodNum+total;
  			$("#li"+id).addClass("hide");
+ 			$("#div"+id).attr("choose",'false');
+ 			$("#div"+id).removeClass("checked");
 	 	}
     }
 	$("#totalPrice").html(totalPrice - total); 
@@ -355,19 +357,23 @@ function selectAll()
 	{
 		for(var i=0;i<prodsArray.length;i++)
 		{
-			var price=Number(prodsArray[i].productPrice);
-			if($("#edit").html()=="编辑")
+			var liClassName = $("#li"+prodsArray[i].productId).attr("class");
+			if(liClassName.indexOf("hide") == -1)
 			{
-				var num = parseInt($("#tradeNum"+prodsArray[i].productId).html());
-				total=price*num+total;
+				var price=Number(prodsArray[i].productPrice);
+				if($("#edit").html()=="编辑")
+				{
+					var num = parseInt($("#tradeNum"+prodsArray[i].productId).html());
+					total=price*num+total;
+				}
+				else
+				{
+					var prodNum = parseInt($("#prodNum"+prodsArray[i].productId).val());
+					total=price*prodNum+total;
+				}
+				$("#div"+prodsArray[i].productId).addClass("checked");
+				$("#div"+prodsArray[i].productId).attr("choose",'true');
 			}
-			else
-			{
-				var prodNum = parseInt($("#prodNum"+prodsArray[i].productId).val());
-				total=price*prodNum+total;
-			}
-			$("#div"+prodsArray[i].productId).addClass("checked");
-			$("#div"+prodsArray[i].productId).attr("choose",'true');
 		}
 		$("#totalPrice").html(total); 
 		$("#allselect").addClass("checked");

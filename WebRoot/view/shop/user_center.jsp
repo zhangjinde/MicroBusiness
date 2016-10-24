@@ -43,22 +43,16 @@
 						</div>
 					</div>
 				</div>
-				<div class="js-navmenu js-footer-auto-ele shop-nav nav-menu nav-menu-2 has-menu-5" style="background-color: #02813e;">
+				<div class="js-navmenu js-footer-auto-ele shop-nav nav-menu nav-menu-2 has-menu-3" style="background-color: #02813e;">
 					<ul class="clearfix">
 						<li>
 							<a href="/micro/shop.jsp" style="background-image: url(/micro/pub/img/pic/homeIndex.jpg); background-size: 50px 50px"></a>
 						</li>
 						<li>
-							<a href="/micro/view/shop/user_center.jsp?busId=${param.busId}" style="background-image: url(/micro/pub/img/pic/qryOrder.jpg); background-size: 50px 50px"></a>
-						</li>
-						<li>
 							<a href="/micro/view/shop/user_center.jsp?busId=${param.busId}" style="background-image: url(/micro/pub/img/pic/userIndex.jpg); background-size: 50px 50px"></a>
 						</li>
 						<li>
-							<a href="tel://4007366517" style="background-image: url(/micro/pub/img/pic/callIndex.jpg); background-size: 50px 50px"></a>
-						</li>
-						<li>
-							<a href="http://wap.koudaitong.com/v2/feature/oma5aeh1" style="background-image: url(/micro/pub/img/pic/navigatorIndex.jpg); background-size: 50px 50px"></a>
+							<a href="javascript:gotoShopCart()" onclick="gotoShopCart()" style="background-image: url(/micro/pub/img/pic/qryOrder.jpg); background-size: 50px 50px"></a>
 						</li>
 					</ul>
 				</div>
@@ -73,5 +67,20 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+		   function gotoShopCart()
+		   {
+		   		var url="/micro/cart.do?method=gotoShopCart&busId=100";
+				var openid=getCookie("openid");
+				if(openid=='' || openid==null)
+				{
+				  	encodeURL(url); 
+				}
+				else
+				{
+				 	window.location.href = url+"&openid="+openid;
+				}
+		   }
+		</script>
 	</body>
 </html>

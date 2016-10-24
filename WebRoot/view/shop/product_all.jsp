@@ -108,19 +108,12 @@
           </a>
         </div>
         </script>
-        <div class="js-navmenu js-footer-auto-ele shop-nav nav-menu nav-menu-2 has-menu-5"
+        <div class="js-navmenu js-footer-auto-ele shop-nav nav-menu nav-menu-2 has-menu-3"
         style="background-color: #02813e;">
           <ul class="clearfix">
             <li>
               <a href="/micro/shop.jsp" style="
               background-image: url(/micro/pub/img/pic/homePic.jpg);
-              background-size: 50px 50px
-              ">
-              </a>
-            </li>
-            <li>
-              <a href="/micro/view/shop/user_center.jsp?busId=100" style="
-              background-image: url(/micro/pub/img/pic/qryOrder.jpg);
               background-size: 50px 50px
               ">
               </a>
@@ -133,15 +126,8 @@
               </a>
             </li>
             <li>
-              <a href="tel://4007366517" style="
-              background-image: url(/micro/pub/img/pic/callCustomer.jpg);
-              background-size: 50px 50px
-              ">
-              </a>
-            </li>
-            <li>
-              <a href="http://wap.koudaitong.com/v2/feature/oma5aeh1" style="
-              background-image: url(/micro/pub/img/pic/navigator.jpg);
+              <a href="javascript:gotoShopCart()" onclick="gotoShopCart()" style="
+              background-image: url(/micro/pub/img/pic/qryOrder.jpg);
               background-size: 50px 50px
               ">
               </a>
@@ -257,6 +243,20 @@
 			}
 		});
   }
+   
+   function gotoShopCart()
+   {
+   		var url="/micro/cart.do?method=gotoShopCart&busId=100";
+		var openid=getCookie("openid");
+		if(openid=='' || openid==null)
+		{
+		  	encodeURL(url); 
+		}
+		else
+		{
+		 	window.location.href = url+"&openid="+openid;
+		}
+   }
    
    function getProds(productId)
    {
