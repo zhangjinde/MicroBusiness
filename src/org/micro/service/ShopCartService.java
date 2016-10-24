@@ -51,7 +51,7 @@ public class ShopCartService
 			hibernateObjectDao.update(cartT2);
 			return;
 		}
-		cartT.setCartId(sysId.getSeqId("MICRO_CART_SEQ")+"");
+		cartT.setCartId(sysId.getId("MICRO_CART_SEQ")+"");
 		hibernateObjectDao.save(cartT);
 	}
 	 

@@ -14,9 +14,8 @@ public class CustomerDao extends BaseDao
 {
 	public List<Map<String,String>> getCustomer(String openId , String busId) throws QryException
 	{
-		String sql = "select * from customer_t where customer_open_id = ? and bus_id = ? and sts = 'A'";
+		String sql = "select * from customer_t where   bus_id = ? and sts = 'A'";
 		ArrayList paramList = new ArrayList();
-		paramList.add(openId);
 		paramList.add(busId);
 		return qryCenter.executeSqlByMapListWithTrans(sql, paramList);
 	}

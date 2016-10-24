@@ -46,7 +46,7 @@ public final class SysDate
 
     private static Timestamp getFormatSimpleDate(Date date) 
     {
-		String format = "yyyy-MM-dd HH:mm:ss";
+		String format = "yyyy-MM-dd";
 		SimpleDateFormat df = new SimpleDateFormat(format);
 		String dateT = df.format(date);
 		try 

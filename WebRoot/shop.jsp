@@ -25,7 +25,7 @@
     <script type="text/javascript" src="/micro/pub/js/jquery.json.min.js"></script>
     <script type="text/javascript" src="/micro/js/global.js"></script>
   <script type="text/javascript">
-  init();
+ // init();
   function init()
   {
 	 //setCookie("openid","oLsjhsuYDJZMpNK0jt09X8Wtt5DY");
@@ -826,23 +826,17 @@
           };
           showQcode();
         </script>
-        <div class="js-navmenu js-footer-auto-ele shop-nav nav-menu nav-menu-2 has-menu-5"
+        <div class="js-navmenu js-footer-auto-ele shop-nav nav-menu nav-menu-2 has-menu-3"
         style="background-color: #02813e;">
           <ul class="clearfix">
             <li>
               <a href="/micro/shop.jsp" title="店铺首页" style="background-image: url(/micro/pub/img/pic/homeIndex.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="/micro/view/shop/user_center.jsp?busId=100" title="查询订单" style="background-image: url(/micro/pub/img/pic/qryOrder.jpg);background-size: 50px 50px"></a>
+              <a href="/micro/view/shop/user_center.jsp?busId=100" title="订单中心" style="background-image: url(/micro/pub/img/pic/userIndex.jpg);background-size: 50px 50px"></a>
             </li>
             <li>
-              <a href="/micro/view/shop/user_center.jsp?busId=100" title="会员中心" style="background-image: url(/micro/pub/img/pic/userIndex.jpg);background-size: 50px 50px"></a>
-            </li>
-            <li>
-              <a href="tel://4007366517" title="呼叫客服" style="background-image: url(/micro/pub/img/pic/callIndex.jpg);background-size: 50px 50px"></a>
-            </li>
-            <li>
-              <a href="http://wap.koudaitong.com/v2/feature/oma5aeh1" title="门店导航" style="background-image: url(/micro/pub/img/pic/navigatorIndex.jpg);background-size: 50px 50px"></a>
+              <a href="javascript:gotoShopCart()" onclick="gotoShopCart()" title="购物车" style="background-image: url(/micro/pub/img/pic/qryOrder.jpg);background-size: 50px 50px"></a>
             </li>
           </ul>
         </div>
@@ -904,27 +898,21 @@ $(document).ready(function(){
 });
 function showProductAll()
 {
-	var openId = "<%=openId %>";
+	var openId=getCookie("openid");
 	window.location.href = "/micro/view/shop/product_all.jsp?openId="+openId+"&busId=100";
 }
 function gotoShopCart()
 {
-	var openId = "<%=openId %>";
+	var openId=getCookie("openid");
 	window.location.href = "/micro/cart.do?method=gotoShopCart&openid="+openId+"&busId=100";
 }
 
 function getProds(productId)
 {
-	 var url="/micro/product.do?method=getProduct&productId="+productId+"&busId=100";
-	 var openid=getCookie("openid");
-	 if(openid=='' || openid==null)
-	 {
-		  encodeURL(url); 
-	 }
-	 else
-	 {
-	 	 window.location.href = url+"&openId="+openid;
-	 }
+	 		var url="/micro/product.do?method=getProduct&productId="+productId+"&busId=100";
+	 
+	 	 window.location.href = url;
+	  
 }
 
 </script>

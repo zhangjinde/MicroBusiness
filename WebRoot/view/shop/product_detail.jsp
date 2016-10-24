@@ -251,7 +251,7 @@
         		<div class="confirm-action content-foot"></div>
     		</div>
 		</script>
-		<script src="/js/u_b.js"></script>
+		<script src="/micro/js/u_b.js"></script>
 		<div id="right-icon" class="js-right-icon no-text <c:if test="${cartFlag == 'N'}">hide</c:if>">
 			<div class="js-right-icon-container right-icon-container clearfix" style="width: 50px;">
 				<a id="global-cart" href="/micro/cart.do?method=gotoShopCart&openid=${param.openId}&busId=${param.busId}" 

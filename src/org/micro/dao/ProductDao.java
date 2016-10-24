@@ -63,8 +63,8 @@ public class ProductDao extends BaseDao
 		StringBuffer sql = new StringBuffer("select t.*,A.* from cart_t t,product_t a  where t.product_id=a.product_id and t.state='A' and a.sts='A' ");
 		if(!ObjectCensor.checkObjectIsNull(id))
 		{
-		    sql.append("  and t.weixin_id=? ");	
-		    paramList.add(id);
+		 //   sql.append("  and t.weixin_id=? ");	
+		  //  paramList.add(id);
 		}
 		if(!ObjectCensor.checkObjectIsNull(telephone))
 		{

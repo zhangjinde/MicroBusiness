@@ -41,19 +41,19 @@ public class ProductController
 		 ModelAndView model = new ModelAndView();
 		 String busId =request.getParameter("busId");
 		 String productId=request.getParameter("productId"); 
-		 String openId=request.getParameter("openId");/*已经存在*/
-		 
-		 if(ObjectCensor.checkObjectIsNull(openId))/*第一次获取*/
+		 String openId="1";/*已经存在*/
+		 /*
+		 if(ObjectCensor.checkObjectIsNull(openId)) 
 		 {
 			  String codeId=request.getParameter("code");
 			  log.error("code:"+codeId);
-			  if(!ObjectCensor.checkObjectIsNull(codeId))/*第一次获取*/
+			  if(!ObjectCensor.checkObjectIsNull(codeId)) 
 			  {
 				  	openId=WeixinAuth.getOpenId(codeId);
 			  }
 			  log.error("openid:"+openId);
 		 }
-		
+		*/
 		 productService.getProductInfo(busId, productId, openId, model);
 		 return model;
 	}
