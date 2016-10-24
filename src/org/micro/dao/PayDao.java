@@ -216,7 +216,7 @@ public class PayDao extends BaseDao
 	{
 		if(ObjectCensor.isStrRegular(orderIds))
 		{
-			StringBuffer sb = new StringBuffer("select a.order_id,c.product_id,c.product_name,c.product_price,b.product_num,c.img_url from order_t a,order_detail_t b,product_t c where a.sts='A' and b.sts='A' and c.sts='A' and a.order_id = b.order_id and b.product_id = c.product_id and a.order_id in (");
+			StringBuffer sb = new StringBuffer("select a.order_id,c.product_id,c.product_name,c.product_price,b.product_num,c.img_url from order_t a,order_detail_t b,product_t c where b.sts='A' and c.sts='A' and a.order_id = b.order_id and b.product_id = c.product_id and a.order_id in (");
 			sb.append(orderIds);
 			sb.append(")");
 			return qryCenter.executeSqlByMapListWithTrans(sb.toString() , new ArrayList());

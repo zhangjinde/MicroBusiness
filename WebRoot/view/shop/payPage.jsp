@@ -220,7 +220,7 @@
 										</c:otherwise>
 									</c:choose>
 								</td>
-								<td height="80" width="70%">
+								<td height="80" width="70%" class="userPlaceInfo" value="${node.customerDetailId}">
 									<input type="hidden" class="customerId" value="${node.customerId}" />
 									<input type="hidden" class="customerDetailId" value="${node.customerDetailId}" />
 									<input type="hidden" id="customerName${node.customerDetailId}" value="${node.customerName}" />

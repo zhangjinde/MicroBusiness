@@ -35,10 +35,10 @@
 	<body class=" body-fixed-bottom">
 	    <div class="container ">
 	    	<div class="content clearfix">
-				<div class="tabber  tabber-n3 tabber-double-11 clearfix">
+				<div class="tabber  tabber-n3 tabber-double-11 clearfix hide">
 					<a class="active" href="<%=path %>/view/shop/shopCart.jsp?openid=<%=openId %>&busId=100">购物车</a>
 				    <a class="" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100&openid=<%=openId %>">购物记录</a>
-				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp">我的返现</a>
+				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp?openid=<%=openId %>">我的返现</a>
 				</div>
 				<div id="cart-container" class="block block-order">
 					<div class="header js-list-header">

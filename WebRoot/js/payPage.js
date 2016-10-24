@@ -240,6 +240,10 @@ $(".chaPic").on('touchstart',function(){
 	setOrderAddr($(this).attr("value"));
 });
 
+$(".userPlaceInfo").on('touchstart',function(){
+	setOrderAddr($(this).attr("value"));
+});
+
 function setOrderAddr(customerDetailId)
 {
 	var orderId = $("#orderId").val();

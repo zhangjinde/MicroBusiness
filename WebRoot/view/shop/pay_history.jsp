@@ -89,7 +89,7 @@
 	        	<div class="tabber  tabber-n3 tabber-double-11 clearfix">
 					<a class="" href="<%=path %>/view/shop/shopCart.jsp?openid=<%=openId %>&busId=100">购物车</a>
 				    <a class="active" href="<%=path %>/view/shop/pay_history.jsp?orderType=F&busId=100&openid=<%=openId %>">购物记录</a>
-				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp">我的返现</a>
+				    <a class="" href="<%=path %>/view/shop/returnNowPage.jsp?openid=<%=openId %>">我的返现</a>
 				</div>
 	        	<div id="order-list-container">
 	        		<div id="wrapper" style="min-height:308px;">
